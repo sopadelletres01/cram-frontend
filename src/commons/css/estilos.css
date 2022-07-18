@@ -1,0 +1,51 @@
+/* *+*{
+    margin:0;
+    box-sizing: border-box;
+}
+#root{
+    width: 100vw;
+    height: 100vh;
+}
+
+body{
+    display:flex;
+} */
+/* .bienvenido{
+font-size:2.5rem;
+display:flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 60px;
+margin-top: 40px;
+color: #0275d8;
+} */
+/* .container{
+    width:100%;
+    margin:0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container__login{
+    height:400px;
+    display:flex;
+    justify-content:center;
+
+} */
+.botones__login{
+    margin:10px;
+    
+}
+.componente__titulo{
+    font-size:1.5rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color: #0275d8;
+
+}
+.containe__footer{
+    display: flex;
+
+}
