@@ -1,9 +1,9 @@
 import React ,{useState,useContext, useEffect}from 'react'
 import {Form, Button, Table} from 'react-bootstrap'
 import { AuthContext } from '../context/AuthContext';
-import ApiCrudService from '../../servicios/crud.service';
-import UsuariosService from '../../servicios/usuarios.service'
-import EventosService from '../../servicios/eventos.service'
+import ApiCrudService from '../../services/crud.service';
+import UsuariosService from '../../services/usuarios.service'
+import EventosService from '../../services/eventos.service'
 import MenusAuxiliar from './MenusAuxiliar'
 import {Link} from 'react-router-dom'
 

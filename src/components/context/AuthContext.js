@@ -1,6 +1,6 @@
 import React, { useState ,useRef,useEffect , createContext,useContext} from 'react';
 import { useNavigate } from 'react-router';
-import AuthService from '../../servicios/auth.service';
+import AuthService from '../../services/auth.service';
 import {
   useLocation,
 } from 'react-router-dom';
@@ -13,6 +13,7 @@ function useAuth(){
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [user, setUserData]=useState({id:null, email:null, nombre:null})
     const [loading, setLoading] = useState(false)
+	const [ isLoggedIn, setIsLoggedIn ] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     //1semana
@@ -38,9 +39,33 @@ function useAuth(){
         setUserData({...data})
     }
 
+    const verifyStoredToken = async () => {
+		// Get the stored token from the localStorage
+		const storedToken = localStorage.getItem('authToken');
+
+		// If the token exists in the localStorage
+		if (storedToken) {
+			// We must send the JWT token in the request's "Authorization" Headers
+            try {
+                const response = await AuthService.userIsAuth(storedToken)
+                setUser(response.data);
+                setIsLoggedIn(true);
+					setLoading(false);
+                
+            } catch (e) {
+                setIsLoggedIn(false);
+					setUser(null);
+					setLoading(false);
+            }
+		} else {
+			// If the token is not available
+			setLoading(false);
+		}
+	};
+
     return {
         isAuthenticated,
-        isLogged(){return !!localStorage.getItem("token")},
+        isLoggedIn,
         user,
         setUser,
         loading,
@@ -55,8 +80,12 @@ function useAuth(){
             }else{
                 localStorage.setItem("token",JSON.stringify({token,expireTime:0}))
             }
-            localStorage.setItem('user',JSON.stringify(userData))
+            localStorage.setItem('user', JSON.stringify(userData))
             const origin = location.state?.from?.pathname || '/user';
+
+            localStorage.setItem('authToken', token);
+            verifyStoredToken();
+            
             console.log("ORIGIN",origin)
             console.log("LOCATION",location)
             navigate(origin);
@@ -70,6 +99,11 @@ function useAuth(){
             if ( !!localStorage.getItem("user") ){
                 localStorage.removeItem("user")
             }
+            localStorage.removeItem('authToken');
+
+            // Update the state variables
+            setIsLoggedIn(false);
+            setUser(null);
             navigate("/login")
         }
         

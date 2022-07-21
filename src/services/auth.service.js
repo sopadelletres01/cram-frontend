@@ -3,13 +3,9 @@ import httpC from "./httpConfig";
 
 export default class AuthService{
 
-    static userIsAuth(){
-        let dataToSend = {
-            headers:{
-                "x-access-token": localStorage.getItem("token")
-            }
-        }
-        return httpC.get("/checkAuth",dataToSend)
+    static async userIsAuth(storedToken) {
+
+        return await httpC.get(`/auth/verify`, { headers: { Authorization: `Bearer ${storedToken}` } })
     }
 
     static signup(data){
@@ -27,14 +23,14 @@ export default class AuthService{
     }
     static forgotPassword(data){
         /* tien que enrutar el logout */
-        return httpC.post("/forgot",data)
+        return httpC.post("/auth/forgot",data)
     }
     static resetPassword(data){
         /* tien que enrutar el logout */
-        return httpC.post("/reset",data)
+        return httpC.post("/auth/reset",data)
     }
     static resend(data){
         /* tien que enrutar el logout */
-        return httpC.post(`/resend/${data.email}`)
+        return httpC.post(`/auth/resend/${data.email}`)
     }
 }

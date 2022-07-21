@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router';
-import AuthService from '../../servicios/auth.service';
+import AuthService from '../../services/auth.service';
 //import '../css/estilosGrid.css'
 
 export default function ForgotPassword() {

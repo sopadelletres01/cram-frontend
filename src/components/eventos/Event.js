@@ -3,10 +3,10 @@ import { Badge, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import PromocionesService from '../../servicios/promociones.service.js';
+import PromocionesService from '../../services/promociones.service.js';
 import { AuthContext } from '../context/AuthContext';
 import {BsDownload} from 'react-icons/bs'
-import EventosService from '../../servicios/eventos.service.js';
+import EventosService from '../../services/eventos.service.js';
 
 const Event = () =>{
     //Consultar comercios asignados a un evento

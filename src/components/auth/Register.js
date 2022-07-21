@@ -5,7 +5,7 @@ import * as yup from "yup"
 import {Form, Button, Row, Col, InputGroup} from 'react-bootstrap'
 import { Formik } from 'formik';
 import YupPassword from 'yup-password'
-import AuthService from '../../servicios/auth.service'
+import AuthService from '../../services/auth.service'
 import { useNavigate } from 'react-router-dom';
 YupPassword(yup)
 
