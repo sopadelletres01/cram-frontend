@@ -2,8 +2,8 @@ import React, { CSSProperties, useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import Papa from 'papaparse';
 import { Form, Button } from 'react-bootstrap'
-import ApiCrudService from '../../servicios/crud.service'
-import EventosService from '../../servicios/eventos.service'
+import ApiCrudService from '../../services/crud.service'
+import EventosService from '../../services/eventos.service'
 import MenusAuxiliar from './MenusAuxiliar'
 import { Link } from 'react-router-dom';
 export default function CSVReader() {

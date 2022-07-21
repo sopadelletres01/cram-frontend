@@ -1,7 +1,7 @@
 import React , {useState, useEffect, useContext}from 'react'
 //import '../css/estilosGrid.css'
 import {Form, Button, Modal} from 'react-bootstrap'
-import AuthService from '../../servicios/auth.service'
+import AuthService from '../../services/auth.service'
 import { useNavigate, Link } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 

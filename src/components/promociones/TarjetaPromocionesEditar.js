@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Card ,Badges, Badge, Form} from "react-bootstrap";
-import EventosService from "../../servicios/eventos.service";
-import PromocionesService from "../../servicios/promociones.service";
+import EventosService from "../../services/eventos.service";
+import PromocionesService from "../../services/promociones.service";
 
 export default function PromocionEdit({ eventos, id, caducado, titulo, comercio, evento, descripcion, inicio, src, final}){
     

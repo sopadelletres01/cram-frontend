@@ -3,9 +3,9 @@ import { AuthContext } from '../context/AuthContext';
 import mapboxgl from 'mapbox-gl';
 import Papa from 'papaparse';
 import { Form, Button } from 'react-bootstrap'
-import ApiCrudService from '../../servicios/crud.service'
-import EventosService from '../../servicios/eventos.service'
-import ComerciosService from '../../servicios/comercios.service';
+import ApiCrudService from '../../services/crud.service'
+import EventosService from '../../services/eventos.service'
+import ComerciosService from '../../services/comercios.service';
 import MenusAuxiliar from './MenusAuxiliar'
 import { Link } from 'react-router-dom';
 

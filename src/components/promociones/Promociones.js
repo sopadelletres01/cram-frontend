@@ -1,13 +1,13 @@
 import React, { useState,useEffect, useCallback, useContext } from 'react'
-import ComerciosService from '../../servicios/comercios.service.js';
-import PromocionesService from '../../servicios/promociones.service.js';
+import ComerciosService from '../../services/comercios.service.js';
+import PromocionesService from '../../services/promociones.service.js';
 import Filters from './Filters'
 import { AuthContext } from '../context/AuthContext';
 //import Filters from '../eventos/Filters';
 import Promocion from './TarjetaPromociones';
 import { useNavigate } from 'react-router';
 import PromocionEdit from './TarjetaPromocionesEditar.js';
-import EventosService from '../../servicios/eventos.service.js';
+import EventosService from '../../services/eventos.service.js';
 //En esta pagina se mostraran todos los eventos de la aplicacion, por orden alfabetico o proximidad,
 //por defecto, la lista mostrará primero los eventos a los que estas inscrito y los diferenciará de los otros
 //con una etiqueta verde de "inscrito" 

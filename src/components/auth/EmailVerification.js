@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useNavigate, useLocation} from 'react-router';
 import {  useParams } from 'react-router-dom';
-import AuthService from '../../servicios/auth.service';
+import AuthService from '../../services/auth.service';
 //import ''../css/estilosGrid.css''
 
 export default function EmailVerification() {

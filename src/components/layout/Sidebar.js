@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { FaFacebook, FaInstagram, FaMapMarkedAlt, FaMailBulk } from 'react-icons/fa';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import AuthService from '../../servicios/auth.service';
+import AuthService from '../../services/auth.service';
 //import '../../css/estilosGrid.css'
 import { AuthContext } from '../context/AuthContext';
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Col, Form, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router'
-import UsuariosService from '../../servicios/usuarios.service'
+import UsuariosService from '../../services/usuarios.service'
 import { AuthContext } from '../context/AuthContext'
 
 export default function UserProfile(){

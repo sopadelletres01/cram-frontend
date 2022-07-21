@@ -1,7 +1,7 @@
 import React, { useState,useEffect, useCallback, useContext } from 'react'
 import { Button, ButtonGroup, ButtonToolbar, Collapse } from 'react-bootstrap'
 import { useNavigate } from 'react-router';
-import EventosService from '../../servicios/eventos.service';
+import EventosService from '../../services/eventos.service';
 import { AuthContext } from '../context/AuthContext';
 import Filters from './Filters';
 import Evento from './TarjetaEvento';
