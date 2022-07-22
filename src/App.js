@@ -14,7 +14,7 @@ import ResetPassword from './components/auth/ResetPassword';
 import NotFound from './components/NotFound';
 import Layout from './components/layout/default';
 import Home from './components/home/Home';
-import {AuthContext} from './components/context/AuthContext';
+import {AuthContext, useAuth} from './components/context/AuthContext';
 import HomeLayout from './components/layout/home';
 import MockComponent from './components/MockComponent';
 import Eventos from './components/eventos/Eventos';
@@ -38,12 +38,12 @@ import Noticias from './components/Noticias';
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY
 
 function App() {
-  const {isAuthenticated,user} = useContext(AuthContext)
-  console.log("ISAUTH",isAuthenticated)
+  const {isLoggedIn,user} = useAuth()
+  console.log("ISAUTH",isLoggedIn)
   return (
     <>
         {
-          isAuthenticated ?
+          isLoggedIn ?
           <Layout>
             <Routes>
               {/* adminitrador */}

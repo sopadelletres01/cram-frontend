@@ -54,12 +54,12 @@ const handleSubmitAlone= async (e)=>{
         
         let res= await UsuariosService.createComercial(form)
         if (res.status === 200) {
-            setDatos({...datos,usuario_id:res.data.id});
+            setDatos({...datos,idUser:res.data.id});
             alert("Se ha creado el usuario correctamente")
         }
         //tengo que pasarle el id del comercio y el id del usuario
         setLoading(false)
-        let userComer=await ApiCrudService.create('usuario_comercios', {comercio_id:comercio.id,usuario_id:res.data.id} )
+        let userComer=await ApiCrudService.create('usuario_comercios', {comercio_id:comercio.id,idUser:res.data.id} )
         console.log(userComer)
         window.alert('Ya se ha creado el el comercio y se ha vinculado al usuario.')
         setComercio({});

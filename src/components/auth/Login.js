@@ -3,7 +3,7 @@ import React , {useState, useEffect, useContext}from 'react'
 import {Form, Button, Modal} from 'react-bootstrap'
 import AuthService from '../../services/auth.service'
 import { useNavigate, Link } from 'react-router-dom'
-import { AuthContext } from '../context/AuthContext'
+import { useAuth } from '../context/AuthContext'
 
 
 /* hacer la conexion a la API */
@@ -19,7 +19,7 @@ export function Login() {
     const [remember, setRemember] = useState(false)
 
     let navigate = useNavigate();
-    const {user, setUser, isAuthenticated, login, setAuthStatus}= useContext(AuthContext)
+    const {login}= useAuth()
 
     const handleResend = async () => {
         setShow(false)
@@ -48,17 +48,17 @@ export function Login() {
 
     const handleSubmit= async(e)=>{
         e.preventDefault();
-        let res=null;
         try{
-            res = await AuthService.signin(form)
+            const res = await AuthService.signin(form,remember)
             console.log(res)
-            if(res.status===200 && res.data.auth === true){
+            if(res.status===200 ){
                 console.log("RES DATA",res.data)
-                const {data, token} = res.data
-                login(data,token,remember)
+                const {authToken} = res.data
+                login(authToken)
                 //Context login
             }
         }catch(e){
+            //Cuenta no verificada
             if ( e.response?.status === 401 ){
                 setShow(true)
             }

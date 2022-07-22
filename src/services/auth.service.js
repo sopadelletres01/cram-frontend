@@ -5,17 +5,16 @@ export default class AuthService{
 
     static async userIsAuth(storedToken) {
 
-        return await httpC.get(`/auth/verify`, { headers: { Authorization: `Bearer ${storedToken}` } })
+        return httpC.get(`/auth/verify`, { headers: { Authorization: `Bearer ${storedToken}` } })
     }
 
     static signup(data){
         console.log(data)
         return httpC.post("/auth/register", data);
     }
-    static async signin(data){
-        console.log(httpC)
+    static signin(data,remember){
         console.log("data",data)
-        return await httpC.post("/auth/login", data);
+        return httpC.post("/auth/login", {...data,remember});
     }
     static signout(){
         /* tien que enrutar el logout */
