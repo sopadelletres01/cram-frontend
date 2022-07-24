@@ -1,12 +1,11 @@
-exports.useConfig = (url)=>{
-    const httpC= axios.create({
-        baseURL: url,
-        header:{
-            "Content-Type": "application/json",
-        }
-        
-    });
-    return httpC
-}
+exports.useConfig = url => {
+  const httpC = axios.create({
+    baseURL: url,
+    header: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return httpC;
+};
 
-const httpC = useConfig(url)
+const httpC = useConfig(url);

@@ -1,28 +1,28 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from 'react';
 
 //import '../css/estilosGrid.scss'
-import * as yup from "yup";
-import { Form, Button, Row, Col, InputGroup } from "react-bootstrap";
-import { Formik } from "formik";
-import YupPassword from "yup-password";
-import AuthService from "../../services/auth.service";
-import { useNavigate } from "react-router-dom";
+import * as yup from 'yup';
+import { Form, Button, Row, Col, InputGroup } from 'react-bootstrap';
+import { Formik } from 'formik';
+import YupPassword from 'yup-password';
+import AuthService from '../../services/auth.service';
+import { useNavigate } from 'react-router-dom';
 YupPassword(yup);
 
 /* no son integers son NUMBER */
 const schema = yup.object().shape({
-  password: yup.string().password().required("Tienes que poner una contraseña"),
+  password: yup.string().password().required('Tienes que poner una contraseña'),
   rep_password: yup
     .string()
     .password()
-    .oneOf([yup.ref("password"), null], "Las contaseñas tiene que coincidir."),
+    .oneOf([yup.ref('password'), null], 'Las contaseñas tiene que coincidir.'),
   dni: yup.string().matches(/^(\d{8})([-]?)()[A-Z]{1}$/),
-  terms: yup.bool().required().oneOf([true], "tienes que aceptar los términos"),
+  terms: yup.bool().required().oneOf([true], 'tienes que aceptar los términos'),
 });
 export function Register() {
   let navigate = useNavigate();
   const HandleRedirect = () => {
-    navigate("/login", { replace: true });
+    navigate('/login', { replace: true });
   };
 
   return (
@@ -32,12 +32,12 @@ export function Register() {
         <Formik
           validationSchema={schema}
           initialValues={{
-            password: "",
-            rep_password: "",
-            dni: "",
+            password: '',
+            rep_password: '',
+            dni: '',
             terms: false,
           }}
-          onSubmit={async (values) => {
+          onSubmit={async values => {
             console.log(values);
             const { password, rep_password, dni } = values;
             let formData = {
@@ -48,30 +48,20 @@ export function Register() {
             let registro = null;
             try {
               registro = await AuthService.signup(formData);
-              console.log("registro", registro);
+              console.log('registro', registro);
               if (registro.status === 201) {
-                navigate("/login");
+                navigate('/login');
               }
             } catch (e) {
-              console.log("ERROR", e);
+              console.log('ERROR', e);
               if (e.response.status === 400) {
-                alert(
-                  "El usuario con este dni ya ha sido añadido a nuestra app"
-                );
+                alert('El usuario con este dni ya ha sido añadido a nuestra app');
               }
               console.log(e);
             }
           }}
         >
-          {({
-            handleSubmit,
-            handleChange,
-            handleBlur,
-            values,
-            touched,
-            isValid,
-            errors,
-          }) => (
+          {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => (
             <Form noValidate onSubmit={handleSubmit}>
               {/* CONTRASEÑA */}
               <Row>
@@ -87,10 +77,7 @@ export function Register() {
                       onChange={handleChange}
                       isInvalid={!!errors.password}
                     />
-                    <Form.Text className="text-muted">
-                      Introduce la contraseña para autenticarte en nuestra
-                      aplicacion
-                    </Form.Text>
+                    <Form.Text className="text-muted">Introduce la contraseña para autenticarte en nuestra aplicacion</Form.Text>
                     <Form.Control.Feedback type="invalid" tooltip>
                       {errors.password}
                     </Form.Control.Feedback>
@@ -119,18 +106,8 @@ export function Register() {
                 {/* DNI */}
                 <Form.Group as={Col} controlId="validationFormik103">
                   <Form.Label>DNI</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="DNI"
-                    name="dni"
-                    value={values.dni}
-                    onChange={handleChange}
-                    isInvalid={!!errors.dni}
-                  />
-                  <Form.Text className="text-muted">
-                    Introduce tu dni para que podamos verificar si estas
-                    inscrito a alguna carrera
-                  </Form.Text>
+                  <Form.Control type="text" placeholder="DNI" name="dni" value={values.dni} onChange={handleChange} isInvalid={!!errors.dni} />
+                  <Form.Text className="text-muted">Introduce tu dni para que podamos verificar si estas inscrito a alguna carrera</Form.Text>
                   <Form.Control.Feedback type="invalid" tooltip>
                     {errors.dni}
                   </Form.Control.Feedback>
@@ -151,18 +128,10 @@ export function Register() {
                   feedbackTooltip
                 />
               </Form.Group>
-              <Button
-                className="botones__login"
-                variant="primary"
-                type="submit"
-              >
+              <Button className="botones__login" variant="primary" type="submit">
                 Registrate
               </Button>
-              <Button
-                className="botones__login"
-                variant="secondary"
-                onClick={() => HandleRedirect()}
-              >
+              <Button className="botones__login" variant="secondary" onClick={() => HandleRedirect()}>
                 Login
               </Button>
             </Form>

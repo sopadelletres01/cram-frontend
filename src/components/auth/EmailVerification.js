@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import { useNavigate, useLocation } from "react-router";
-import { useParams } from "react-router-dom";
-import AuthService from "../../services/auth.service";
+import React, { useState } from 'react';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import { useNavigate, useLocation } from 'react-router';
+import { useParams } from 'react-router-dom';
+import AuthService from '../../services/auth.service';
 //import ''../css/estilosGrid.scss''
 
 export default function EmailVerification() {
   let form = useParams();
   let location = useLocation();
-  console.log("form", form);
-  console.log("location", location);
+  console.log('form', form);
+  console.log('location', location);
   const navigate = useNavigate();
-  const handleResend = async (e) => {
+  const handleResend = async e => {
     e.preventDefault();
     let data;
     if (form.email) {
@@ -20,20 +20,18 @@ export default function EmailVerification() {
     if (location?.state?.email) {
       data = location.state;
     }
-    console.log("DATA", data);
+    console.log('DATA', data);
     let res = await AuthService.forgotPassword(data);
   };
-  const handleRedirect = async (e) => {
+  const handleRedirect = async e => {
     e.preventDefault();
-    navigate("/login", { replace: true });
+    navigate('/login', { replace: true });
   };
 
   return (
     <div className="container w-50 mt-5 bg-light rounded p-3">
       <div className="text-center d-flex flex-column gap-3 align-items-center">
-        <h2>
-          Se ha enviado un email a tu cuenta para restablecer tu contraseña
-        </h2>
+        <h2>Se ha enviado un email a tu cuenta para restablecer tu contraseña</h2>
         <Col>
           <Button onClick={handleResend}>Resend the link</Button>
         </Col>

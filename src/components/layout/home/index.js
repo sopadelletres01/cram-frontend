@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
-import Sidebar from "../Sidebar";
-import Header from "../Header";
-import Footer from "../Footer";
-import { Button, Modal } from "react-bootstrap";
+import React, { useState, useEffect, useRef } from 'react';
+import Sidebar from '../Sidebar';
+import Header from '../Header';
+import Footer from '../Footer';
+import { Button, Modal } from 'react-bootstrap';
 //import '../../../css/estilosGrid.scss'
-import mapboxgl from "mapbox-gl";
-import Helmet from "react-helmet";
-import { FaHome } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import mapboxgl from 'mapbox-gl';
+import Helmet from 'react-helmet';
+import { FaHome } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-import logo from "../../../commons/multimedia/CRAM.png";
-import gif from "../../../commons/multimedia/cramGif.gif";
+import logo from '../../../commons/multimedia/CRAM.png';
+import gif from '../../../commons/multimedia/cramGif.gif';
 
 export default function HomeLayout({ children, sidebar = false }) {
   const [showModal, setShowModal] = useState(false);
@@ -30,7 +30,7 @@ export default function HomeLayout({ children, sidebar = false }) {
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current || null,
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: 'mapbox://styles/mapbox/streets-v11',
       center: [lng, lat],
       zoom: zoom,
     });
@@ -52,12 +52,8 @@ export default function HomeLayout({ children, sidebar = false }) {
             <img className="rounded-circle" src={logo}></img>
           </div>
           <h1>Cram Sports</h1>
-          <Link
-            className="link-light"
-            style={{ display: "flex", width: "90px", justifyContent: "center" }}
-            to={"/home"}
-          >
-            <FaHome size={"40px"} />
+          <Link className="link-light" style={{ display: 'flex', width: '90px', justifyContent: 'center' }} to={'/home'}>
+            <FaHome size={'40px'} />
           </Link>
         </Header>
         <section>{children}</section>

@@ -1,10 +1,5 @@
-import React from 'react'
+import React from 'react';
 
-
-export default function Header({className, ...rest}) {
-  return (
-    <header className={className ? className : ""}>
-        {rest.children}
-    </header>
-  )
+export default function Header({ className, ...rest }) {
+  return <header className={className ? className : ''}>{rest.children}</header>;
 }

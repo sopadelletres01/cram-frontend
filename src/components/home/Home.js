@@ -1,16 +1,16 @@
-import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Parallax, ParallaxLayer } from '@react-spring/parallax';
+import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 //import '../css/estilosGrid.scss'
 
 export default function Home() {
   return (
-    <Parallax pages={1.5} style={{ top: "0", left: "0" }}>
+    <Parallax pages={1.5} style={{ top: '0', left: '0' }}>
       <ParallaxLayer
         style={{
           backgroundImage: `url(https://images2.alphacoders.com/120/1209425.png)`,
-          backgroundSize: "cover",
+          backgroundSize: 'cover',
         }}
         offset={0}
         speed={1}
@@ -20,16 +20,16 @@ export default function Home() {
         offset={0}
         speed={0.5}
         style={{
-          textAlign: "center",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          margin: "0 auto",
-          color: "white",
+          textAlign: 'center',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          margin: '0 auto',
+          color: 'white',
         }}
       >
-        <h1 style={{ fontSize: "6rem" }}>CRAM SPORTS</h1>
+        <h1 style={{ fontSize: '6rem' }}>CRAM SPORTS</h1>
         <h3 className="text-light">Tu web de eventos favorita</h3>
         <a href="#cositas" className="link-info">
           Conocer más...
@@ -40,26 +40,25 @@ export default function Home() {
         offset={0.8}
         speed={0.7}
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          margin: "0 auto",
-          color: "white",
-          textAlign: "center",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          margin: '0 auto',
+          color: 'white',
+          textAlign: 'center',
         }}
       >
         <div className="home__buttons" id="cositas">
           <h4>
-            Con Cram Sports podrás acceder facilmente a los eventos a los que
-            estas inscrito, además de poder ver tus promociones disponibles,
-            todo en una misma app
+            Con Cram Sports podrás acceder facilmente a los eventos a los que estas inscrito, además de poder ver tus promociones disponibles, todo en una misma
+            app
           </h4>
           <hr
             style={{
-              width: "75%",
-              opacity: "0.5",
-              borderBottom: "2px solid white",
+              width: '75%',
+              opacity: '0.5',
+              borderBottom: '2px solid white',
             }}
           ></hr>
           <h2>CREA UNA CUENTA EN UN ÚNICO PASO:</h2>
@@ -68,9 +67,9 @@ export default function Home() {
           </Link>
           <hr
             style={{
-              width: "75%",
-              opacity: "0.5",
-              borderBottom: "2px solid white",
+              width: '75%',
+              opacity: '0.5',
+              borderBottom: '2px solid white',
             }}
           ></hr>
           <h5>Ya estas inscrito?</h5>

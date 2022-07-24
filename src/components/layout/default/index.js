@@ -1,21 +1,21 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
-import Content from "../Content";
-import Sidebar from "../Sidebar";
-import Header from "../Header";
-import Footer from "../Footer";
-import { GrLogout } from "react-icons/gr";
-import { Button, Modal, DropdownButton, Dropdown } from "react-bootstrap";
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import Content from '../Content';
+import Sidebar from '../Sidebar';
+import Header from '../Header';
+import Footer from '../Footer';
+import { GrLogout } from 'react-icons/gr';
+import { Button, Modal, DropdownButton, Dropdown } from 'react-bootstrap';
 //import '../../../css/estilosGrid.scss'
-import mapboxgl from "mapbox-gl";
-import Helmet from "react-helmet";
-import LoadingSpinner from "../../Spinner";
-import { AuthContext } from "../../context/AuthContext";
-import SidebarCollapse from "../SidebarCollpase";
-import { Link } from "react-router-dom";
+import mapboxgl from 'mapbox-gl';
+import Helmet from 'react-helmet';
+import LoadingSpinner from '../../Spinner';
+import { AuthContext, useAuth } from '../../context/AuthContext';
+import SidebarCollapse from '../SidebarCollpase';
+import { Link } from 'react-router-dom';
 
 export default function Layout({ children, sidebar = false }) {
   const [showModal, setShowModal] = useState(false);
-  const { logout, loading, user } = useContext(AuthContext);
+  const { logout, loading, user } = useAuth();
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(1.7266128);
@@ -27,17 +27,17 @@ export default function Layout({ children, sidebar = false }) {
   };
 
   const logoutSession = () => {
-    console.log("tusa");
+    console.log('tusa');
     logout();
   };
 
   useEffect(() => {
-    console.log("hola");
+    console.log('hola');
     if (!showModal) return;
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({
       container: mapContainer.current || null,
-      style: "mapbox://styles/mapbox/streets-v11",
+      style: 'mapbox://styles/mapbox/streets-v11',
       center: [lng, lat],
       zoom: zoom,
     });
@@ -55,11 +55,11 @@ export default function Layout({ children, sidebar = false }) {
         <Header className="default__header">
           <div
             style={{
-              display: "flex",
-              flexDirection: "row",
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "space-around",
+              display: 'flex',
+              flexDirection: 'row',
+              width: '100%',
+              alignItems: 'center',
+              justifyContent: 'space-around',
             }}
           >
             <div className="logo rounded-circle">
@@ -72,19 +72,19 @@ export default function Layout({ children, sidebar = false }) {
             {user.rol === 1 && (
               <div
                 style={{
-                  display: "flex",
-                  gap: "8px",
-                  flexDirection: "column",
-                  textAlign: "center",
+                  display: 'flex',
+                  gap: '8px',
+                  flexDirection: 'column',
+                  textAlign: 'center',
                 }}
               >
                 <h5>Mis gestiones:</h5>
                 <div
                   style={{
-                    display: "flex",
-                    gap: "8px",
-                    flexWrap: "wrap",
-                    justifyContent: "center",
+                    display: 'flex',
+                    gap: '8px',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
                   }}
                 >
                   <Link to="/user/promociones" className="btn btn-primary">
@@ -99,19 +99,19 @@ export default function Layout({ children, sidebar = false }) {
             {user.rol === 2 && (
               <div
                 style={{
-                  display: "flex",
-                  gap: "8px",
-                  flexDirection: "column",
-                  textAlign: "center",
+                  display: 'flex',
+                  gap: '8px',
+                  flexDirection: 'column',
+                  textAlign: 'center',
                 }}
               >
                 <h5> Gestionar Datos: </h5>
                 <div
                   style={{
-                    display: "flex",
-                    gap: "8px",
-                    flexWrap: "wrap",
-                    justifyContent: "center",
+                    display: 'flex',
+                    gap: '8px',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
                   }}
                 >
                   <Link to="/inscripciones" className="btn btn-primary">
@@ -129,19 +129,19 @@ export default function Layout({ children, sidebar = false }) {
             {user.rol === 4 && (
               <div
                 style={{
-                  display: "flex",
-                  gap: "8px",
-                  flexDirection: "column",
-                  textAlign: "center",
+                  display: 'flex',
+                  gap: '8px',
+                  flexDirection: 'column',
+                  textAlign: 'center',
                 }}
               >
                 <h5> Gestionar Datos: </h5>
                 <div
                   style={{
-                    display: "flex",
-                    gap: "8px",
-                    flexWrap: "wrap",
-                    justifyContent: "center",
+                    display: 'flex',
+                    gap: '8px',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
                   }}
                 >
                   <Link to="/comercio/promociones" className="btn btn-primary">
@@ -159,12 +159,10 @@ export default function Layout({ children, sidebar = false }) {
                 </div>
               </div>
             )}
-            <GrLogout onClick={logoutSession} size={"40px"}></GrLogout>
+            <GrLogout onClick={logoutSession} size={'40px'}></GrLogout>
           </div>
           <nav className="navbar__mobile">
-            <div
-              style={{ display: "flex", gap: "8px", justifyContent: "center" }}
-            >
+            <div style={{ display: 'flex', gap: '8px', justifyContent: 'center' }}>
               <Link to="/user">User Page</Link>
               <Link to="/logout" onClick={() => logoutSession()}>
                 Logout
@@ -180,14 +178,8 @@ export default function Layout({ children, sidebar = false }) {
         <section>{children}</section>
 
         {/* Modal de loading */}
-        <Modal
-          contentClassName="modal__spinner"
-          size="sm"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-          show={loading}
-        >
-          <Modal.Body style={{ backgroundColor: "transparent" }}>
+        <Modal contentClassName="modal__spinner" size="sm" aria-labelledby="contained-modal-title-vcenter" centered show={loading}>
+          <Modal.Body style={{ backgroundColor: 'transparent' }}>
             <LoadingSpinner />
           </Modal.Body>
         </Modal>
