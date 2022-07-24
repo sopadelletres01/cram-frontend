@@ -11,7 +11,7 @@ import Evento from './TarjetaEvento';
 //con una etiqueta verde de "inscrito" 
 //Además, se podrá filtrar por inscritos o no inscritos, para que la busqueda sea mas sencilla
 
-export default function Eventos({className, ...rest}) {
+export default function Events({className, ...rest}) {
   const {user, loading, setLoading} = useContext(AuthContext)
   const [open, setOpen] = useState(false);
   const [eventos, setEventos] = useState([]);
