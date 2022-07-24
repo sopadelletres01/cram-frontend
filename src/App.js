@@ -17,7 +17,7 @@ import Home from './components/home/Home';
 import {AuthContext, useAuth} from './components/context/AuthContext';
 import HomeLayout from './components/layout/home';
 import MockComponent from './components/MockComponent';
-import Eventos from './components/eventos/Eventos';
+import Events from './components/eventos/Events';
 import Promociones from './components/promociones/Promociones';
 import UserProfile from './components/user/UserProfile';
 import Inscripciones from './components/mainPage/Inscripcion'
@@ -52,7 +52,7 @@ function App() {
                 <>
                 <Route path='inscripciones' element={<Inscripciones/> }/>
                 <Route path='user/promociones' element={<Promociones/> }/>
-                <Route path='user/eventos' element={<Eventos/> }/>
+                <Route path='user/eventos' element={<Events/> }/>
                 <Route path='user/promociones/:id' element={<Promo/> }/>
                 <Route path='inscripciones/modificaciones' element={<Modificaciones tabla={'usuarios'} /> }/>
                 <Route path='/eventos/create' element={<EventosC/>}/>
@@ -72,7 +72,7 @@ function App() {
                 <Route path='/promociones/create' element={<PromocionesC/>}/>
                 <Route path='/comercio/modificaciones' element={<ModificacionesCo/>}/>
                 <Route path='/comercio/validar' element={<ValidarPromo/>}/>
-                <Route path='user/eventos' element={<Eventos/> }/>
+                <Route path='user/eventos' element={<Events/> }/>
                 <Route path='user/eventos/:id' element={ <Event/> }/>
 
                 </>
@@ -84,7 +84,7 @@ function App() {
                 user.rol === 1 && 
                 <>
                   <Route path='/user/eventos/:id' element={ <Event/> }/>
-                  <Route path='/user/eventos' element={ <Eventos/> }/>
+                  <Route path='/user/eventos' element={ <Events/> }/>
                   <Route path='user/promociones' element={<Promociones/>}/>
                   <Route path='user/promociones/:id' element={<Promo/>}/>
                 </>
