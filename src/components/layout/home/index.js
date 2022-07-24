@@ -3,6 +3,7 @@ import Sidebar from "../Sidebar";
 import Header from "../Header";
 import Footer from "../Footer";
 import { Button, Modal } from "react-bootstrap";
+import SidebarDespegable from "../SidebarDespegable";
 //import '../../../css/estilosGrid.scss'
 import mapboxgl from "mapbox-gl";
 import Helmet from "react-helmet";
@@ -20,6 +21,13 @@ export default function HomeLayout({ children, sidebar = false }) {
   const [lng, setLng] = useState(1.7266128);
   const [lat, setLat] = useState(41.22375);
   const [zoom, setZoom] = useState(14);
+  const [show, setShow] = useState(false)
+    
+  const toggleShow = () => { 
+      console.log("ToggleShow")
+      setShow(!show)
+    }
+
 
   const handleToggleModal = () => {
     setShowModal(!showModal);
@@ -43,23 +51,24 @@ export default function HomeLayout({ children, sidebar = false }) {
         <meta content="" name="keywords" />
         <meta content="" name="description" />
       </Helmet>
-      <div className="animatedIntro">
+      {/* <div className="animatedIntro">
         <img src={gif}></img>
-      </div>
+      </div> */}
       <div className="container__home">
-        <Header className="home__header">
-          <div className="logo">
+        <Header className="header" showSidebar={toggleShow } >
+          {/* <div className="logo">
             <img className="rounded-circle" src={logo}></img>
-          </div>
-          <h1>Cram Sports</h1>
-          <Link
+            </div>
+            <h1>Cram Sports</h1>
+            <Link
             className="link-light"
             style={{ display: "flex", width: "90px", justifyContent: "center" }}
             to={"/home"}
-          >
+            >
             <FaHome size={"40px"} />
-          </Link>
+          </Link> */}
         </Header>
+        <SidebarDespegable setShow={setShow} show={ show} />
         <section>{children}</section>
       </div>
     </>

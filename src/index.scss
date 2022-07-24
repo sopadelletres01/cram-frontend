@@ -1,3 +1,7 @@
+*+*{
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -62,3 +66,122 @@ code {
     opacity: 0;
   }
 }
+
+
+
+.container__home{
+  background: linear-gradient(-45deg, #ee7752,white);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  overflow: hidden;
+  gap: 8px;
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  display:grid;
+  grid-template-areas:
+  "header"
+  "contenido";
+  grid-template-rows: 15vh 1fr;
+  grid-template-columns: auto;
+
+  .home__header{
+    background-color: white;
+  }
+  // span{
+  //   color: hotpink;
+  // }
+}
+
+.sidebar{
+      display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: absolute;
+    width: 0px;
+    right: 50px;
+    padding: 0px;
+
+    top: 113px;
+    border-radius: 25px;
+    height: 0px;
+    background-color: white;
+    border: 0px solid orange;
+    transition: height .5s, width .5s, border .5s;
+
+    &.active{
+      padding: 20px;
+
+      height:500px;
+      width:300px;
+      border: 3px solid orange;
+      a{
+        display:flex;
+      }
+    }
+  .sidebar__link{
+    display:none;
+    gap:16px;
+    span{
+        color:orange;
+     }
+    
+    }
+    
+
+}
+.sidebar__icon{
+  position:absolute;
+  right: 0;
+  top:10px;
+  width:70px;
+  height:70px;
+}
+
+.header{
+  display:flex;
+  background-color: white;
+  padding: 10px 50px;
+  button{
+    border: none;
+    outline: 2px solid orange;
+    background-color:transparent;
+    padding:10px 20px;
+    border-radius:50px 50px 50px 50px;
+    svg{
+      width:2em;
+      height:2em;
+      color: orange;
+    }
+    &:hover{
+      outline: unset;
+      background-color:orange;
+      svg{
+        color: white;
+      }
+    }
+  }
+}
+
+// div span {
+
+// }
+
+// .selected {
+//   &.selected{
+
+//   }
+//   &:hover{
+
+//   }
+//   span{
+
+//   }
+// }
+// .selected {
+
+// }
+
+
+
+// SIDEBAR DESPEGABLE
