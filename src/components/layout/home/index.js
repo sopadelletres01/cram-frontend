@@ -10,7 +10,7 @@ import { FaHome } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 import logo from "../../../commons/multimedia/CRAM.png";
-import gif from "../../../commons/multimedia/logo.gif";
+import gif from "../../../commons/multimedia/cramGif.gif";
 
 export default function HomeLayout({ children, sidebar = false }) {
   const [showModal, setShowModal] = useState(false);
