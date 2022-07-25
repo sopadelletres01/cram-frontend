@@ -94,7 +94,7 @@ code {
 }
 
 .sidebar{
-      display: flex;
+    display: flex;
     flex-direction: column;
     gap: 16px;
     position: absolute;
@@ -111,25 +111,45 @@ code {
 
     &.active{
       padding: 20px;
-
-      height:500px;
+      height:300px;
       width:300px;
       border: 3px solid orange;
+      display: flex;
       a{
         display:flex;
+        align-items: center;
       }
+      
+    
+    }
+    a:hover{
+      border-radius: 25px;
+     text-decoration: underline;
+     text-decoration-color: orange;
     }
   .sidebar__link{
+
     display:none;
-    gap:16px;
+    gap:20px;
+    text-decoration: none;
     span{
         color:orange;
+        font-size:2em;
+     }
+     svg{
+      color:orange;
+      width:2em;
+      height:2em;
      }
     
     }
     
 
 }
+
+
+
+
 .sidebar__icon{
   position:absolute;
   right: 0;
