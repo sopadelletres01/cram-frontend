@@ -2,13 +2,15 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Carrousel from './Carrousel'
 //import '../css/estilosGrid.scss'
 
 export default function Home() {
   return (
     <div>
-      Home Page
-      <Link to="/login">Iniciar Sesion</Link>
+      
+      {/* <Link to="/login">Iniciar Sesion</Link> */}
+      <Carrousel/>
     </div>
   );
 }
