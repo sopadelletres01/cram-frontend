@@ -23,17 +23,6 @@ html{
 .input-group>.form-control, .input-group>.form-select {
     width: unset;
 }
-.home__buttons{
-    width:75vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    padding: 16px;
-    min-height: 400px;
-    background-color: rgba(255, 255, 255, 0.26);
-    border-radius: 16px;
-}
 
 .create__evento{
     width: 60%;
