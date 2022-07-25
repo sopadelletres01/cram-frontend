@@ -4,22 +4,22 @@ import mapboxgl from 'mapbox-gl';
 import Papa from 'papaparse';
 import { Form, Button } from 'react-bootstrap';
 import ApiCrudService from '../../services/crud.service';
-import EventosService from '../../services/eventos.service';
-import ComerciosService from '../../services/comercios.service';
-import MenusAuxiliar from './MenusAuxiliar';
+import EventosService from '../../services/events.service';
+import ComerciosService from '../../services/commerces.service';
+import MenusAuxiliar from './MenuAux';
 import { Link } from 'react-router-dom';
 
 export default function ModificacionesCo() {
   const [listEventos, setListEventos] = useState([]);
   const [listCategorias, setListCategorias] = useState([]);
-  const [comercio, setComercio] = useState([]);
+  const [commerce, setComercio] = useState([]);
   const [formComer, setFormComer] = useState([]);
 
   //esto se va a renderizar una vez cuando se monte el componente
   useEffect(() => {
     async function getData() {
-      let eventos = await EventosService.getEventosCurrent();
-      setListEventos(eventos.data);
+      let events = await EventosService.getEventosCurrent();
+      setListEventos(events.data);
       let categos = await ApiCrudService.index('categorias');
       setListCategorias(categos.data);
     }
@@ -75,7 +75,7 @@ export default function ModificacionesCo() {
           </>
         );
       case 'eliminar':
-        let respuesta = window.confirm('Esta seguro de que quieres eliminar a este usuario? ');
+        let respuesta = window.confirm('Esta seguro de que quieres eliminar a este user? ');
         console.log(respuesta);
         if (!respuesta) {
           setFormComer('opciones');
@@ -90,17 +90,17 @@ export default function ModificacionesCo() {
   };
   const handleSubmit = async e => {
     e.preventDefault();
-    let updateComer = await ApiCrudService.update('comercios');
+    let updateComer = await ApiCrudService.update('commerces');
   };
 
   return (
     <>
       <MenusAuxiliar>
-        <Link className="btn btn-warning" to={'/comercio'} title={'busvar comercio'}>
+        <Link className="btn btn-warning" to={'/commerce'} title={'busvar commerce'}>
           {' '}
           Buscar Comercio
         </Link>
-        <Link className="btn btn-warning" to={'/comercio'} title={'Dar de alta comercio'}>
+        <Link className="btn btn-warning" to={'/commerce'} title={'Dar de alta commerce'}>
           Alta Comercio
         </Link>
       </MenusAuxiliar>
@@ -108,13 +108,13 @@ export default function ModificacionesCo() {
         <Form id="form" onSubmit={handleSubmit}>
           <Button>Añadir localizacion</Button>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <h3>Busca el comercio por el numero de NIF</h3>
+            <h3>Busca el commerce por el numero de NIF</h3>
             <Form.Label>Nif</Form.Label>
             <Form.Control onBlur={handleBlur} name="nif" minLength="9" maxLength="9" type="text" required />
             <Form.Label>Nombre</Form.Label>
-            <Form.Control name="nombre" type="text" readOnly />
+            <Form.Control name="name" type="text" readOnly />
             <Form.Label>Poblacón</Form.Label>
-            <Form.Control name="poblacion" type="text" readOnly />
+            <Form.Control name="town" type="text" readOnly />
             <Form.Label>Emial</Form.Label>
             <Form.Control name="email" type="email" readOnly />
             <Form.Label>Latitud</Form.Label>
@@ -126,7 +126,7 @@ export default function ModificacionesCo() {
             <Form.Select
               name="categoria_id"
               aria-label="Escoge una categoria"
-              onChange={e => setComercio({ ...comercio, categoria_id: e.target.value })}
+              onChange={e => setComercio({ ...commerce, categoria_id: e.target.value })}
               readOnly
             >
               {
@@ -148,7 +148,7 @@ export default function ModificacionesCo() {
               type="file"
               placeholder="Sube una foro para tu evento"
               onChange={e => {
-                setComercio({ ...comercio, file: e.target.files[0] });
+                setComercio({ ...commerce, file: e.target.files[0] });
               }}
             />
           </Form.Group>

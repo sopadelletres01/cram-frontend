@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Form, Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import MenusAuxiliar from './MenusAuxiliar';
-import EventosService from '../../services/eventos.service';
-import ComerciosService from '../../services/comercios.service';
+import MenusAuxiliar from './MenuAux';
+import EventosService from '../../services/events.service';
+import ComerciosService from '../../services/commerces.service';
 import ApiCrudService from '../../services/crud.service';
-import Promociones from '../../services/promociones.service';
-import PromocionesService from '../../services/promociones.service';
+import Promotions from '../../services/promotions.service';
+import PromotionsService from '../../services/promotions.service';
 import { AuthContext, useAuth } from '../context/AuthContext';
 
 export default function ValidarPromo() {
@@ -26,9 +26,9 @@ export default function ValidarPromo() {
     e.preventDefault();
     setLoading(true);
     try {
-      let promos = await ComerciosService.searchPromoAndUser(users.dni, user.comercio_id);
-      console.log('PROMOS', promos);
-      setPromoUser(promos.data);
+      let promotions = await ComerciosService.searchPromoAndUser(users.dni, user.comercio_id);
+      console.log('PROMOS', promotions);
+      setPromoUser(promotions.data);
       setUsers({ ...users, id: promoUser[0].id });
       console.log('INFORMACION DEL USUARIO', users);
     } catch (e) {
@@ -41,18 +41,18 @@ export default function ValidarPromo() {
   const handleValid = async (e, promo) => {
     e.preventDefault();
     console.log(e.target.value);
-    console.log('informacion de la promo', promo.id, promo.id_promocion);
+    console.log('informacion de la promo', promo.id, promo.id_Promotion);
     //enviar el id_usuario y el
-    // id_promo a la APi para hacer insercción a la tabla usuario-promocion
+    // id_promo a la APi para hacer insercción a la tabla user-Promotion
     try {
-      let res = await PromocionesService.existThisPromo(promo.id, promo.id_promocion);
+      let res = await PromotionsService.existThisPromo(promo.id, promo.id_Promotion);
       console.log('RESPUSTA DE LA CONSULTA', res);
       if (res.data === '') {
-        let preg = window.confirm('¿¿estas  seguro que quires validar esta promocion??');
+        let preg = window.confirm('¿¿estas  seguro que quires validar esta Promotion??');
         if (preg === true) {
-          let insert = await ApiCrudService.create('user_promo/promociones', {
+          let insert = await ApiCrudService.create('user_promo/Promotions', {
             id_usuario: promo.id,
-            id_promocion: promo.id_promocion,
+            id_Promotion: promo.id_Promotion,
           });
           if (insert.status === 200) {
             setEncontrado(false);
@@ -61,7 +61,7 @@ export default function ValidarPromo() {
         console.log('no esxiste');
       } else {
         console.log('existe');
-        window.alert('Esta promocion ya la han usado anteniormente.');
+        window.alert('Esta Promotion ya la han usado anteniormente.');
         setEncontrado(false);
       }
     } catch (e) {
@@ -74,15 +74,15 @@ export default function ValidarPromo() {
       <MenusAuxiliar>
         {user.rol === 2 && (
           <>
-            <Link className="btn btn-warning" to={'/comercio/modificaciones'} title={'Buscar comercio'}>
+            <Link className="btn btn-warning" to={'/commerce/modificaciones'} title={'Buscar commerce'}>
               Buscar Comercio
             </Link>
-            <Link className="btn btn-warning" to={'/comercio'} title={'Dar de alta comercio'}>
+            <Link className="btn btn-warning" to={'/commerce'} title={'Dar de alta commerce'}>
               Alta Comercio
             </Link>
           </>
         )}
-        <Link className="btn btn-warning" to={'/comercio/validar'} title={'Validar Promocion del comercio'} onClick={() => setEncontrado(false)}>
+        <Link className="btn btn-warning" to={'/commerce/validar'} title={'Validar Promotion del commerce'} onClick={() => setEncontrado(false)}>
           Validar Promoción
         </Link>
       </MenusAuxiliar>
@@ -105,7 +105,7 @@ export default function ValidarPromo() {
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" onChange={e => setUsers({ ...users, email: e.target.value })} />
             </Form.Group>
-            <Button type="submit">Buscar promociones</Button>
+            <Button type="submit">Buscar Promotions</Button>
           </Form>
         </div>
       ) : (
@@ -126,10 +126,10 @@ export default function ValidarPromo() {
                 return (
                   <tr key={promo.id}>
                     <td>{e + 1}</td>
-                    <td>{promo.id_promocion}</td>
-                    <td>{promo.nombre}</td>
+                    <td>{promo.id_Promotion}</td>
+                    <td>{promo.name}</td>
                     <td>{promo.edicion}</td>
-                    <td>{promo.titulo}</td>
+                    <td>{promo.title}</td>
                     <td>
                       <Button onClick={e => handleValid(e, promo)}>Validar</Button>
                     </td>

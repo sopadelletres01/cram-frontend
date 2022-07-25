@@ -24,7 +24,7 @@ export default function ForgotPassword() {
           state: { email: form.email },
         });
 
-        /* pasarle al Context el usuario  */
+        /* pasarle al Context el user  */
       }
     } catch (e) {
       if (e.response.status === 400) {

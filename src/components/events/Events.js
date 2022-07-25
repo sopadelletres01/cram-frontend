@@ -1,31 +1,31 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { Button, ButtonGroup, ButtonToolbar, Collapse } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
-import EventosService from '../../services/eventos.service';
+import EventosService from '../../services/events.service';
 import { AuthContext, useAuth } from '../context/AuthContext';
 import Filters from './Filters';
 import Evento from './TarjetaEvento';
 
-//En esta pagina se mostraran todos los eventos de la aplicacion, por orden alfabetico o proximidad,
-//por defecto, la lista mostrará primero los eventos a los que estas inscrito y los diferenciará de los otros
+//En esta pagina se mostraran todos los events de la aplicacion, por orden alfabetico o proximidad,
+//por defecto, la lista mostrará primero los events a los que estas inscrito y los diferenciará de los otros
 //con una etiqueta verde de "inscrito"
 //Además, se podrá filtrar por inscritos o no inscritos, para que la busqueda sea mas sencilla
 
 export default function Events({ className, ...rest }) {
   const { user, loading, setLoading } = useAuth();
   const [open, setOpen] = useState(false);
-  const [eventos, setEventos] = useState([]);
+  const [events, setEventos] = useState([]);
   const [filteredEventos, setFilteredEventos] = useState([]);
   const [userEventos, setUserEventos] = useState([]);
   const [selected, setSelected] = useState(0);
   const navigate = useNavigate();
 
   const handleShowEvent = id => {
-    navigate(`/user/eventos/${id}`);
+    navigate(`/user/events/${id}`);
   };
 
   const renderEventos = () => {
-    //Renderizamos los eventos dependiendo del filtro de tipo: "inscrito" | "no inscrito" | "todos"
+    //Renderizamos los events dependiendo del filtro de tipo: "inscrito" | "no inscrito" | "todos"
     //Este filtro se encuentra en el componente Filters y le pasamos el resultado a este componente
     console.log('userEventos', userEventos);
     console.log('filteredEventos', filteredEventos);
@@ -38,7 +38,7 @@ export default function Events({ className, ...rest }) {
               onClick={() => handleShowEvent(evento.id)}
               inscrito={true}
               key={evento.id}
-              nombre={evento.nombre}
+              name={evento.name}
               edicion={evento.edicion}
               descripcion={evento.descripcion}
               inicio={evento.fecha_inicio}
@@ -60,7 +60,7 @@ export default function Events({ className, ...rest }) {
                 onClick={() => handleShowEvent(evento.id)}
                 inscrito={false}
                 key={evento.id}
-                nombre={evento.nombre}
+                name={evento.name}
                 edicion={evento.edicion}
                 descripcion={evento.descripcion}
                 inicio={evento.fecha_inicio}
@@ -78,7 +78,7 @@ export default function Events({ className, ...rest }) {
                 onClick={() => handleShowEvent(evento.id)}
                 inscrito={true}
                 key={evento.id}
-                nombre={evento.nombre}
+                name={evento.name}
                 edicion={evento.edicion}
                 descripcion={evento.descripcion}
                 inicio={evento.fecha_inicio}
@@ -92,7 +92,7 @@ export default function Events({ className, ...rest }) {
             <Evento
               onClick={() => handleShowEvent(evento.id)}
               key={evento.id}
-              nombre={evento.nombre}
+              name={evento.name}
               edicion={evento.edicion}
               descripcion={evento.descripcion}
               inicio={evento.fecha_inicio}
@@ -110,7 +110,7 @@ export default function Events({ className, ...rest }) {
                 onClick={() => handleShowEvent(evento.id)}
                 inscrito={true}
                 key={evento.id}
-                nombre={evento.nombre}
+                name={evento.name}
                 edicion={evento.edicion}
                 descripcion={evento.descripcion}
                 inicio={evento.fecha_inicio}
@@ -124,7 +124,7 @@ export default function Events({ className, ...rest }) {
             <Evento
               onClick={() => handleShowEvent(evento.id)}
               key={evento.id}
-              nombre={evento.nombre}
+              name={evento.name}
               edicion={evento.edicion}
               descripcion={evento.descripcion}
               inicio={evento.fecha_inicio}
@@ -138,17 +138,17 @@ export default function Events({ className, ...rest }) {
   };
 
   useEffect(() => {
-    if (eventos.length > 0) return;
+    if (events.length > 0) return;
     async function getEventos() {
       try {
         //Loading del modal a true
         setLoading(true);
-        const eventos = await EventosService.index('eventos');
+        const events = await EventosService.index('events');
         const userEventos = await EventosService.getEventosByUser(user.id);
-        console.log(eventos.data);
+        console.log(events.data);
         setUserEventos(userEventos.data);
-        setEventos(eventos.data);
-        setFilteredEventos(eventos.data);
+        setEventos(events.data);
+        setFilteredEventos(events.data);
       } catch (err) {
         console.log(err);
       } finally {
@@ -167,12 +167,12 @@ export default function Events({ className, ...rest }) {
         setSelected={setSelected}
         setEventos={setFilteredEventos}
         filteredEventos={filteredEventos}
-        eventos={eventos}
+        events={events}
         open={open}
         setOpen={setOpen}
       />
       <div className="eventos__topbar">
-        <div className="eventos">
+        <div className="events">
           {filteredEventos.length > 0 ? (
             <>
               <h1>Eventos Disponibles</h1>

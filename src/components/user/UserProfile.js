@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Col, Form, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
-import UsuariosService from '../../services/usuarios.service';
+import UsuariosService from '../../services/users.service';
 import { AuthContext, useAuth } from '../context/AuthContext';
 
 export default function UserProfile() {
@@ -21,8 +21,8 @@ export default function UserProfile() {
         let res = await UsuariosService.getRolByUser(user.rol);
         if (res.status === 200) {
           console.log('ress', res);
-          console.log('nombre', res.data.nombre);
-          setRolName(res.data.nombre);
+          console.log('name', res.data.name);
+          setRolName(res.data.name);
         }
       } catch (e) {
         if (e.response.status === 404) {
@@ -77,13 +77,13 @@ export default function UserProfile() {
     e.preventDefault();
     console.log('FORM', form);
     try {
-      let res = await UsuariosService.update('usuarios', user.id, form);
+      let res = await UsuariosService.update('users', user.id, form);
       if (res.status === 200) {
         setUser({ ...user, ...form });
       }
     } catch (e) {
       if (e.response.status === 500) {
-        alert('Ha habido un problema al actualizar el usuario');
+        alert('Ha habido un problema al actualizar el user');
       }
     }
   };
@@ -115,7 +115,7 @@ export default function UserProfile() {
               <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
                 <Form.Label column>Nombre</Form.Label>
                 <Col sm="10">
-                  <Form.Control readOnly defaultValue={user.nombre} />
+                  <Form.Control readOnly defaultValue={user.name} />
                 </Col>
               </Form.Group>
               <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">

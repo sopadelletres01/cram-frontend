@@ -3,30 +3,30 @@ import { Badge, Button, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import PromocionesService from '../../services/promociones.service.js';
+import PromotionsService from '../../services/promotions.service.js';
 import { AuthContext, useAuth } from '../context/AuthContext';
 import { BsDownload } from 'react-icons/bs';
-import EventosService from '../../services/eventos.service.js';
+import EventosService from '../../services/events.service.js';
 
 const Event = () => {
-  //Consultar comercios asignados a un evento
+  //Consultar commerces asignados a un evento
   const { user } = useAuth();
   const { id } = useParams();
   const [eventData, setEventData] = useState([]);
-  const [comercios, setComercios] = useState([]);
-  const [promociones, setPromociones] = useState([]);
+  const [commerces, setComercios] = useState([]);
+  const [Promotions, setPromotions] = useState([]);
   let navigate = useNavigate();
 
   const redirectPromo = idPromo => {
-    navigate(`/user/promociones/${idPromo}`);
+    navigate(`/user/promotions/${idPromo}`);
   };
 
-  const renderPromociones = () => {
-    return promociones.map(promo => {
+  const renderPromotions = () => {
+    return Promotions.map(promo => {
       return (
         <div className=" hover-zoom rounded p-2" style={{ display: 'flex', gap: '16px', alignItems: 'center', backgroundColor: 'white' }} key={promo.id}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>
-            <strong>{promo.titulo}</strong>
+            <strong>{promo.title}</strong>
             <small>{promo.descripcion}</small>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>
@@ -39,12 +39,12 @@ const Event = () => {
   };
 
   const renderComercios = () => {
-    return comercios.map(comer => {
+    return commerces.map(comer => {
       return (
         <div className="rounded p-2" style={{ display: 'flex', gap: '16px', alignItems: 'center', backgroundColor: '#f3a6a6' }} key={comer.id}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'flex-start' }}>
-            <strong>{comer.nombre}</strong>
-            <small>{comer.poblacion}</small>
+            <strong>{comer.name}</strong>
+            <small>{comer.town}</small>
           </div>
           <img style={{ width: '50px', height: '50px' }} src={comer.src}></img>
         </div>
@@ -55,7 +55,7 @@ const Event = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await EventosService.show('eventos', id);
+        const res = await EventosService.show('events', id);
         console.log('res', res);
         if (res.status === 200) {
           setEventData(res.data);
@@ -68,15 +68,15 @@ const Event = () => {
         if (cositas) {
           setEventData({ ...res.data, inscrito: true });
         }
-        const comercios = await EventosService.getComercios(id);
-        console.log('comercios', comercios);
-        if (comercios.status === 200) {
-          setComercios(comercios.data);
+        const commerces = await EventosService.getComercios(id);
+        console.log('commerces', commerces);
+        if (commerces.status === 200) {
+          setComercios(commerces.data);
         }
-        const promociones = await EventosService.getPromociones(id);
-        console.log('promociones', promociones);
-        if (promociones.status === 200) {
-          setPromociones(promociones.data);
+        const Promotions = await EventosService.getPromotions(id);
+        console.log('Promotions', Promotions);
+        if (Promotions.status === 200) {
+          setPromotions(Promotions.data);
         }
       } catch (e) {
         console.log('Error ', e);
@@ -94,8 +94,8 @@ const Event = () => {
     >
       <Card.Body>
         <div style={{ height: '100%', flexDirection: 'column', justifyContent: 'space-around', position: 'relative' }} className="card__evento">
-          {/* Poner el nombre del comercio */}
-          <h1>{eventData.nombre}</h1>
+          {/* Poner el name del commerce */}
+          <h1>{eventData.name}</h1>
           <Card.Text className="laptop__column" style={{ display: 'flex', gap: '16px', justifyContent: 'space-between' }}>
             <Card.Img style={{ flex: '1', maxHeight: '600px', maxWidth: '600px' }} variant="top" src={eventData.src} />
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', flex: '1' }}>
@@ -104,8 +104,8 @@ const Event = () => {
               </span>
               <strong>Comercios asignados:</strong>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>{renderComercios()}</div>
-              <strong>Promociones asignadas:</strong>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>{renderPromociones()}</div>
+              <strong>Promotions asignadas:</strong>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>{renderPromotions()}</div>
               <span>
                 <strong>El evento se celebra el dia :</strong> <span>{eventData.fecha_inicio}</span>
               </span>
@@ -129,7 +129,7 @@ const Event = () => {
             className="button__row-left"
             style={{ display: 'flex', borderRadius: '16px', justifyContent: 'space-around', backgroundColor: 'rgb(173 211 233)', padding: '16px' }}
           >
-            <Link className="btn btn-secondary" to="/user/eventos">
+            <Link className="btn btn-secondary" to="/user/events">
               Volver atrás
             </Link>
           </div>

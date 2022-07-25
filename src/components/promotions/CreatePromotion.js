@@ -4,25 +4,25 @@ import mapboxgl from 'mapbox-gl';
 import Papa from 'papaparse';
 import { Form, Button } from 'react-bootstrap';
 import ApiCrudService from '../../services/crud.service';
-import EventosService from '../../services/eventos.service';
-import ComerciosService from '../../services/comercios.service';
+import EventosService from '../../services/events.service';
+import ComerciosService from '../../services/commerces.service';
 import { Link } from 'react-router-dom';
-import PromocionesService from '../../services/promociones.service';
+import PromotionsService from '../../services/promotions.service';
 
-export default function PromocionesC() {
+export default function PromotionsC() {
   const { user } = useAuth();
   const [listEventos, setListEventos] = useState([]);
   const [listCategorias, setListCategorias] = useState([]);
-  const [comercio, setComercio] = useState([]);
+  const [commerce, setComercio] = useState([]);
   const [formComer, setFormComer] = useState([]);
 
   //esto se va a renderizar una vez cuando se monte el componente
   useEffect(() => {
     (async () => {
       try {
-        let eventos = await EventosService.index('eventos');
-        console.log('EVENTOS', eventos);
-        setListEventos(eventos.data);
+        let events = await EventosService.index('events');
+        console.log('EVENTOS', events);
+        setListEventos(events.data);
       } catch (e) {
         console.log('ERROR', e);
       }
@@ -34,7 +34,7 @@ export default function PromocionesC() {
     const elem = document.getElementById('form');
     const formData = new FormData(elem);
     formData.append('comercio_id', user.comercio_id);
-    const res = await PromocionesService.create('promociones', formData);
+    const res = await PromotionsService.create('Promotions', formData);
   };
 
   return (
@@ -42,9 +42,9 @@ export default function PromocionesC() {
       <div className="container__cruds">
         <Form id="form" onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <h3>Crea una nueva promocion: </h3>
+            <h3>Crea una nueva Promotion: </h3>
             <Form.Label>Titulo</Form.Label>
-            <Form.Control name="titulo" type="text" required />
+            <Form.Control name="title" type="text" required />
             <Form.Label>Fecha Inicio</Form.Label>
             <Form.Control name="fecha_inicio" type="date" />
             <Form.Label>Fecha Expiracion</Form.Label>
@@ -55,12 +55,12 @@ export default function PromocionesC() {
             <Form.Label>Escoge un evento</Form.Label>
             <Form.Select name="evento_id" aria-label="Escoge un evento">
               {listEventos.map(evento => {
-                return <option value={evento.id}> {evento.nombre + ' ' + evento.edicion}</option>;
+                return <option value={evento.id}> {evento.name + ' ' + evento.edicion}</option>;
               })}
             </Form.Select>
 
             <Form.Label>Selecciona una foto para este evento</Form.Label>
-            <Form.Control name="image" required type="file" placeholder="Sube una foro para tu promocion" />
+            <Form.Control name="image" required type="file" placeholder="Sube una foro para tu Promotion" />
             <Button variant="primary" type="submit">
               Crear promo
             </Button>

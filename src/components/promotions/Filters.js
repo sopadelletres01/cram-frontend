@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import { Button, ButtonGroup, ButtonToolbar, Collapse, Dropdown, DropdownButton, Form, InputGroup } from 'react-bootstrap';
 import { FaSearch } from 'react-icons/fa';
 
-export default function Filters({ open, setOpen, promociones, filteredPromociones, setPromociones, setSelected, selected }) {
-  console.log('promociones filtro', filteredPromociones);
-  console.log('promociones de l filtro', promociones);
+export default function Filters({ open, setOpen, Promotions, filteredPromotions, setPromotions, setSelected, selected }) {
+  console.log('Promotions filtro', filteredPromotions);
+  console.log('Promotions de l filtro', Promotions);
   const handleSortChange = e => {
-    let sortedPromociones = [...filteredPromociones];
+    let sortedPromotions = [...filteredPromotions];
     switch (e.target.value) {
       case '1':
         console.log('A/A');
-        sortedPromociones = filteredPromociones.sort((a, b) => {
-          let A = a.titulo.toLowerCase();
-          let B = b.titulo.toLowerCase();
+        sortedPromotions = filteredPromotions.sort((a, b) => {
+          let A = a.title.toLowerCase();
+          let B = b.title.toLowerCase();
           if (A > B) {
             return 1;
           } else if (A < B) {
@@ -27,14 +27,14 @@ export default function Filters({ open, setOpen, promociones, filteredPromocione
         break;
       case '2':
         console.log('A/D');
-        sortedPromociones = filteredPromociones.sort((a, b) => {
-          let A = a.titulo.toLowerCase();
-          let B = b.titulo.toLowerCase();
+        sortedPromotions = filteredPromotions.sort((a, b) => {
+          let A = a.title.toLowerCase();
+          let B = b.title.toLowerCase();
           if (A < B) {
             return 1;
           } else if (A > B) {
-            console.log('nombre de A', A);
-            console.log('nombre de B', A);
+            console.log('name de A', A);
+            console.log('name de B', A);
             return -1;
           }
           // a must be equal to b
@@ -43,7 +43,7 @@ export default function Filters({ open, setOpen, promociones, filteredPromocione
         break;
       case '3':
         console.log('F/A');
-        sortedPromociones = filteredPromociones.sort((a, b) => {
+        sortedPromotions = filteredPromotions.sort((a, b) => {
           if (a.fecha_expiracion > b.fecha_expiracion) {
             return 1;
           } else if (a.fecha_expiracion < b.fecha_expiracion) {
@@ -55,7 +55,7 @@ export default function Filters({ open, setOpen, promociones, filteredPromocione
         break;
       case '4':
         console.log('F/D');
-        sortedPromociones = filteredPromociones.sort((a, b) => {
+        sortedPromotions = filteredPromotions.sort((a, b) => {
           if (a.fecha_expiracion < b.fecha_expiracion) {
             return 1;
           } else if (a.fecha_expiracion > b.fecha_expiracion) {
@@ -67,7 +67,7 @@ export default function Filters({ open, setOpen, promociones, filteredPromocione
         break;
 
       default:
-        sortedPromociones = filteredPromociones.sort((a, b) => {
+        sortedPromotions = filteredPromotions.sort((a, b) => {
           if (a.evento_nombre > b.evento_nombre) {
             return 1;
           }
@@ -79,20 +79,20 @@ export default function Filters({ open, setOpen, promociones, filteredPromocione
         });
         break;
     }
-    console.log('SORTED ', sortedPromociones);
-    setPromociones([...sortedPromociones]);
+    console.log('SORTED ', sortedPromotions);
+    setPromotions([...sortedPromotions]);
   };
 
   const handleSearchChange = e => {
     let value = e.target.value;
-    let newPromociones;
+    let newPromotions;
     if (value === '') {
-      setPromociones([...promociones]);
+      setPromotions([...Promotions]);
       return;
     }
-    newPromociones = promociones.filter(promo => promo.titulo.toLowerCase().includes(value.toLowerCase()));
-    console.log('filtered', newPromociones);
-    setPromociones([...newPromociones]);
+    newPromotions = Promotions.filter(promo => promo.title.toLowerCase().includes(value.toLowerCase()));
+    console.log('filtered', newPromotions);
+    setPromotions([...newPromotions]);
   };
 
   return (

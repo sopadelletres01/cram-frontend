@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Button, Card, Badges, Badge, Form } from 'react-bootstrap';
-import EventosService from '../../services/eventos.service';
-import PromocionesService from '../../services/promociones.service';
+import EventosService from '../../services/events.service';
+import PromotionsService from '../../services/promotions.service';
 
-export default function PromocionEdit({ eventos, id, caducado, titulo, comercio, evento, descripcion, inicio, src, final }) {
+export default function PromotionEdit({ events, id, caducado, title, commerce, evento, descripcion, inicio, src, final }) {
   const [form, setForm] = useState();
 
   useEffect(() => {
     setForm({
       descripcion,
-      titulo,
+      title,
       evento_id: evento,
       src,
       fecha_finalizacion: final,
@@ -21,9 +21,9 @@ export default function PromocionEdit({ eventos, id, caducado, titulo, comercio,
     console.log('FORM', form);
     e.preventDefault();
     try {
-      let res = await PromocionesService.update('promociones', id, form);
+      let res = await PromotionsService.update('Promotions', id, form);
       if (res.status === 200) {
-        let promo = await PromocionesService.show('promociones', id);
+        let promo = await PromotionsService.show('Promotions', id);
         console.log('PROMOOO', promo);
         setForm(promo.data);
       }
@@ -36,7 +36,7 @@ export default function PromocionEdit({ eventos, id, caducado, titulo, comercio,
   const handleDelete = async e => {
     e.preventDefault();
     try {
-      let res = await PromocionesService.delete('promociones', id);
+      let res = await PromotionsService.delete('Promotions', id);
       console.log('resssss', res);
     } catch (e) {
       console.log(e);
@@ -49,13 +49,13 @@ export default function PromocionEdit({ eventos, id, caducado, titulo, comercio,
         <div className="card__evento">
           <Card.Img style={{ flex: '1', maxWidth: '700px' }} variant="top" src={src} />
           <Form className="card__body">
-            {/* Poner el nombre del comercio */}
+            {/* Poner el name del commerce */}
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center', justifyContent: 'center' }}>
               <Card.Text style={{ display: 'flex', gap: '8px', flexFlow: 'column wrap' }}>
                 {caducado ? <Badge bg="danger">Expirada</Badge> : <Badge bg="success">Vigente</Badge>}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Titulo</Form.Label>
-                  <Form.Control name="titulo" value={form?.titulo} size="sm" type="text" onChange={e => setForm({ ...form, titulo: e.target.value })} />
+                  <Form.Control name="title" value={form?.title} size="sm" type="text" onChange={e => setForm({ ...form, title: e.target.value })} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                   <Form.Label>Fecha Inicio</Form.Label>
@@ -101,10 +101,10 @@ export default function PromocionEdit({ eventos, id, caducado, titulo, comercio,
                     <option hidden selected>
                       Selecciona un evento
                     </option>
-                    {eventos.map(ev => {
+                    {events.map(ev => {
                       return (
                         <option key={ev.id} value={ev.id}>
-                          {ev.nombre}
+                          {ev.name}
                         </option>
                       );
                     })}
@@ -112,10 +112,10 @@ export default function PromocionEdit({ eventos, id, caducado, titulo, comercio,
                 </Form.Group>
                 <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
                   <Button onClick={handleEdit} variant="warning">
-                    Editar Promocion
+                    Editar Promotion
                   </Button>
                   <Button onClick={handleDelete} variant="danger">
-                    Eliminar Promocion
+                    Eliminar Promotion
                   </Button>
                 </div>
               </Card.Text>

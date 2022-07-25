@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { AuthContext } from './../context/auth.context';
 import { useNavigate } from 'react-router';
+import { useAuth } from '../context/AuthContext';
 
 function PrivateRoute(props) {
   const { isLoggedIn, loading } = useAuth();

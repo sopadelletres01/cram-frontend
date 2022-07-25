@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import { Button, ButtonGroup, ButtonToolbar, Collapse, Dropdown, DropdownButton, Form, InputGroup } from 'react-bootstrap';
 import { FaSearch } from 'react-icons/fa';
 
-export default function Filters({ open, setOpen, eventos, filteredEventos, setEventos, setSelected, selected }) {
+export default function Filters({ open, setOpen, events, filteredEventos, setEventos, setSelected, selected }) {
   const handleSortChange = e => {
     let sortedEventos = [...filteredEventos];
     switch (e.target.value) {
       case '1':
         console.log('easfas');
         sortedEventos = filteredEventos.sort((a, b) => {
-          if (a.nombre > b.nombre) {
+          if (a.name > b.name) {
             return 1;
           }
-          if (a.nombre < b.nombre) {
+          if (a.name < b.name) {
             return -1;
           }
           // a must be equal to b
@@ -21,10 +21,10 @@ export default function Filters({ open, setOpen, eventos, filteredEventos, setEv
         break;
       case '2':
         sortedEventos = filteredEventos.sort((a, b) => {
-          if (a.nombre < b.nombre) {
+          if (a.name < b.name) {
             return 1;
           }
-          if (a.nombre > b.nombre) {
+          if (a.name > b.name) {
             return -1;
           }
           // a must be equal to b
@@ -58,10 +58,10 @@ export default function Filters({ open, setOpen, eventos, filteredEventos, setEv
 
       default:
         sortedEventos = filteredEventos.sort((a, b) => {
-          if (a.nombre > b.nombre) {
+          if (a.name > b.name) {
             return 1;
           }
-          if (a.nombre < b.nombre) {
+          if (a.name < b.name) {
             return -1;
           }
           // a must be equal to b
@@ -77,10 +77,10 @@ export default function Filters({ open, setOpen, eventos, filteredEventos, setEv
     let value = e.target.value;
     let newEventos;
     if (value === '') {
-      setEventos([...eventos]);
+      setEventos([...events]);
       return;
     }
-    newEventos = eventos.filter(ev => ev.nombre.toLowerCase().includes(value.toLowerCase()));
+    newEventos = events.filter(ev => ev.name.toLowerCase().includes(value.toLowerCase()));
     console.log('filtered', newEventos);
     setEventos([...newEventos]);
   };

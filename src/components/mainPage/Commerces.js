@@ -4,18 +4,18 @@ import mapboxgl from 'mapbox-gl';
 import Papa from 'papaparse';
 import { Form, Button } from 'react-bootstrap';
 import ApiCrudService from '../../services/crud.service';
-import EventosService from '../../services/eventos.service';
-import ComerciosService from '../../services/comercios.service';
-import MenusAuxiliar from './MenusAuxiliar';
+import EventosService from '../../services/events.service';
+import ComerciosService from '../../services/commerces.service';
+import MenusAuxiliar from './MenuAux';
 import { Link } from 'react-router-dom';
-import UsuariosService from '../../services/usuarios.service';
+import UsuariosService from '../../services/users.service';
 
 export default function Comercios() {
   const [form, setForm] = useState([]);
   const [long, setLong] = useState();
   const [lat, setLat] = useState();
   const [loading, setLoading] = useState(false);
-  const [comercio, setComercio] = useState([]);
+  const [commerce, setComercio] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [listComercio, setListComercio] = useState([]);
   const [complet, setComplet] = useState(false);
@@ -27,7 +27,7 @@ export default function Comercios() {
         setLoading(true);
         let cat = await ApiCrudService.index('categorias');
         setCategorias(cat.data);
-        let comerNif = await ComerciosService.index('comercios');
+        let comerNif = await ComerciosService.index('commerces');
         setListComercio(comerNif.data);
       } catch (e) {
         console.log(e);
@@ -45,16 +45,16 @@ export default function Comercios() {
       let res = await UsuariosService.createComercial(form);
       if (res.status === 200) {
         setDatos({ ...datos, idUser: res.data.id });
-        alert('Se ha creado el usuario correctamente');
+        alert('Se ha creado el user correctamente');
       }
-      //tengo que pasarle el id del comercio y el id del usuario
+      //tengo que pasarle el id del commerce y el id del user
       setLoading(false);
-      let userComer = await ApiCrudService.create('usuario_comercios', { comercio_id: comercio.id, idUser: res.data.id });
+      let userComer = await ApiCrudService.create('usuario_comercios', { comercio_id: commerce.id, idUser: res.data.id });
       console.log(userComer);
-      window.alert('Ya se ha creado el el comercio y se ha vinculado al usuario.');
+      window.alert('Ya se ha creado el el commerce y se ha vinculado al user.');
       setComercio({});
     } catch (e) {
-      alert('Ha habido un error al crear el usuario');
+      alert('Ha habido un error al crear el user');
 
       console.log(e);
     }
@@ -80,19 +80,19 @@ export default function Comercios() {
       let elem = document.getElementById('form');
       let formData = new FormData(elem);
       console.log(formData.get('nif'));
-      let repetido = listComercio.find(comercio => comercio.nif === formData.get('nif'));
+      let repetido = listComercio.find(commerce => commerce.nif === formData.get('nif'));
       console.log(repetido);
       if (repetido) {
         window.alert('Este NIF ya esta registrado en nuestra Base de datos.');
       } else {
-        let res = await ApiCrudService.create('comercios', formData);
-        console.log('ID del putsdfsdfsdfsdfsdfsdfsdfo comercio', res);
+        let res = await ApiCrudService.create('commerces', formData);
+        console.log('ID del putsdfsdfsdfsdfsdfsdfsdfo commerce', res);
         console.log('dataaaaaaaaa', res.data);
         if (res.status === 200) {
           setComercio(res.data);
           setDatos({ ...datos, comercio_id: res.data.id });
 
-          console.log('ID del puto comercio', res.data.id);
+          console.log('ID del puto commerce', res.data.id);
         }
       }
     } catch (err) {
@@ -106,7 +106,7 @@ export default function Comercios() {
   return (
     <>
       <MenusAuxiliar>
-        <Link className="btn btn-warning" to={'/comercio/modificaciones'} title={'Modicar usuario'}>
+        <Link className="btn btn-warning" to={'/commerce/modificaciones'} title={'Modicar user'}>
           {' '}
           Buscar Comercio
         </Link>
@@ -118,9 +118,9 @@ export default function Comercios() {
             <Button onClick={handleLocation}>Añadir localizacion</Button>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Nombre</Form.Label>
-              <Form.Control name="nombre" type="text" required />
+              <Form.Control name="name" type="text" required />
               <Form.Label>Poblacón</Form.Label>
-              <Form.Control name="poblacion" type="text" required />
+              <Form.Control name="town" type="text" required />
               <Form.Label>Emial</Form.Label>
               <Form.Control name="email" type="email" required />
               <Form.Label>Latitud</Form.Label>
@@ -134,13 +134,13 @@ export default function Comercios() {
               <Form.Select
                 name="categoria_id"
                 aria-label="Escoge una categoria"
-                onChange={e => setComercio({ ...comercio, categoria_id: e.target.value })}
+                onChange={e => setComercio({ ...commerce, categoria_id: e.target.value })}
                 required
               >
                 {
                   <>
                     <option selected hidden>
-                      Seleccion una categoria para tu comercio
+                      Seleccion una categoria para tu commerce
                     </option>
                     {categorias.map(categoria => {
                       return <option value={categoria.id}>{categoria.categoria}</option>;
@@ -156,7 +156,7 @@ export default function Comercios() {
                 type="file"
                 placeholder="Sube una foro para tu evento"
                 onChange={e => {
-                  setComercio({ ...comercio, file: e.target.files[0] });
+                  setComercio({ ...commerce, file: e.target.files[0] });
                 }}
               />
             </Form.Group>
@@ -165,12 +165,12 @@ export default function Comercios() {
         ) : (
           <div className="container__dos">
             <Form id="from_user" onSubmit={handleSubmitAlone}>
-              <h3>Dar de alta un usuario</h3>
+              <h3>Dar de alta un user</h3>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
                   onChange={e => {
-                    setForm({ ...form, nombre: e.target.value });
+                    setForm({ ...form, name: e.target.value });
                   }}
                 />
                 <Form.Label>Apellidos</Form.Label>

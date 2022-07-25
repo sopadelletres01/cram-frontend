@@ -3,8 +3,8 @@ import { Form, Button, Image, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext, useAuth } from '../context/AuthContext';
 import ApiCrudService from '../../services/crud.service';
-import EventosService from '../../services/eventos.service';
-import MenusAuxiliar from './MenusAuxiliar';
+import EventosService from '../../services/events.service';
+import MenusAuxiliar from './MenuAux';
 import axios from 'axios';
 
 export default function EventosC() {
@@ -27,7 +27,7 @@ export default function EventosC() {
         console.log('elem', elem);
 
         const formData = new FormData(elem);
-        let res = await ApiCrudService.create('eventos', formData);
+        let res = await ApiCrudService.create('events', formData);
         //{eventdata,src}
         if (res.status === 200) {
           setEvento(res.data);
@@ -39,7 +39,7 @@ export default function EventosC() {
                 console.log('informacion del EVENTO',evento) */
 
         /* 
-                let newEvento= await ApiCrudService.create('eventos',evento)
+                let newEvento= await ApiCrudService.create('events',evento)
                 setEvento({...evento,src:newEvento.src});
                 console.log("informacion del nuevo EVENTO",newEvento.data) */
       } else {
@@ -57,7 +57,7 @@ export default function EventosC() {
   return (
     <>
       <MenusAuxiliar>
-        <Link className="btn btn-warning" to={'/eventos/modificaciones'} title={'Modicar Evento'}>
+        <Link className="btn btn-warning" to={'/events/modificaciones'} title={'Modicar Evento'}>
           {' '}
           Buscar Evento
         </Link>
@@ -84,11 +84,11 @@ export default function EventosC() {
              */}{' '}
             <Form.Label>Nombre del Evento</Form.Label>
             <Form.Control
-              name="nombre"
-              value={evento.nombre}
+              name="name"
+              value={evento.name}
               required
               onChange={e => {
-                setEvento({ ...evento, nombre: e.target.value });
+                setEvento({ ...evento, name: e.target.value });
               }}
             />
             <Form.Label>Descripcion del Evento</Form.Label>

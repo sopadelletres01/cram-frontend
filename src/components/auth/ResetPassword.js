@@ -34,7 +34,7 @@ export default function ResetPassword() {
         console.log('ok', res.status);
         navigate('/login', { replace: true });
 
-        /* pasarle al Context el usuario  */
+        /* pasarle al Context el user  */
       }
     } catch (e) {
       if (e.response.status === 400) {

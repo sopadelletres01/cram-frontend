@@ -5,11 +5,11 @@ export default class ComerciosService extends ApiCrudService {
   constructor() {
     super();
   }
-  static serachComercio(nif) {
-    return httpC.get(`/comercios?nif=${nif}`);
+  static searchCommerce(nif) {
+    return httpC.get(`/commerces?nif=${nif}`);
   }
-  //esta nos da las promociones que tiene un usuario en un comercio
+  //esta nos da las Promotions que tiene un user en un commerce
   static searchPromoAndUser(dni, id) {
-    return httpC.get(`/usuarios/${dni}/comercios/${id}`);
+    return httpC.get(`/users/${dni}/commerces/${id}`);
   }
 }

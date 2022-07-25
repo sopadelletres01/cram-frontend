@@ -6,9 +6,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 /* hacer la conexion a la API */
-/* hacer useState para guardar los datos del usuario */
+/* hacer useState para guardar los datos del user */
 /* peticion post  localhost:8080/auth/login */
-/* pasarle por post la informacion del usuario en JSON */
+/* pasarle por post la informacion del user en JSON */
 
 /* VALIDACION DEL LOGIN */
 
@@ -27,7 +27,7 @@ export function Login() {
       console.log(resend);
       if (resend.status === 200) {
         console.log('ok', resend.status);
-        /* pasarle al Context el usuario  */
+        /* pasarle al Context el user  */
       }
     } catch (e) {
       if (e.response.status === 401) {

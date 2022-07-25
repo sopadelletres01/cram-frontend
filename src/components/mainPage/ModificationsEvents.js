@@ -3,8 +3,8 @@ import { Form, Button, Image, Col, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { AuthContext, useAuth } from '../context/AuthContext';
 import ApiCrudService from '../../services/crud.service';
-import EventosService from '../../services/eventos.service';
-import MenusAuxiliar from './MenusAuxiliar';
+import EventosService from '../../services/events.service';
+import MenusAuxiliar from './MenuAux';
 import axios from 'axios';
 
 export default function Eventos() {
@@ -17,7 +17,7 @@ export default function Eventos() {
   //////////////////////////////////-----CARGAREMOS LOS EVENTOS------///////////////////
 
   useEffect(() => {
-    //conseguimos los eventos que estan disponibles
+    //conseguimos los events que estan disponibles
     const handleListEvent = async () => {
       let res = await EventosService.getEventosCurrent();
       setListEvento(res.data);
@@ -34,7 +34,7 @@ export default function Eventos() {
 
     try {
       if (formState === 'editar') {
-        let res = await ApiCrudService.update('eventos', id, evento);
+        let res = await ApiCrudService.update('events', id, evento);
 
         if (res.status === 200) {
           setEvento(res.data);
@@ -106,7 +106,7 @@ export default function Eventos() {
     e.preventDefault();
     /* setLoading(true); */
     try {
-      let res = await ApiCrudService.show('eventos', e.target.value);
+      let res = await ApiCrudService.show('events', e.target.value);
       console.log(res.data);
       setEvento(res.data);
     } catch (error) {
@@ -117,7 +117,7 @@ export default function Eventos() {
   return (
     <>
       <MenusAuxiliar>
-        <Link className="btn btn-warning" to={'/eventos/create'} title={'Modicar usuario'}>
+        <Link className="btn btn-warning" to={'/events/create'} title={'Modicar user'}>
           Dar de alta Evento
         </Link>
       </MenusAuxiliar>
@@ -129,7 +129,7 @@ export default function Eventos() {
             <Form.Label>Introduce el Id</Form.Label>
             <Form.Control value={evento.id || ''} onBlur={handleBlur} onChange={e => setEvento({ ...evento, id: e.target.value })} />
             <Form.Label>Nombre del Evento</Form.Label>
-            <Form.Control value={evento.nombre || ''} onChange={e => setEvento({ ...evento, nombre: e.target.value })} readOnly={formState !== 'editar'} />
+            <Form.Control value={evento.name || ''} onChange={e => setEvento({ ...evento, name: e.target.value })} readOnly={formState !== 'editar'} />
             <Form.Label> Edicion</Form.Label>
             <Form.Control value={evento.edicion || ''} onChange={e => setEvento({ ...evento, edicion: e.target.value })} readOnly={formState !== 'editar'} />
             <Form.Label>Descripción</Form.Label>
@@ -174,7 +174,7 @@ export default function Eventos() {
                 <tr key={evento.id}>
                   <td>{e + 1}</td>
                   <td>{evento.id}</td>
-                  <td>{evento.nombre}</td>
+                  <td>{evento.name}</td>
                   <td>{evento.edicion}</td>
                   <td>{evento.fecha_inicio}</td>
                   <td>{evento.lugar}</td>

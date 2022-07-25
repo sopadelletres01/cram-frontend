@@ -22,7 +22,7 @@ export default function Sidebar({ accio }) {
       <div className="avatar">
         <img src={user.avatar_src || 'https://oneill.law.georgetown.edu/wp-content/uploads/2021/06/generic-profile.png'}></img>
       </div>
-      {user.nombre && <h3 className="usuario__nombre">{user.nombre}</h3>}
+      {user.name && <h3 className="usuario__nombre">{user.name}</h3>}
       <ul>
         <li>
           <Link to="/user">User page</Link>

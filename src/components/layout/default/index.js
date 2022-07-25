@@ -43,7 +43,7 @@ export default function Layout({ children, sidebar = false }) {
     });
   });
   return (
-    //Pagina de usuario de inicio
+    //Pagina de user de inicio
     <>
       <Helmet>
         <title>Cram page</title>
@@ -87,10 +87,10 @@ export default function Layout({ children, sidebar = false }) {
                     justifyContent: 'center',
                   }}
                 >
-                  <Link to="/user/promociones" className="btn btn-primary">
-                    Promociones
+                  <Link to="/user/Promotions" className="btn btn-primary">
+                    Promotions
                   </Link>
-                  <Link to="/user/eventos" className="btn btn-primary">
+                  <Link to="/user/events" className="btn btn-primary">
                     Eventos
                   </Link>
                 </div>
@@ -114,13 +114,13 @@ export default function Layout({ children, sidebar = false }) {
                     justifyContent: 'center',
                   }}
                 >
-                  <Link to="/inscripciones" className="btn btn-primary">
+                  <Link to="/Inscriptions" className="btn btn-primary">
                     Usuarios
                   </Link>
-                  <Link to="/eventos/create" className="btn btn-primary">
+                  <Link to="/events/create" className="btn btn-primary">
                     Eventos
                   </Link>
-                  <Link to="/comercio" className="btn btn-primary">
+                  <Link to="/commerce" className="btn btn-primary">
                     Comercios
                   </Link>
                 </div>
@@ -144,16 +144,16 @@ export default function Layout({ children, sidebar = false }) {
                     justifyContent: 'center',
                   }}
                 >
-                  <Link to="/comercio/promociones" className="btn btn-primary">
-                    Promociones
+                  <Link to="/commerce/Promotions" className="btn btn-primary">
+                    Promotions
                   </Link>
-                  <Link to="/promociones/create" className="btn btn-primary">
-                    Crear nueva promocion
+                  <Link to="/promotions/create" className="btn btn-primary">
+                    Crear nueva Promotion
                   </Link>
-                  <Link to="/comercio/validar" className="btn btn-primary">
-                    Validar promociones
+                  <Link to="/commerce/validar" className="btn btn-primary">
+                    Validar Promotions
                   </Link>
-                  <Link to="/user/eventos" className="btn btn-primary">
+                  <Link to="/user/events" className="btn btn-primary">
                     Eventos
                   </Link>
                 </div>

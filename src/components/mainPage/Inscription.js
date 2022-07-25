@@ -3,25 +3,25 @@ import { AuthContext, useAuth } from '../context/AuthContext';
 import Papa from 'papaparse';
 import { Form, Button } from 'react-bootstrap';
 import ApiCrudService from '../../services/crud.service';
-import EventosService from '../../services/eventos.service';
-import MenusAuxiliar from './MenusAuxiliar';
+import EventosService from '../../services/events.service';
+import MenusAuxiliar from './MenuAux';
 import { Link } from 'react-router-dom';
 export default function CSVReader() {
   const { user, loading, setLoading } = useAuth();
   const [inscripcion, setInscripcion] = useState([]);
   const [datos, setDatos] = useState([]);
-  const [eventos, setEventos] = useState([]);
+  const [events, setEventos] = useState([]);
   const [idEvento, setIdEvento] = useState();
 
   const [form, setForm] = useState([]);
 
   useEffect(() => {
-    if (eventos.length < 0) return;
+    if (events.length < 0) return;
     async function getEventos() {
       try {
         setLoading(true);
-        const eventos = await EventosService.getEventosCurrent('eventos');
-        setEventos(eventos.data);
+        const events = await EventosService.getEventosCurrent('events');
+        setEventos(events.data);
       } catch (e) {
         console.log(e);
       } finally {
@@ -34,9 +34,9 @@ export default function CSVReader() {
   const handleSubmitAlone = async e => {
     e.preventDefault();
     try {
-      let res = await ApiCrudService.create('usuarios', form);
+      let res = await ApiCrudService.create('users', form);
       setDatos(res.data.id);
-      await ApiCrudService.create('inscripciones', { id_usuario: res.data.id, id_evento: idEvento });
+      await ApiCrudService.create('Inscriptions', { id_usuario: res.data.id, id_evento: idEvento });
     } catch (e) {
       console.log(e);
     }
@@ -47,17 +47,17 @@ export default function CSVReader() {
     try {
       let newIns = await Promise.all(
         inscripcion.map(async ins => {
-          return await ApiCrudService.create('usuarios', ins);
+          return await ApiCrudService.create('users', ins);
         })
       );
       setDatos(newIns);
 
       await Promise.all(
         newIns.map(async part => {
-          return await ApiCrudService.create('inscripciones', { id_usuario: part.data.id, id_evento: idEvento });
+          return await ApiCrudService.create('Inscriptions', { id_usuario: part.data.id, id_evento: idEvento });
         })
       );
-      alert('Se han inscrito los usuarios correctamente en la carrera .');
+      alert('Se han inscrito los users correctamente en la carrera .');
     } catch (e) {
       console.log(e);
     }
@@ -74,8 +74,8 @@ export default function CSVReader() {
       Papa.parse(csv[0], {
         header: true,
         complete: function (ins) {
-          const inscripciones = ins.data;
-          setInscripcion(inscripciones);
+          const Inscriptions = ins.data;
+          setInscripcion(Inscriptions);
         },
       });
     }
@@ -84,14 +84,14 @@ export default function CSVReader() {
   return (
     <>
       <MenusAuxiliar>
-        <Link className="btn btn-warning" to={'/inscripciones/modificaciones'} title={'Modicar usuario'}>
+        <Link className="btn btn-warning" to={'/Inscriptions/modificaciones'} title={'Modicar user'}>
           {' '}
-          Buscar usuario
+          Buscar user
         </Link>
       </MenusAuxiliar>
       <div className="container__cruds">
         <div className="container__uno">
-          <h3>Dar de alta usuarios (archivo CSV)</h3>
+          <h3>Dar de alta users (archivo CSV)</h3>
 
           <Form.Label>Escoge un evento para inscribir a los participantes</Form.Label>
           <Form.Select aria-label="Escoge un evento" onChange={e => handleSelect(e)}>
@@ -100,8 +100,8 @@ export default function CSVReader() {
                 <option selected hidden>
                   Selecciona una opcion
                 </option>
-                {eventos.map(evento => {
-                  return <option value={evento.id}> {evento.nombre + ' ' + evento.edicion}</option>;
+                {events.map(evento => {
+                  return <option value={evento.id}> {evento.name + ' ' + evento.edicion}</option>;
                 })}
               </>
             }
@@ -121,19 +121,19 @@ export default function CSVReader() {
         {/* DAR DE ALTA SOLAMENTE A UN USUARIO */}
         <div className="container__dos">
           <Form onSubmit={handleSubmitAlone}>
-            <h3>Dar de alta un usuario</h3>
+            <h3>Dar de alta un user</h3>
 
             <Form.Label>Escoge un evento para inscribir a los participantes</Form.Label>
             <Form.Select aria-label="Escoge un evento" onChange={e => handleSelect(e)}>
-              {eventos.map(evento => {
-                return <option value={evento.id}> {evento.nombre + ' ' + evento.edicion}</option>;
+              {events.map(evento => {
+                return <option value={evento.id}> {evento.name + ' ' + evento.edicion}</option>;
               })}
             </Form.Select>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Nombre</Form.Label>
               <Form.Control
                 onChange={e => {
-                  setForm({ ...form, nombre: e.target.value });
+                  setForm({ ...form, name: e.target.value });
                 }}
               />
               <Form.Label>Apellidos</Form.Label>

@@ -7,21 +7,21 @@ export default class EventosService extends ApiCrudService {
   }
 
   static getEventosByUser(id) {
-    return httpC.get(`/usuarios/${id}/eventos`);
+    return httpC.get(`/users/${id}/events`);
   }
   static getEventosCurrent() {
-    return httpC.get(`/eventos?active=true`);
+    return httpC.get(`/events?active=true`);
   }
   static getEventosByDni(dni, idComercio) {
-    return httpC.get(`eventos?dni=${dni}`);
+    return httpC.get(`events?dni=${dni}`);
   }
   static updatePhoto(data, id) {
     return httpC.put(`/file/${id}`, data);
   }
   static getComercios(id) {
-    return httpC.get(`/eventos/${id}/comercios`);
+    return httpC.get(`/events/${id}/commerces`);
   }
-  static getPromociones(id) {
-    return httpC.get(`/eventos/${id}/promociones`);
+  static getPromotions(id) {
+    return httpC.get(`/events/${id}/Promotions`);
   }
 }

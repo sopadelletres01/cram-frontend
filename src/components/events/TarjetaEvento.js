@@ -1,6 +1,6 @@
 import { Button, Card, Badges, Badge } from 'react-bootstrap';
 
-export default function Evento({ onClick, inscrito, nombre, edicion, descripcion, inicio, final, lugar, src }) {
+export default function Evento({ onClick, inscrito, name, edicion, descripcion, inicio, final, lugar, src }) {
   return (
     <Card onClick={onClick}>
       <Card.Body>
@@ -8,7 +8,7 @@ export default function Evento({ onClick, inscrito, nombre, edicion, descripcion
           <Card.Img className="imagen__card" variant="top" src={src} />
           <div className="card__body">
             <Card.Title>
-              {nombre}-{edicion}
+              {name}-{edicion}
             </Card.Title>
             {inscrito ? <Badge bg="success">INSCRITO</Badge> : <Badge bg="danger">NO INSCRITO</Badge>}
             <Card.Text style={{ display: 'flex', gap: '8px', flexFlow: 'column wrap' }}>

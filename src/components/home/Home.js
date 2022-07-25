@@ -30,7 +30,7 @@ export default function Home() {
         }}
       >
         <h1 style={{ fontSize: '6rem' }}>CRAM SPORTS</h1>
-        <h3 className="text-light">Tu web de eventos favorita</h3>
+        <h3 className="text-light">Tu web de events favorita</h3>
         <a href="#cositas" className="link-info">
           Conocer más...
         </a>
@@ -51,7 +51,7 @@ export default function Home() {
       >
         <div className="home__buttons" id="cositas">
           <h4>
-            Con Cram Sports podrás acceder facilmente a los eventos a los que estas inscrito, además de poder ver tus promociones disponibles, todo en una misma
+            Con Cram Sports podrás acceder facilmente a los events a los que estas inscrito, además de poder ver tus Promotions disponibles, todo en una misma
             app
           </h4>
           <hr

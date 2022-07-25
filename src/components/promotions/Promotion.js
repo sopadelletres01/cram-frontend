@@ -3,7 +3,7 @@ import { Badge, Button, Card, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import PromocionesService from '../../services/promociones.service.js';
+import PromotionsService from '../../services/promotions.service.js';
 import { AuthContext, useAuth } from '../context/AuthContext';
 import { BsDownload } from 'react-icons/bs';
 
@@ -15,21 +15,21 @@ const Promo = () => {
   let navigate = useNavigate();
 
   const redirectEvento = () => {
-    navigate(`/user/eventos/${promoData.id_evento}`);
+    navigate(`/user/events/${promoData.id_evento}`);
   };
 
   useEffect(() => {
     (async () => {
       try {
         setLoading(true);
-        const res = await PromocionesService.getPromo(user.id, id);
+        const res = await PromotionsService.getPromo(user.id, id);
         console.log('res', res);
         if (res.status === 200) {
           setPromoData(res.data);
         }
-        const userPromocionesCaducadas = await PromocionesService.getPromocionesExpiredByUser(user.id);
-        console.log('caducadas', userPromocionesCaducadas);
-        if (userPromocionesCaducadas.data.find(promo => promo.id === res.data.id)) {
+        const userPromotionsCaducadas = await PromotionsService.getPromotionsExpiredByUser(user.id);
+        console.log('caducadas', userPromotionsCaducadas);
+        if (userPromotionsCaducadas.data.find(promo => promo.id === res.data.id)) {
           setPromoData({ ...res.data, caducado: true });
         }
       } catch (e) {
@@ -58,8 +58,8 @@ const Promo = () => {
           }}
           className="card__evento"
         >
-          {/* Poner el nombre del comercio */}
-          <h1>{promoData.titulo}</h1>
+          {/* Poner el name del commerce */}
+          <h1>{promoData.title}</h1>
           <img
             className="qr__promo"
             style={{
@@ -127,7 +127,7 @@ const Promo = () => {
               padding: '16px',
             }}
           >
-            <Link className="btn btn-secondary" to="/user/promociones">
+            <Link className="btn btn-secondary" to="/user/Promotions">
               Volver atrás
             </Link>
             <Button className="btn btn-primary">

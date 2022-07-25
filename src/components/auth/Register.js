@@ -55,7 +55,7 @@ export function Register() {
             } catch (e) {
               console.log('ERROR', e);
               if (e.response.status === 400) {
-                alert('El usuario con este dni ya ha sido añadido a nuestra app');
+                alert('El user con este dni ya ha sido añadido a nuestra app');
               }
               console.log(e);
             }

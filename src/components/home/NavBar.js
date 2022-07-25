@@ -17,7 +17,7 @@ export function NavBar() {
           <Button> logOut</Button>
         </div>
         <div>
-          <h3>imgane del usuario</h3>
+          <h3>imgane del user</h3>
         </div>
       </div>
     </>
