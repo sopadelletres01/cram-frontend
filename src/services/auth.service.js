@@ -9,6 +9,10 @@ export default class AuthService {
     console.log(data);
     return httpC.post('/auth/register', data);
   }
+  static register(data) { 
+    console.log(data)
+    return httpC.post("/auth/register-free", data)
+}
   static signin(data, remember) {
     console.log('data', data);
     return httpC.post('/auth/login', { ...data, remember });

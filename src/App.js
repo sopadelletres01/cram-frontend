@@ -42,7 +42,7 @@ function App() {
   return (
     <>
       {isLoggedIn ? (
-        <Layout>
+        <HomeLayout>
           <Routes>
             {/* adminitrador */}
             {user.rol === 2 && (
@@ -86,7 +86,7 @@ function App() {
 
             <Route path="*" element={<NotFound />}></Route>
           </Routes>
-        </Layout>
+          </HomeLayout>
       ) : (
         <HomeLayout>
           <Routes>

@@ -36,13 +36,19 @@ color: #0275d8;
 .botones__login {
   margin: 10px;
 }
-.componente__titulo {
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #0275d8;
+
+.componente__titulo{
+    font-size:1.5rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color: #0275d8;
+
 }
-.containe__footer {
-  display: flex;
+.containe__footer{
+    display: flex;
+
+}
+.componente__titulo{
+    color:orange;
 }

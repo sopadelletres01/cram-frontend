@@ -21,7 +21,7 @@ export default function Header({ className, showSidebar }) {
   return (
     <header ref={headerRef} className={className ? className : ""}>
       <div className="logo">
-        <img className="rounded-circle" src={logo}></img>
+        <img className="rounded-circle" src={logo}/>
       </div>
       {/* <div className="logo">
             <img className="rounded-circle" src={logo}></img>
