@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 export default function Header({ className, showSidebar, ...rest }) {
   const headerRef = useRef()
   useEffect(() => {
-    const prevScrollpos = window.pageYOffset;
+    let prevScrollpos = window.pageYOffset;
     window.onscroll = function () {
       let currentScrollPos = window.pageYOffset;
       if (prevScrollpos > currentScrollPos) {
         headerRef.current.style.top = "0";
       } else {
-        headerRef.current.style.top = "-50px";
+        headerRef.current.style.top = "-90px";
       }
       prevScrollpos = currentScrollPos;
     };
