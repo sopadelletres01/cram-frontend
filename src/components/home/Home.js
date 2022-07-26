@@ -8,6 +8,8 @@ import Intro from "./Intro";
 import { FaChevronDown } from "react-icons/fa";
 //import '../css/estilosGrid.scss'
 
+//import '../css/estilosGrid.scss'
+// FALT EL LOADING ❌❌
 export default function Home() {
   const data = [
     <h2 data-testid="carousel-item-1">

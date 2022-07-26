@@ -72,7 +72,9 @@ code {
   }
 }
 
-
+.carousel, .carousel-inner > .item > img {
+  height: 100px;
+}
 
 .waves {
   position:relative;
@@ -109,6 +111,60 @@ code {
     transform: translate3d(85px,0,0);
   }
 }
+
+
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: absolute;
+    width: 0px;
+    right: 50px;
+    padding: 0px;
+
+    top: 113px;
+    border-radius: 25px;
+    height: 0px;
+    background-color: white;
+    border: 0px solid orange;
+    transition: height .5s, width .5s, border .5s;
+
+    &.active{
+      padding: 20px;
+      height:300px;
+      width:300px;
+      border: 3px solid orange;
+      display: flex;
+      a{
+        display:flex;
+        align-items: center;
+      }
+      
+    
+    }
+    a:hover{
+      border-radius: 25px;
+     text-decoration: underline;
+     text-decoration-color: orange;
+    }
+  .sidebar__link{
+
+    display:none;
+    gap:20px;
+    text-decoration: none;
+    span{
+        color:orange;
+        font-size:2em;
+     }
+     svg{
+      color:orange;
+      width:2em;
+      height:2em;
+     }
+    
+    }
+  }
 /*Shrinking for mobile*/
 @media (max-width: 768px) {
   .waves {
