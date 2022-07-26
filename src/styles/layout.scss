@@ -20,41 +20,44 @@ section {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  position: absolute;
-  width: 0px;
+  position: fixed;
   right: 50px;
   padding: 0px;
   z-index: 10;
   top: 113px;
   border-radius: 25px;
   height: 0px;
-  background-color: $secondary-color;
-  border: 0px solid $primary-color;
-  transition: height 0.5s, width 0.5s, border 0.5s;
-  .sidebar__link {
-    display: none;
-    opacity: 0;
-    transition: width 1s;
-    width: 0px;
-    height: 0px;
-  }
-
+  background-color: white;
+  border: 0px solid orange;
+  transition: height 0.5s, border 0.5s;
+  width: 300px;
   &.active {
     padding: 20px;
     height: 300px;
-    width: 300px;
     border: 3px solid orange;
     display: flex;
-    .sidebar__link {
-      transition: width 1s;
-
-      width: fit-content;
-      height: fit-content;
-      gap: 20px;
-      text-decoration: none;
+    a {
       display: flex;
       align-items: center;
-      opacity: 1;
+    }
+  }
+  a:hover {
+    border-radius: 25px;
+    text-decoration: underline;
+    text-decoration-color: orange;
+  }
+  .sidebar__link {
+    display: none;
+    gap: 20px;
+    text-decoration: none;
+    span {
+      color: orange;
+      font-size: 2em;
+    }
+    svg {
+      color: orange;
+      width: 2em;
+      height: 2em;
     }
   }
 }
@@ -87,17 +90,19 @@ section {
   button {
     border: none;
     background-color: transparent;
-    padding: 10px 20px;
+    padding: 5px 10px;
     border-radius: 50px 50px 50px 50px;
     svg {
-      width: 2em;
-      height: 2em;
+      transition: transform 1s;
+      width: 1.5em;
+      height: 1.5em;
       color: orange;
     }
     &:hover {
       outline: unset;
       background-color: orange;
       svg {
+        transform: rotate(90deg);
         color: white;
       }
     }
