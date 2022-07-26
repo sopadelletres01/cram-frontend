@@ -1,4 +1,13 @@
-$animationDuration: 5s;
+@use "./styles/utils.scss" as u;
+@import "./styles/theme.scss";
+@import "./styles/carousel.scss";
+@import "./styles/layout.scss";
+
+
+
+* + * {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
@@ -12,21 +21,35 @@ code {
 }
 
 .logo {
-  width: 120px;
-  padding: 10px;
-  animation-name: fadeIn;
-  animation-duration: $animationDuration;
+  width: u.$logo-width;
+  padding: u.$logo-padding;
+  // animation-name: fadeIn;
+  // animation-duration: u.$animationDuration;
+  img{
+    width:100%,;
+    height:100%;
+  }
 }
+
+
+a,button{
+  &:focus-visible{
+    outline: 1px solid $primary-color;
+    border-radius: 6px;
+    padding: 3px;
+  }
+}
+
 
 .animatedIntro {
   animation-name: intro;
-  animation-duration: $animationDuration;
+  animation-duration: u.$animationDuration;
   opacity: 0;
   width: 100px;
   height: 100px;
   position: absolute;
   transform: translate(-50%, -50%);
-  z-index: 10;
+  z-index: 30;
   img {
     border-radius: 50%;
     object-fit: cover;
@@ -34,13 +57,13 @@ code {
 }
 
 @keyframes fadeIn {
-  0% {
+  0%{
     opacity: 0;
   }
-  99% {
+  99%{
     opacity: 0;
   }
-  100% {
+  100%{
     opacity: 1;
   }
 }
@@ -52,32 +75,161 @@ code {
     top: 50%;
     left: 50%;
     opacity: 1;
-    transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
   }
-  20% {
+  20%, 50%{
     top: 50%;
     left: 50%;
     width: 400px;
     height: 400px;
-    transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
   }
-  50% {
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    height: 400px;
-    transform: translate(-50%, -50%);
-  }
-  99% {
+  
+  99%{
+    width: calc(u.$logo-width - 10px);
+    height: 90px;
     opacity: 1;
-    transform: translate(8px, 15px);
+    transform: translate(calc(u.$padding-header-lr + u.$logo-padding),u.$logo-padding);
   }
   100% {
-    width: 100px;
-    height: 100px;
+    width: calc(u.$logo-width - 10px);
+    height: 90px;
     top: 0;
     left: 0;
     opacity: 0;
-    transform: translate(8px, 15px);
+    transform: translate(calc(u.$padding-header-lr + u.$logo-padding),u.$logo-padding);
+  }
+}
+
+.carousel,
+.carousel-inner > .item > img {
+  height: 100px;
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 30vh;
+  margin-bottom: -7px; /*Fix for safari gap*/
+  min-height: 100px;
+}
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height: 40px;
+    min-height: 40px;
+  }
+}
+
+@keyframes move-up-down {
+  0%,
+  100% {
+    bottom: -15px;
+  }
+  50% {
+    bottom: 5px;
+  }
+}
+
+.intro {
+  .arrowDown {
+    border: none;
+    background: unset;
+    animation: move-up-down 1.5s infinite;
+    width: 80px;
+    height: 67px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #f68e0b;
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .introWrapper {
+    background: linear-gradient(
+      60deg,
+      rgb(183, 125, 58) 0%,
+      rgb(255, 211, 67) 100%
+    );
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .introText {
+    color: $secondary-color;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+    text-align: center;
+    padding: 0px 35px;
+    h1 {
+      color: mix(#fff, $primary-color, 85%);
+      font-size: calc(1em + 8vw);
+      font-weight: 900;
+      text-shadow: -0.0075em 0.0075em 0 mix(#fff, rgb(179, 116, 0), 94%),
+        0.005em 0.005em 0 mix(#fff, rgb(151, 98, 0), 60%),
+        0.01em 0.01em 0 mix(#fff, rgb(151, 98, 0), 62%),
+        0.015em 0.015em mix(#fff, rgb(151, 98, 0), 64%),
+        0.02em 0.02em 0 mix(#fff, rgb(151, 98, 0), 66%),
+        0.025em 0.025em 0 mix(#fff, rgb(151, 98, 0), 68%),
+        0.03em 0.03em 0 mix(#fff, rgb(151, 98, 0), 70%),
+        0.035em 0.035em 0 mix(#fff, rgb(151, 98, 0), 72%);
+    }
+    p{
+      font-size: calc(1em + 1vw);
+    }
+  }
+}
+
+.mainSection{
+  padding: 10px 50px;
+  h3{
+    margin:50px 0px;
+    text-align: center;
+    color: $ternary-color;
+  }
+  .carouselsWrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 150px ;
   }
 }

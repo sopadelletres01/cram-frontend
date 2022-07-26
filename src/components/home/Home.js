@@ -1,84 +1,80 @@
-import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
+import React, { useState, useEffect, useRef } from "react";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Carousel from "../Carousel";
+import Carrousel from "./Carrousel";
+import Intro from "./Intro";
+import { FaChevronDown } from "react-icons/fa";
 //import '../css/estilosGrid.scss'
 
+//import '../css/estilosGrid.scss'
+// FALT EL LOADING ❌❌
 export default function Home() {
+  const data = [
+    <h2 data-testid="carousel-item-1">
+      <img src="https://via.placeholder.com/300x200"></img>
+    </h2>,
+    <h2 data-testid="carousel-item-2">Item 2</h2>,
+    <h2 data-testid="carousel-item-3">Item 3</h2>,
+    <h2 data-testid="carousel-item-1">Item 1</h2>,
+    <h2 data-testid="carousel-item-2">Item 2</h2>,
+    <h2 data-testid="carousel-item-3">Item 3</h2>,
+    <h2 data-testid="carousel-item-1">Item 1</h2>,
+    <h2 data-testid="carousel-item-2">Item 2</h2>,
+    <h2 data-testid="carousel-item-3">Item 3</h2>,
+    <h2 data-testid="carousel-item-1">Item 1</h2>,
+    <h2 data-testid="carousel-item-2">Item 2</h2>,
+    <h2 data-testid="carousel-item-3">Item 3</h2>,
+    <h2 data-testid="carousel-item-1">Item 1</h2>,
+    <h2 data-testid="carousel-item-2">Item 2</h2>,
+    <h2 data-testid="carousel-item-3">Item 3</h2>,
+  ];
+  const mainSectionRef = useRef(null);
+  const executeScroll = () => mainSectionRef.current.scrollIntoView();
   return (
-    <Parallax pages={1.5} style={{ top: '0', left: '0' }}>
-      <ParallaxLayer
-        style={{
-          backgroundImage: `url(https://images2.alphacoders.com/120/1209425.png)`,
-          backgroundSize: 'cover',
-        }}
-        offset={0}
-        speed={1}
-        factor={2}
-      />
-      <ParallaxLayer
-        offset={0}
-        speed={0.5}
-        style={{
-          textAlign: 'center',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
-          margin: '0 auto',
-          color: 'white',
-        }}
-      >
-        <h1 style={{ fontSize: '6rem' }}>CRAM SPORTS</h1>
-        <h3 className="text-light">Tu web de events favorita</h3>
-        <a href="#cositas" className="link-info">
-          Conocer más...
-        </a>
-      </ParallaxLayer>
-
-      <ParallaxLayer
-        offset={0.8}
-        speed={0.7}
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
-          margin: '0 auto',
-          color: 'white',
-          textAlign: 'center',
-        }}
-      >
-        <div className="home__buttons" id="cositas">
-          <h4>
-            Con Cram Sports podrás acceder facilmente a los events a los que estas inscrito, además de poder ver tus Promotions disponibles, todo en una misma
-            app
-          </h4>
-          <hr
-            style={{
-              width: '75%',
-              opacity: '0.5',
-              borderBottom: '2px solid white',
-            }}
-          ></hr>
-          <h2>CREA UNA CUENTA EN UN ÚNICO PASO:</h2>
-          <Link to="/register" className="btn btn-lg btn-primary">
-            Registrate
-          </Link>
-          <hr
-            style={{
-              width: '75%',
-              opacity: '0.5',
-              borderBottom: '2px solid white',
-            }}
-          ></hr>
-          <h5>Ya estas inscrito?</h5>
-          <Link to="/login" className="btn btn-lg btn-secondary">
-            Iniciar Sesion
-          </Link>
+    <div className="home">
+      {/* <Link to="/login">Iniciar Sesion</Link> */}
+      <article className="intro">
+        <Intro />
+        <button onClick={() => executeScroll()} className="arrowDown">
+          <FaChevronDown />
+        </button>
+      </article>
+      <article ref={mainSectionRef} className="mainSection container">
+        <h3>
+          Con Cram Events podrás acceder y gestionar facilmente a los eventos
+          que te inscribas y disfrutar de grandes promociones en comercios
+          locales
+        </h3>
+        <div className="carouselsWrapper">
+          <Carousel
+            title="Próximos eventos"
+            show={4}
+            infiniteLoop
+            withIndicator
+          >
+            {data}
+          </Carousel>
+          <Carousel
+            title="Próximos eventos"
+            show={4}
+            infiniteLoop
+            withIndicator
+          >
+            {data}
+          </Carousel>
+          <Carousel
+            title="Próximos eventos"
+            show={4}
+            infiniteLoop
+            withIndicator
+          >
+            {data}
+          </Carousel>
         </div>
-      </ParallaxLayer>
-    </Parallax>
+      </article>
+    </div>
   );
 }
 //<img src="https://img.europapress.es/fotoweb/fotonoticia_20211003143235_1200.jpg"/>
