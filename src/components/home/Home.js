@@ -41,16 +41,38 @@ export default function Home() {
           <FaChevronDown />
         </button>
       </article>
-      <article ref={mainSectionRef} className="mainSection">
-        <Carousel title="Próximos eventos" show={4} infiniteLoop withIndicator>
-          {data}
-        </Carousel>
-        <Carousel title="Próximos eventos" show={4} infiniteLoop withIndicator>
-          {data}
-        </Carousel>
-        <Carousel title="Próximos eventos" show={4} infiniteLoop withIndicator>
-          {data}
-        </Carousel>
+      <article ref={mainSectionRef} className="mainSection container">
+        <h3>
+          Con Cram Events podrás acceder y gestionar facilmente a los eventos
+          que te inscribas y disfrutar de grandes promociones en comercios
+          locales
+        </h3>
+        <div className="carouselsWrapper">
+          <Carousel
+            title="Próximos eventos"
+            show={4}
+            infiniteLoop
+            withIndicator
+          >
+            {data}
+          </Carousel>
+          <Carousel
+            title="Próximos eventos"
+            show={4}
+            infiniteLoop
+            withIndicator
+          >
+            {data}
+          </Carousel>
+          <Carousel
+            title="Próximos eventos"
+            show={4}
+            infiniteLoop
+            withIndicator
+          >
+            {data}
+          </Carousel>
+        </div>
       </article>
     </div>
   );
