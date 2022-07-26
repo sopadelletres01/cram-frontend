@@ -21,6 +21,10 @@ export default function Header({ className, showSidebar, ...rest }) {
     <header ref={headerRef} className={className ? className : ""}>
       <div className="logoWrapper">
         <Link to="/login">Iniciar Sesion</Link>
+        <br/>
+        <Link to="/register">Registrate</Link>
+
+        
       </div>
       <div className="headerButtonsWrapper">
         <Link to="/about">Sobre Nosotros</Link>

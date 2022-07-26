@@ -284,16 +284,54 @@ footer{
 /* separacion de los botones */
 .botones__login{
     margin:10px;
-    
+    background-color:white;
+    color:orange;
+    border:1px solid orange;
+   &:hover{
+    background-color:orange;
+    border:1px solid white;
+
+   }
 }
+.botones__registrate{
+    margin:10px;
+    background-color:orange;
+    border:1px solid orange;
+    &:hover{
+        background-color:white;
+        color:orange;
+        border:1px solid orange;
+    }
+}
+
 /* titulo del componente de Login o Register */
 .componente__titulo{
     font-size:1.5rem;
     display:flex;
     align-items: center;
     justify-content: center;
-    color: #0275d8;
+    color:orange;
 
+}
+.importante{
+    color:orange;
+}
+#inscriptions{
+
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+  
+   
+}
+// ❌❌❌❌❌❌❌ cambiar por un DIv
+section{
+   
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 footer h1{
    color:white;
