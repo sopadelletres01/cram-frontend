@@ -1,4 +1,7 @@
 @import "./theme.scss";
+@import "./carousel.scss";
+@import "./styles/layout.scss";
+
 * + * {
   box-sizing: border-box;
 }
@@ -16,6 +19,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 
 .animatedIntro {
   animation-name: intro;
@@ -68,151 +72,96 @@ code {
   }
 }
 
-.layout {
-  background: linear-gradient(-45deg, #ee7752, white);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-  overflow: hidden;
-  gap: 8px;
-  height: 100%;
-  min-height: 100vh;
-  width: 100%;
-  display: grid;
-  grid-template-areas:
-    "header"
-    "contenido";
-  grid-template-rows: 10vh 1fr;
-  grid-template-columns: auto;
 
-  .home__header {
-    background-color: $secondary-color;
-  }
-  // span{
-  //   color: hotpink;
-  // }
+
+.waves {
+  position:relative;
+  width: 100%;
+  height:25vh;
+  margin-bottom:-7px; /*Fix for safari gap*/
+  min-height:100px;
 }
 
-.sidebar {
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(85px,0,0);
+  }
+}
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height:40px;
+    min-height:40px;
+  }
+}
+
+.intro{
+  .arrowDown{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    left: 50%;
+    bottom: -30px;
+    transform: translate(-50%,-50%);
+    color: $primary-color;
+    svg{
+      width:100%;
+      height:100%;
+    }
+  }
+}
+
+
+.introWrapper{
+  background: linear-gradient(60deg, rgb(183, 125, 58) 0%, rgb(255, 211, 67) 100%);
+  height: 90vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  position: absolute;
-  width: 0px;
-  right: 50px;
-  padding: 0px;
-
-  top: 113px;
-  border-radius: 25px;
-  height: 0px;
-  background-color: $secondary-color;
-  border: 0px solid $primary-color;
-  transition: height 0.5s, width 0.5s, border 0.5s;
-  .sidebar__link {
-    display: none;
-    opacity: 0;
-    transition: width 1s;
-    width: 0px;
-    height: 0px;
-  }
-
-  &.active {
-    padding: 20px;
-    height: 300px;
-    width: 300px;
-    border: 3px solid orange;
-    display: flex;
-    .sidebar__link {
-      transition: width 1s;
-
-      width: fit-content;
-      height: fit-content;
-      gap: 20px;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      opacity: 1;
-    }
-  }
+  justify-content: flex-end;
+  align-items: center;
 }
 
-.sidebar__icon {
-  position: absolute;
-  right: 0;
-  top: 10px;
-  width: 70px;
-  height: 70px;
-}
-
-.header {
-  display: flex;
-  background-color: $secondary-color;
-  padding: 10px 50px;
-  .headerButtonsWrapper {
-    display: flex;
-    gap: 32px;
-    align-items: center;
-  }
-  button {
-    border: none;
-    background-color: transparent;
-    padding: 10px 20px;
-    border-radius: 50px 50px 50px 50px;
-    svg {
-      width: 2em;
-      height: 2em;
-      color: orange;
-    }
-    &:hover {
-      outline: unset;
-      background-color: orange;
-      svg {
-        color: white;
-      }
-    }
-  }
-  a {
-    position: relative;
-    color: $primary-color;
-    text-decoration:none;
-  }
-
-  a::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    border-radius: 4px;
-    background-color: $primary-color;
-    bottom: -2px;
-    left: 0;
-    transform-origin: right;
-    transform: scaleX(0);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  a:hover::before {
-    transform-origin: left;
-    transform: scaleX(1);
+.introText{
+  color: $secondary-color;
+  align-items: center;
+  display:flex;
+  flex-direction: column;
+  margin-bottom: 200px;
+  h1 {
+    color: mix(#fff, $primary-color, 85%);
+    font-size: calc(1em + 8vw) ;  
+    font-weight: 900;
+    text-shadow: 
+      -0.0075em 0.0075em 0 mix(#fff, rgb(179, 116, 0), 94%),
+      0.005em 0.005em 0 mix(#fff, rgb(151, 98, 0), 60%),
+      0.01em 0.01em 0 mix(#fff, rgb(151, 98, 0), 62%), 
+      0.015em 0.015em mix(#fff, rgb(151, 98, 0), 64%), 
+      0.02em 0.02em 0 mix(#fff, rgb(151, 98, 0), 66%), 
+      0.025em 0.025em 0 mix(#fff, rgb(151, 98, 0), 68%),
+      0.03em 0.03em 0 mix(#fff, rgb(151, 98, 0), 70%),
+      0.035em 0.035em 0 mix(#fff, rgb(151, 98, 0), 72%);
   }
 }
-
-// div span {
-
-// }
-
-// .selected {
-//   &.selected{
-
-//   }
-//   &:hover{
-
-//   }
-//   span{
-
-//   }
-// }
-// .selected {
-
-// }
-
-// SIDEBAR DESPEGABLE

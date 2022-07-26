@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FaBars } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export default function Header({ className, showSidebar, ...rest }) {
+  const headerRef = useRef()
+  useEffect(() => {
+    const prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      let currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        headerRef.current.style.top = "0";
+      } else {
+        headerRef.current.style.top = "-50px";
+      }
+      prevScrollpos = currentScrollPos;
+    };
+  }, []);
+
   return (
-    <header className={className ? className : ""}>
+    <header ref={headerRef} className={className ? className : ""}>
       <div className="logoWrapper">
         <Link to="/login">Iniciar Sesion</Link>
       </div>

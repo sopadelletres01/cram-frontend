@@ -85,14 +85,7 @@ html{
     }
 }
 
-ul{
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    list-style: none;
-    padding: 0px 16px;
-    margin: 0;
-}
+
 
 aside li{
     padding-bottom: 16px ;
@@ -267,12 +260,7 @@ aside{
     text-align: center;
     grid-area: sidebar;
 }
-section{
-    /*overflow: hidden;*/
-    grid-area: contenido;
-    height: 100%;
-    padding: 16px;
-}
+
 .container__login{
     grid-area:contenido;
     display:flex;
