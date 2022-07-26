@@ -1,40 +1,58 @@
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
-import React, { useState, useEffect } from "react";
-import EventsService from "../../services/events.service"
+import React, { useState, useEffect, useRef } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Carrousel from '../home/Carrousel'
-
+import Carousel from "../Carousel";
+import Carrousel from "./Carrousel";
+import Intro from "./Intro";
+import { FaChevronDown } from "react-icons/fa";
+//import '../css/estilosGrid.scss'
 
 //import '../css/estilosGrid.scss'
 // FALT EL LOADING ❌❌
 export default function Home() {
-  const [freeEvents, setFreeEvents] = useState([]);
-  
-  useEffect(() => {
-    
-    async function getEventFree() {
-      try {
-        let events = await EventsService.getEventActiveFree('events')
-        console.log('eventos gratuitos', events.data)
-        setFreeEvents(events.data)
-      }
-      catch (e) {
-        console.log('error al mostrar los eventos gratis activos', e)
-    
-      }
-    }
-    getEventFree()
-  }, [])
-
-  
-
+  const data = [
+    <h2 data-testid="carousel-item-1">
+      <img src="https://via.placeholder.com/300x200"></img>
+    </h2>,
+    <h2 data-testid="carousel-item-2">Item 2</h2>,
+    <h2 data-testid="carousel-item-3">Item 3</h2>,
+    <h2 data-testid="carousel-item-1">Item 1</h2>,
+    <h2 data-testid="carousel-item-2">Item 2</h2>,
+    <h2 data-testid="carousel-item-3">Item 3</h2>,
+    <h2 data-testid="carousel-item-1">Item 1</h2>,
+    <h2 data-testid="carousel-item-2">Item 2</h2>,
+    <h2 data-testid="carousel-item-3">Item 3</h2>,
+    <h2 data-testid="carousel-item-1">Item 1</h2>,
+    <h2 data-testid="carousel-item-2">Item 2</h2>,
+    <h2 data-testid="carousel-item-3">Item 3</h2>,
+    <h2 data-testid="carousel-item-1">Item 1</h2>,
+    <h2 data-testid="carousel-item-2">Item 2</h2>,
+    <h2 data-testid="carousel-item-3">Item 3</h2>,
+  ];
+  const mainSectionRef = useRef(null);
+  const executeScroll = () => mainSectionRef.current.scrollIntoView();
   return (
-    <section>
+    <div className="home">
       {/* <Link to="/login">Iniciar Sesion</Link> */}
-      <Carrousel listEvents={ freeEvents} />
-    </section>    
-    
+      <article className="intro">
+        <Intro />
+        <button onClick={() => executeScroll()} className="arrowDown">
+          <FaChevronDown />
+        </button>
+      </article>
+      <article ref={mainSectionRef} className="mainSection">
+        <Carousel title="Próximos eventos" show={4} infiniteLoop withIndicator>
+          {data}
+        </Carousel>
+        <Carousel title="Próximos eventos" show={4} infiniteLoop withIndicator>
+          {data}
+        </Carousel>
+        <Carousel title="Próximos eventos" show={4} infiniteLoop withIndicator>
+          {data}
+        </Carousel>
+      </article>
+    </div>
   );
 }
 //<img src="https://img.europapress.es/fotoweb/fotonoticia_20211003143235_1200.jpg"/>

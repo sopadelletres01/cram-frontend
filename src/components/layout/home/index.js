@@ -54,7 +54,7 @@ export default function HomeLayout({ children, sidebar = false }) {
       {/* <div className="animatedIntro">
         <img src={gif}></img>
       </div> */}
-      <div className="container__home">
+      <div className="layout">
         <Header className="header" showSidebar={toggleShow } >
           {/* <div className="logo">
             <img className="rounded-circle" src={logo}></img>
