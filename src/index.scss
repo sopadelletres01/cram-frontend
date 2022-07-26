@@ -15,7 +15,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+section
 .animatedIntro {
   animation-name: intro;
   animation-duration: 8s;
@@ -67,7 +67,9 @@ code {
   }
 }
 
-
+.carousel, .carousel-inner > .item > img {
+  height: 100px;
+}
 
 .container__home{
   background: linear-gradient(-45deg, #ee7752,white);
@@ -92,6 +94,8 @@ code {
   //   color: hotpink;
   // }
 }
+
+
 
 .sidebar{
     display: flex;
@@ -144,7 +148,6 @@ code {
     
     }
     
-
 }
 
 
@@ -187,6 +190,41 @@ code {
   }
 }
 
+.carousel, .carousel-inner > .item > img {
+  height: 300px;
+  width:500px;
+}
+.carousel-control-next, .carousel-control-prev {
+  position: absolute;
+  top: 72px;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+  background: 0 0;
+  border: 0;
+  opacity: .5;
+  transition: opacity .15s ease;
+}
+.carousel-indicators {
+  position: absolute;
+  right: 0;
+  bottom: -70px;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin-right: 15%;
+  margin-bottom: 1rem;
+  margin-left: 15%;
+  list-style: none;
+}
 // div span {
 
 // }
