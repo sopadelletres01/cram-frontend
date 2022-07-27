@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import AuthService from '../../services/auth.service';
+import { useGlobalState } from '../context/GlobalContext';
 
 export default function ForgotPassword() {
   const [form, setForm] = useState({ email: '' });
   let navigate = useNavigate();
+  const {setError} = useGlobalState()
   const handleRedirect = () => {
     navigate('/login', { replace: true });
   };
@@ -26,6 +28,7 @@ export default function ForgotPassword() {
         /* pasarle al Context el user  */
       }
     } catch (e) {
+      setError(e);
       if (e.response.status === 400) {
         console.log('CAGASTE');
         alert('CAGASTE, el email no existe');

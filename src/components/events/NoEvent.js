@@ -7,10 +7,12 @@ import PromotionsService from '../../services/promotions.service.js';
 import { AuthContext, useAuth } from '../context/AuthContext';
 import { BsDownload } from 'react-icons/bs';
 import EventosService from '../../services/events.service.js';
+import { useGlobalState } from '../context/GlobalContext';
 
 const NoEvent = () => {
   //Consultar commerces asignados a un evento
   const { user } = useAuth();
+  const {setError} = useGlobalState()
   const { id } = useParams();
   const [eventData, setEventData] = useState([]);
   const [commerces, setComercios] = useState([]);
@@ -79,6 +81,7 @@ const NoEvent = () => {
           setPromotions(Promotions.data);
         }
       } catch (e) {
+        setError(e);
         console.log('Error ', e);
       }
     })();

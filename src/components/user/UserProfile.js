@@ -3,10 +3,12 @@ import { Col, Form, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import UsuariosService from '../../services/users.service';
-import { AuthContext, useAuth } from '../context/AuthContext';
+import {  useAuth } from '../context/AuthContext';
+import { useGlobalState } from '../context/GlobalContext';
 
 export default function UserProfile() {
-  const { user, setUser, logout } = useAuth();
+const {setError} = useGlobalState()
+const { user, setUser, logout } = useAuth();
   const [selectedFile, setSelectedFile] = useState();
   const [rolName, setRolName] = useState('');
   const [form, setForm] = useState({});
@@ -25,6 +27,7 @@ export default function UserProfile() {
           setRolName(res.data.name);
         }
       } catch (e) {
+        setError(e);
         if (e?.response?.status === 404) {
           console.log('El rol no se encontró');
         }
@@ -58,6 +61,7 @@ export default function UserProfile() {
         setUser({ ...user, avatar_src: res.data.avatar_src });
       }
     } catch (e) {
+      setError(e);
       console.log(e);
       if (e?.response?.status === 500) {
         console.log('ERROR', e);
@@ -82,6 +86,7 @@ export default function UserProfile() {
         setUser({ ...user, ...form });
       }
     } catch (e) {
+      setError(e);
       if (e?.response?.status === 500) {
         alert('Ha habido un problema al actualizar el user');
       }

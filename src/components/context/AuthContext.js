@@ -10,17 +10,16 @@ const AuthContextProvider = props => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-console.log("USER",user)
+  console.log('USER', user);
   useEffect(() => {
     verifyStoredToken();
   }, []);
 
   const login = async token => {
-
     localStorage.setItem('authToken', token);
     await verifyStoredToken();
 
-    navigate("/user");
+    navigate('/user');
   };
 
   const logout = async () => {
@@ -45,14 +44,14 @@ console.log("USER",user)
         setUser(response.data);
         setIsLoggedIn(true);
       } catch (e) {
+        setError(e);
         setIsLoggedIn(false);
         setUser(null);
         setError(e);
       }
-
     } else {
       // If the token is not available
-      console.log("Token not available")
+      console.log('Token not available');
     }
   };
   return <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>{props.children}</AuthContext.Provider>;

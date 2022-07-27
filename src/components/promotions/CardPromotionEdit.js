@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { Button, Card, Badges, Badge, Form } from 'react-bootstrap';
 import EventosService from '../../services/events.service';
 import PromotionsService from '../../services/promotions.service';
+import { useGlobalState } from '../context/GlobalContext';
 
 export default function PromotionEdit({ events, id, caducado, title, commerce, evento, descripcion, inicio, src, final }) {
   const [form, setForm] = useState();
+  const {setError} = useGlobalState()
 
   useEffect(() => {
     setForm({
@@ -29,6 +31,7 @@ export default function PromotionEdit({ events, id, caducado, title, commerce, e
       }
       console.log('resssss', res);
     } catch (e) {
+      setError(e);
       console.log(e);
     }
   };
@@ -39,6 +42,7 @@ export default function PromotionEdit({ events, id, caducado, title, commerce, e
       let res = await PromotionsService.delete('Promotions', id);
       console.log('resssss', res);
     } catch (e) {
+      setError(e);
       console.log(e);
     }
   };

@@ -5,13 +5,15 @@ import MenusAuxiliar from './MenuAux';
 import EventosService from '../../services/events.service';
 import ComerciosService from '../../services/commerces.service';
 import ApiCrudService from '../../services/crud.service';
+import { useGlobalState } from '../context/GlobalContext';
 import Promotions from '../../services/promotions.service';
 import PromotionsService from '../../services/promotions.service';
 import { AuthContext, useAuth } from '../context/AuthContext';
 
 export default function ValidarPromo() {
-  const { user, loading, setLoading } = useAuth();
-  const [users, setUsers] = useState([]);
+  const { user } = useAuth();
+const {setError, loading, setLoading} = useGlobalState()
+const [users, setUsers] = useState([]);
   const [promoUser, setPromoUser] = useState({});
   const [promosUsed, setPromosUsed] = useState([]);
   const [encontrado, setEncontrado] = useState(false);
@@ -32,6 +34,7 @@ export default function ValidarPromo() {
       setUsers({ ...users, id: promoUser[0].id });
       console.log('INFORMACION DEL USUARIO', users);
     } catch (e) {
+      setError(e);
       console.log(e);
     } finally {
       setLoading(false);
@@ -65,6 +68,7 @@ export default function ValidarPromo() {
         setEncontrado(false);
       }
     } catch (e) {
+      setError(e);
       console.log(e);
     }
   };

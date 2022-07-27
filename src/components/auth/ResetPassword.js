@@ -3,6 +3,7 @@ import { Form, Button, Row, Col, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
 import AuthService from '../../services/auth.service';
+import { useGlobalState } from '../context/GlobalContext';
 import YupPassword from 'yup-password';
 import * as yup from 'yup';
 import { Formik } from 'formik';
@@ -20,6 +21,7 @@ const schema = yup.object().shape({
 
 export default function ResetPassword() {
   const { id, token } = useParams();
+  const {setError} = useGlobalState()
   let navigate = useNavigate();
   const HandleSubmit = async values => {
     const { password } = values;
@@ -36,6 +38,7 @@ export default function ResetPassword() {
         /* pasarle al Context el user  */
       }
     } catch (e) {
+      setError(e);
       if (e.response.status === 400) {
         console.log('CAGASTE');
         alert('CAGASTE,no se ha podido actualizar la contraseña');

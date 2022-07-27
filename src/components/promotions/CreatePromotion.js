@@ -4,6 +4,7 @@ import mapboxgl from 'mapbox-gl';
 import Papa from 'papaparse';
 import { Form, Button } from 'react-bootstrap';
 import ApiCrudService from '../../services/crud.service';
+import { useGlobalState } from '../context/GlobalContext';
 import EventosService from '../../services/events.service';
 import ComerciosService from '../../services/commerces.service';
 import { Link } from 'react-router-dom';
@@ -13,7 +14,8 @@ export default function PromotionsC() {
   const { user } = useAuth();
   const [listEventos, setListEventos] = useState([]);
   const [listCategorias, setListCategorias] = useState([]);
-  const [commerce, setComercio] = useState([]);
+const {setError} = useGlobalState()
+const [commerce, setComercio] = useState([]);
   const [formComer, setFormComer] = useState([]);
 
   //esto se va a renderizar una vez cuando se monte el componente
@@ -24,6 +26,7 @@ export default function PromotionsC() {
         console.log('EVENTOS', events);
         setListEventos(events.data);
       } catch (e) {
+        setError(e);
         console.log('ERROR', e);
       }
     })();

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaUser, FaPercent, FaTheaterMasks, FaPowerOff, FaColumns } from 'react-icons/fa';
+import { FaUser, FaPercent, FaTheaterMasks, FaPowerOff, FaColumns, FaDoorOpen } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 
 function SidebarDespegable({ show, setShow }) {
@@ -15,7 +15,7 @@ function SidebarDespegable({ show, setShow }) {
   return (
     <>
       <div className={`sidebar ${show ? 'active' : ''}`} ref={domeNode}>
-        {isLoggedIn && (
+        {isLoggedIn ? (
           <>
           <div className="userLogged">
             <div className="userLeft">
@@ -31,7 +31,12 @@ function SidebarDespegable({ show, setShow }) {
           </div>
             <hr/>
           </>
-        )}
+        ):
+        <Link onClick={() => setShow(false)} to="/login" className="sidebar__link">
+          <FaDoorOpen />
+          <span>Login</span>
+        </Link>
+        }
         <Link onClick={() => setShow(false)} to="/user" className="sidebar__link">
           <FaColumns />
           <span>User Page</span>

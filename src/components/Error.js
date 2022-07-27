@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 import {Button, Offcanvas} from 'react-bootstrap';
 import { useGlobalState } from './context/GlobalContext';
@@ -5,6 +6,13 @@ import { useGlobalState } from './context/GlobalContext';
 function Error({ ...props }) {
   const { error } = useGlobalState();
   const [show, setShow] = useState(false);
+
+  const handleError = (err) => {
+    if(err instanceof AxiosError) {
+      return err && err.response && err.response.data && err.response.data.message || err.message;
+    }
+    return JSON.stringify(err)
+  }
 
   useEffect(()=>{
     setShow(error ? true : false)
@@ -24,7 +32,7 @@ function Error({ ...props }) {
             </b>
             <br />
             <br />
-          {error && error}
+          {error && handleError(error)}
         </Offcanvas.Body>
       </Offcanvas>
     </>

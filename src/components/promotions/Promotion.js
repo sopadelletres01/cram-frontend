@@ -4,11 +4,13 @@ import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import PromotionsService from '../../services/promotions.service.js';
-import { AuthContext, useAuth } from '../context/AuthContext';
+import {  useAuth } from '../context/AuthContext';
+import { useGlobalState } from '../context/GlobalContext';
 import { BsDownload } from 'react-icons/bs';
 
 const Promo = () => {
-  const { user, setLoading } = useAuth();
+const {setError, setLoading} = useGlobalState()
+const { user } = useAuth();
   const { id } = useParams();
   const [promoData, setPromoData] = useState([]);
   const [modal, setModal] = useState(false);
@@ -33,6 +35,7 @@ const Promo = () => {
           setPromoData({ ...res.data, caducado: true });
         }
       } catch (e) {
+        setError(e);
         console.log('Error ', e);
       } finally {
         setLoading(false);

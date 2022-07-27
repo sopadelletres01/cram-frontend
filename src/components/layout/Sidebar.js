@@ -2,9 +2,11 @@ import React, { useContext, useEffect } from 'react';
 import { FaFacebook, FaInstagram, FaMapMarkedAlt, FaMailBulk } from 'react-icons/fa';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import AuthService from '../../services/auth.service';
-import { AuthContext, useAuth } from '../context/AuthContext';
+import {  useAuth } from '../context/AuthContext';
+import { useGlobalState } from '../context/GlobalContext';
 
 export default function Sidebar({ accio }) {
+const {setError} = useGlobalState()
   const { user, logout } = useAuth();
   console.log('USER', user);
   const logoutSession = async () => {
@@ -13,6 +15,7 @@ export default function Sidebar({ accio }) {
       console.log('SIGNOUT', res);
       logout();
     } catch (e) {
+      setError(e);
       console.log(e);
     }
   };

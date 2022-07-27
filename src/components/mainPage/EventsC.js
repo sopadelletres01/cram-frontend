@@ -4,11 +4,13 @@ import { Link } from 'react-router-dom';
 import { AuthContext, useAuth } from '../context/AuthContext';
 import ApiCrudService from '../../services/crud.service';
 import EventosService from '../../services/events.service';
+import { useGlobalState } from '../context/GlobalContext';
 import MenusAuxiliar from './MenuAux';
 import axios from 'axios';
 
 export default function EventosC() {
-  const { user, loading, setLoading } = useAuth();
+const {setError,loading, setLoading} = useGlobalState()
+const { user  } = useAuth();
   const [evento, setEvento] = useState([]);
   const [datos, setDatos] = useState([]);
   const [listEventos, setListEventos] = useState([]);
@@ -46,6 +48,7 @@ export default function EventosC() {
         alert('Las fechas son más pequeñas que el día de hoy.');
       }
     } catch (e) {
+      setError(e);
       if (e?.response?.status === 500) {
         console.log('EL error esta en el servidor ', e);
       } else {

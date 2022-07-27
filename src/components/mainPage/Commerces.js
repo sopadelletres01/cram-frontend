@@ -9,12 +9,14 @@ import ComerciosService from '../../services/commerces.service';
 import MenusAuxiliar from './MenuAux';
 import { Link } from 'react-router-dom';
 import UsuariosService from '../../services/users.service';
+import { useGlobalState } from '../context/GlobalContext';
 
 export default function Comercios() {
   const [form, setForm] = useState([]);
   const [long, setLong] = useState();
   const [lat, setLat] = useState();
-  const [loading, setLoading] = useState(false);
+const {setError} = useGlobalState()
+const [loading, setLoading] = useState(false);
   const [commerce, setComercio] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [listComercio, setListComercio] = useState([]);
@@ -30,6 +32,7 @@ export default function Comercios() {
         let comerNif = await ComerciosService.index('commerces');
         setListComercio(comerNif.data);
       } catch (e) {
+        setError(e);
         console.log(e);
       } finally {
         setLoading(false);
@@ -54,6 +57,7 @@ export default function Comercios() {
       window.alert('Ya se ha creado el el commerce y se ha vinculado al user.');
       setComercio({});
     } catch (e) {
+      setError(e);
       alert('Ha habido un error al crear el user');
 
       console.log(e);

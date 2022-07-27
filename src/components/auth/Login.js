@@ -19,7 +19,7 @@ export function Login() {
 
   let navigate = useNavigate();
   const { login } = useAuth();
-  const { loading, setLoading } = useGlobalState();
+  const { loading, setLoading, setError } = useGlobalState();
 
   const handleResend = async () => {
     setShow(false);
@@ -31,6 +31,7 @@ export function Login() {
         /* pasarle al Context el user  */
       }
     } catch (e) {
+      setError(e);
       if (e.response.status === 401) {
       }
       console.log(e);
@@ -48,7 +49,7 @@ export function Login() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      setLoading(true)
+      setLoading(true);
       const res = await AuthService.signin(form, remember);
       console.log(res);
       if (res.status === 200) {
@@ -58,14 +59,14 @@ export function Login() {
         //Context login
       }
     } catch (e) {
+      setError(e);
       //Cuenta no verificada
       if (e.response?.status === 401) {
         setShow(true);
       }
       console.log(e);
-    }
-    finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
 

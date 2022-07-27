@@ -4,11 +4,13 @@ import Papa from 'papaparse';
 import { Form, Button } from 'react-bootstrap';
 import ApiCrudService from '../../services/crud.service';
 import EventosService from '../../services/events.service';
+import { useGlobalState } from '../context/GlobalContext';
 import MenusAuxiliar from './MenuAux';
 import { Link } from 'react-router-dom';
 export default function CSVReader() {
-  const { user, loading, setLoading } = useAuth();
-  const [inscripcion, setInscripcion] = useState([]);
+  const { user } = useAuth();
+const {setError, loading, setLoading} = useGlobalState()
+const [inscripcion, setInscripcion] = useState([]);
   const [datos, setDatos] = useState([]);
   const [events, setEventos] = useState([]);
   const [idEvento, setIdEvento] = useState();
@@ -23,6 +25,7 @@ export default function CSVReader() {
         const events = await EventosService.getEventosCurrent('events');
         setEventos(events.data);
       } catch (e) {
+        setError(e);
         console.log(e);
       } finally {
         setLoading(false);
@@ -38,6 +41,7 @@ export default function CSVReader() {
       setDatos(res.data.id);
       await ApiCrudService.create('Inscriptions', { id_usuario: res.data.id, id_evento: idEvento });
     } catch (e) {
+      setError(e);
       console.log(e);
     }
   };
@@ -59,6 +63,7 @@ export default function CSVReader() {
       );
       alert('Se han inscrito los users correctamente en la carrera .');
     } catch (e) {
+      setError(e);
       console.log(e);
     }
   };

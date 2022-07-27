@@ -1,43 +1,38 @@
-import React from "react";
-import * as yup from "yup";
-import { Form, Button, Row, Col, InputGroup } from "react-bootstrap";
-import { Formik } from "formik";
-import YupPassword from "yup-password";
-import AuthService from "../../services/auth.service";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import * as yup from 'yup';
+import { Form, Button, Row, Col, InputGroup } from 'react-bootstrap';
+import { Formik } from 'formik';
+import YupPassword from 'yup-password';
+import AuthService from '../../services/auth.service';
+import { useNavigate } from 'react-router-dom';
+import { useGlobalState } from '../context/GlobalContext';
 YupPassword(yup);
 /* no son integers son NUMBER */
 const schema = yup.object().shape({
-  name: yup.string().required("Es obligatorio saber tu nombre."),
+  name: yup.string().required('Es obligatorio saber tu nombre.'),
   last_name: yup.string(),
-  date_of_birth: yup
-    .date()
-    .required(
-      "Introduce tu fecha de nacimiento para saber si eres mayor de edad"
-    ),
-  email: yup
-    .string()
-    .email("El formato del email no es válido")
-    .max(255)
-    .required("es necesario tu email"),
+  date_of_birth: yup.date().required('Introduce tu fecha de nacimiento para saber si eres mayor de edad'),
+  email: yup.string().email('El formato del email no es válido').max(255).required('es necesario tu email'),
 
   adress: yup.string(),
   cp: yup.string().min(4).max(4),
   town: yup.string(),
   country: yup.string(),
-  password: yup.string().password().required("Tienes que poner una contraseña"),
+  password: yup.string().password().required('Tienes que poner una contraseña'),
   rep_password: yup
     .string()
     .password()
-    .oneOf([yup.ref("password"), null], "Las contaseñas tiene que coincidir."),
+    .oneOf([yup.ref('password'), null], 'Las contaseñas tiene que coincidir.'),
   dni: yup.string().matches(/^(\d{8})([-]?)()[A-Z]{1}$/),
-  terms: yup.bool().required().oneOf([true], "tienes que aceptar los términos"),
+  terms: yup.bool().required().oneOf([true], 'tienes que aceptar los términos'),
 });
 
 export function GeneralInscription() {
   let navigate = useNavigate();
+  const {setError} = useGlobalState()
+
   const HandleRedirect = () => {
-    navigate("/login", { replace: true });
+    navigate('/login', { replace: true });
   };
   return (
     <div className="container w-50 mt-5 bg-light rounded p-3">
@@ -46,34 +41,22 @@ export function GeneralInscription() {
         <Formik
           validationSchema={schema}
           initialValues={{
-            name: "",
-            last_name: "",
-            date_of_birth: "",
-            email: "",
-            adress: "",
-            cp: "",
-            town: "",
-            country: "",
-            password: "",
-            rep_password: "",
-            dni: "",
+            name: '',
+            last_name: '',
+            date_of_birth: '',
+            email: '',
+            adress: '',
+            cp: '',
+            town: '',
+            country: '',
+            password: '',
+            rep_password: '',
+            dni: '',
             terms: false,
           }}
-          onSubmit={async (values) => {
+          onSubmit={async values => {
             console.log(values);
-            const {
-              name,
-              last_name,
-              date_of_birth,
-              email,
-              adress,
-              cp,
-              town,
-              country,
-              password,
-              rep_password,
-              dni,
-            } = values;
+            const { name, last_name, date_of_birth, email, adress, cp, town, country, password, rep_password, dni } = values;
             let formData = {
               name,
               last_name,
@@ -90,30 +73,21 @@ export function GeneralInscription() {
             let registro = null;
             try {
               registro = await AuthService.register(formData);
-              console.log("registro", registro);
+              console.log('registro', registro);
               if (registro.status === 201) {
-                navigate("/login");
+                navigate('/login');
               }
             } catch (e) {
-              console.log("ERROR", e);
+              setError(e);
+              console.log('ERROR', e);
               if (e.response.status === 400) {
-                alert(
-                  "El usuario con este dni ya ha sido añadido a nuestra app"
-                );
+                alert('El usuario con este dni ya ha sido añadido a nuestra app');
               }
               console.log(e);
             }
           }}
         >
-          {({
-            handleSubmit,
-            handleChange,
-            handleBlur,
-            values,
-            touched,
-            isValid,
-            errors,
-          }) => (
+          {({ handleSubmit, handleChange, handleBlur, values, touched, isValid, errors }) => (
             <Form noValidate onSubmit={handleSubmit}>
               {/* NOMBRE */}
               <Row>
@@ -131,9 +105,7 @@ export function GeneralInscription() {
                       onChange={handleChange}
                       isInvalid={!!errors.name}
                     />
-                    <Form.Text className="text-muted">
-                      Nos encataria saber tu nombre
-                    </Form.Text>
+                    <Form.Text className="text-muted">Nos encataria saber tu nombre</Form.Text>
                     <Form.Control.Feedback type="invalid" tooltip>
                       {errors.name}
                     </Form.Control.Feedback>
@@ -201,9 +173,7 @@ export function GeneralInscription() {
                       onChange={handleChange}
                       isInvalid={!!errors.email}
                     />
-                    <Form.Text className="text-muted">
-                      Introduce un email válido.
-                    </Form.Text>
+                    <Form.Text className="text-muted">Introduce un email válido.</Form.Text>
                     <Form.Control.Feedback type="invalid" tooltip>
                       {errors.email}
                     </Form.Control.Feedback>
@@ -224,10 +194,7 @@ export function GeneralInscription() {
                       onChange={handleChange}
                       isInvalid={!!errors.phone}
                     />
-                    <Form.Text className="text-muted">
-                      Introduce la contraseña para autenticarte en nuestra
-                      aplicacion
-                    </Form.Text>
+                    <Form.Text className="text-muted">Introduce la contraseña para autenticarte en nuestra aplicacion</Form.Text>
                     <Form.Control.Feedback type="invalid" tooltip>
                       {errors.phone}
                     </Form.Control.Feedback>
@@ -251,10 +218,7 @@ export function GeneralInscription() {
                       onChange={handleChange}
                       isInvalid={!!errors.password}
                     />
-                    <Form.Text className="text-muted">
-                      Introduce la contraseña para autenticarte en nuestra
-                      aplicacion
-                    </Form.Text>
+                    <Form.Text className="text-muted">Introduce la contraseña para autenticarte en nuestra aplicacion</Form.Text>
                     <Form.Control.Feedback type="invalid" tooltip>
                       {errors.password}
                     </Form.Control.Feedback>
@@ -287,14 +251,7 @@ export function GeneralInscription() {
                   <Form.Label>
                     DNI <span className="importante">**</span>
                   </Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="DNI **"
-                    name="dni"
-                    value={values.dni}
-                    onChange={handleChange}
-                    isInvalid={!!errors.dni}
-                  />
+                  <Form.Control type="text" placeholder="DNI **" name="dni" value={values.dni} onChange={handleChange} isInvalid={!!errors.dni} />
 
                   <Form.Control.Feedback type="invalid" tooltip>
                     {errors.dni}
@@ -316,18 +273,10 @@ export function GeneralInscription() {
                   feedbackTooltip
                 />
               </Form.Group>
-              <Button
-                className="botones__registrate"
-                variant="primary"
-                type="submit"
-              >
+              <Button className="botones__registrate" variant="primary" type="submit">
                 Registrate
               </Button>
-              <Button
-                className="botones__login"
-                variant="secondary"
-                onClick={() => HandleRedirect()}
-              >
+              <Button className="botones__login" variant="secondary" onClick={() => HandleRedirect()}>
                 Login
               </Button>
             </Form>

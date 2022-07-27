@@ -3,13 +3,15 @@ import { Form, Button, Table } from 'react-bootstrap';
 import { AuthContext, useAuth } from '../context/AuthContext';
 import ApiCrudService from '../../services/crud.service';
 import UsuariosService from '../../services/users.service';
+import { useGlobalState } from '../context/GlobalContext';
 import EventosService from '../../services/events.service';
 import MenusAuxiliar from './MenuAux';
 import { Link } from 'react-router-dom';
 
 export default function Modificaciones({ tabla }) {
-  const { user, loading, setLoading } = useAuth();
-  const [userForm, setUserForm] = useState([]);
+  const { user } = useAuth();
+const {setError, loading, setLoading} = useGlobalState()
+const [userForm, setUserForm] = useState([]);
   const [search, setSearch] = useState(false);
   const [events, setEventos] = useState([]);
   const [formState, setFormState] = useState('search');
@@ -50,6 +52,7 @@ export default function Modificaciones({ tabla }) {
         setUserForm({});
       }
     } catch (e) {
+      setError(e);
       console.log(e);
     }
     /* let res = await  */
