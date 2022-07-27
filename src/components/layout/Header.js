@@ -20,9 +20,9 @@ export default function Header({ className, showSidebar }) {
 
   return (
     <header ref={headerRef} className={className ? className : ""}>
-      <div className="logo">
+      <Link to="/" className="logo">
         <img className="rounded-circle" src={logo}/>
-      </div>
+      </Link>
       {/* <div className="logo">
             <img className="rounded-circle" src={logo}></img>
       </div> */}

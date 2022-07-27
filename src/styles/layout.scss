@@ -131,4 +131,20 @@ section{
     transform-origin: left;
     transform: scaleX(1);
   }
+
+  a.logo {
+    transform: scale(1.1);
+    width: u.$logo-width;
+    padding: u.$logo-padding;
+    // animation-name: fadeIn;
+    // animation-duration: u.$animationDuration;
+    &::before{
+      all: unset;
+    }
+    img{
+      width:100%,;
+      height:100%;
+    }
+  } 
 }
+
