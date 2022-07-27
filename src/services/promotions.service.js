@@ -5,7 +5,10 @@ export default class PromotionsService extends ApiCrudService {
   constructor() {
     super();
   }
-
+  static getPromotionsByFreeEvents() {
+    return httpC.get(`/promotions/free`);
+    //le pasare el id de commerce que lo tiene la promcion
+  }
   static getPromotionsByUser(id) {
     return httpC.get(`/users/${id}/Promotions`);
     //le pasare el id de commerce que lo tiene la promcion

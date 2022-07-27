@@ -2,31 +2,15 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 import React, { useState, useEffect, useRef } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Carousel from "../Carousel";
-import Carrousel from "./Carrousel";
 import Intro from "./Intro";
 import { FaChevronDown } from "react-icons/fa";
+import CarouselWrapper from "./CarouselWrapper"
+//import '../css/estilosGrid.scss'
+
+//import '../css/estilosGrid.scss'
 // FALT EL LOADING ❌❌
 export default function Home() {
-  const data = [
-    <h2 data-testid="carousel-item-1">
-      <img src="https://via.placeholder.com/300x200"></img>
-    </h2>,
-    <h2 data-testid="carousel-item-2">Item 2</h2>,
-    <h2 data-testid="carousel-item-3">Item 3</h2>,
-    <h2 data-testid="carousel-item-1">Item 1</h2>,
-    <h2 data-testid="carousel-item-2">Item 2</h2>,
-    <h2 data-testid="carousel-item-3">Item 3</h2>,
-    <h2 data-testid="carousel-item-1">Item 1</h2>,
-    <h2 data-testid="carousel-item-2">Item 2</h2>,
-    <h2 data-testid="carousel-item-3">Item 3</h2>,
-    <h2 data-testid="carousel-item-1">Item 1</h2>,
-    <h2 data-testid="carousel-item-2">Item 2</h2>,
-    <h2 data-testid="carousel-item-3">Item 3</h2>,
-    <h2 data-testid="carousel-item-1">Item 1</h2>,
-    <h2 data-testid="carousel-item-2">Item 2</h2>,
-    <h2 data-testid="carousel-item-3">Item 3</h2>,
-  ];
+  
   const mainSectionRef = useRef(null);
   const executeScroll = () => mainSectionRef.current.scrollIntoView();
   return (
@@ -44,32 +28,7 @@ export default function Home() {
           que te inscribas y disfrutar de grandes promociones en comercios
           locales
         </h3>
-        <div className="carouselsWrapper">
-          <Carousel
-            title="Próximos eventos"
-            show={4}
-            infiniteLoop
-            withIndicator
-          >
-            {data}
-          </Carousel>
-          <Carousel
-            title="Próximos eventos"
-            show={4}
-            infiniteLoop
-            withIndicator
-          >
-            {data}
-          </Carousel>
-          <Carousel
-            title="Próximos eventos"
-            show={4}
-            infiniteLoop
-            withIndicator
-          >
-            {data}
-          </Carousel>
-        </div>
+        <CarouselWrapper/>
       </article>
     </div>
   );
