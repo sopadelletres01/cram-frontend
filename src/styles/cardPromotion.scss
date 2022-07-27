@@ -1,0 +1,45 @@
+
+.card__content_promotion{
+    display:flex;
+    text-decoration: none;
+    gap:16px;
+    border-radius:25px ;
+    color:black;
+    border:none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    width:200px;
+    height:350px;
+    justify-content: flex-start;
+    flex-direction: column;
+    img{
+        border-top-left-radius:25px;
+        border-top-right-radius:25px;
+        width:100%;
+        height:200px;
+    }
+    &:hover{
+        box-shadow: rgba(239, 160, 14, 0.633) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        color:black;
+    
+    }
+    .card__content_promotion{
+        display:flex;
+        flex-direction: column;
+        gap:8px;
+
+    }
+    
+    
+}
+.card__promotion_description{
+    text-decoration: none;
+    padding:4px;
+    font-size: 1em;
+    font-weight: bold;
+    color:$letter-color1;
+
+ 
+}
+.card__promotion{
+    text-decoration:none;
+}

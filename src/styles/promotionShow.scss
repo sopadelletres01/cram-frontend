@@ -1,0 +1,48 @@
+.container__promociones{
+    display: flex;
+    padding: 0%;
+    width: 80vw;
+    height: 80vh;
+    border-radius: 25px;
+    border: none;
+    box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
+    flex-direction: column;
+    justify-content: space-between;
+    .container__info{
+        display:flex;
+      
+        
+
+        img{
+          border-top-left-radius: 25px;
+            width: 350px;
+            height:300px;
+            transition: transform .5s; 
+            &:hover{
+                transform: scale(1.05);
+                // border-radius:25px;
+    
+            }
+        }
+        span{
+            padding-top:50px;
+            padding-left: 30px;
+            font-size: 1.5em;
+            color:$ternary-color;
+            font-weight: bold;
+        }
+    }
+    .container__commerce{
+        display:flex;
+        img{
+            width: 150px;
+            height:100px;
+            transition: transform .5s; 
+            &:hover{
+                transform: scale(1.05);
+                border-radius:25px;
+
+        }
+    }
+}
+}
