@@ -5,7 +5,6 @@ import Header from '../Header';
 import Footer from '../Footer';
 import { GrLogout } from 'react-icons/gr';
 import { Button, Modal, DropdownButton, Dropdown } from 'react-bootstrap';
-//import '../../../css/estilosGrid.scss'
 import mapboxgl from 'mapbox-gl';
 import Helmet from 'react-helmet';
 import LoadingSpinner from '../../Spinner';

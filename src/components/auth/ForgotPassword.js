@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 import AuthService from '../../services/auth.service';
-//import '../css/estilosGrid.scss'
 
 export default function ForgotPassword() {
   const [form, setForm] = useState({ email: '' });

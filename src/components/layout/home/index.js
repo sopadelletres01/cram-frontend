@@ -4,7 +4,6 @@ import Header from "../Header";
 import Footer from "../Footer";
 import { Button, Modal } from "react-bootstrap";
 import SidebarDespegable from "../SidebarDespegable";
-//import '../../../css/estilosGrid.scss'
 import mapboxgl from 'mapbox-gl';
 import Helmet from 'react-helmet';
 import { FaHome } from 'react-icons/fa';

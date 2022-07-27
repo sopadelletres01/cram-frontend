@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect, createContext, useContext } from 'react';
-import './commons/css/estilosGrid.scss';
 import './App.css';
 import mapboxgl from 'mapbox-gl';
 /* import 'mapbox-gl/dist/mapbox-gl.css'; */

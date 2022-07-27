@@ -1,0 +1,64 @@
+.input-group>.form-control, .input-group>.form-select {
+    width: unset;
+}
+
+/* ESTILOS DEL TITULO */
+.bienvenido{
+    font-size:2.5rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+    margin-top: 40px;
+    color: #0275d8;
+}
+
+/* separacion de los botones */
+.botones__login{
+    margin:10px;
+    background-color:white;
+    color:orange;
+    border:1px solid orange;
+   &:hover{
+    background-color:orange;
+    border:1px solid white;
+
+   }
+}
+.botones__registrate{
+    margin:10px;
+    background-color:orange;
+    border:1px solid orange;
+    &:hover{
+        background-color:white;
+        color:orange;
+        border:1px solid orange;
+    }
+}
+
+/* titulo del componente de Login o Register */
+.componente__titulo{
+    font-size:1.5rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color:orange;
+
+}
+.importante{
+    color:orange;
+}
+#inscriptions{
+    width: 80%;
+    display: flex;
+    gap: 32px;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 0 auto  ;
+    margin-bottom: 40px;
+}
+
+.input-group{
+    flex-direction: column;
+}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-//import '../css/estilosGrid.scss'
 import { Form, Button, Modal } from 'react-bootstrap';
 import AuthService from '../../services/auth.service';
 import { useNavigate, Link } from 'react-router-dom';
@@ -65,8 +64,8 @@ export function Login() {
   };
 
   return (
-    <div style={{ maxWidth: '700px' }} className="container w-75 mt-5 bg-light rounded p-3">
-      <div className="row justify-content-center">
+    <div style={{ maxWidth: '700px' }} className="container  w-75 mt-5">
+      <div className="row bg-light rounded p-4 justify-content-center">
         <Form onSubmit={handleSubmit}>
           <h3 className="componente__titulo">Login</h3>
           <Form.Group className="mb-3" controlId="formBasicEmail">

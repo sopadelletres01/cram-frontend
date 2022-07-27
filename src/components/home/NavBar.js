@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-//import '../css/estilosGrid'
 import { Button } from 'react-bootstrap';
 
 export function NavBar() {

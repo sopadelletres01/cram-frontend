@@ -3,7 +3,6 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useNavigate, useLocation } from 'react-router';
 import { useParams } from 'react-router-dom';
 import AuthService from '../../services/auth.service';
-//import ''../css/estilosGrid.scss''
 
 export default function EmailVerification() {
   let form = useParams();
