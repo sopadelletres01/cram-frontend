@@ -6,25 +6,25 @@ export default class EventsService extends ApiCrudService {
     super();
   }
 
-  static getEventActiveFree() {
+  static getEventsActiveFree() {
     return httpC.get(`/events?free=true&active=true`);
   }
-  static getEventosByUser(id) {
-    return httpC.get(`/usuarios/${id}/eventos`);
+  static getEventsByUser(id) {
+    return httpC.get(`/users/${id}/events`);
   }
-  static getEventosCurrent() {
-    return httpC.get(`/eventos?active=true`);
+  static getEventsActive() {
+    return httpC.get(`/events?active=true`);
   }
-  static getEventosByDni(dni, idComercio) {
-    return httpC.get(`eventos?dni=${dni}`);
+  static getEventsByDni(dni, idComercio) {
+    return httpC.get(`events?dni=${dni}`);
   }
   static updatePhoto(data, id) {
     return httpC.put(`/file/${id}`, data);
   }
-  static getComercios(id) {
-    return httpC.get(`/eventos/${id}/comercios`);
+  static getCommerces(id) {
+    return httpC.get(`/events/${id}/commerces`);
   }
-  static getPromociones(id) {
-    return httpC.get(`/eventos/${id}/promociones`);
+  static getPromotions(id) {
+    return httpC.get(`/events/${id}/promotions`);
   }
 }
