@@ -11,6 +11,7 @@ import { useGlobalState } from '../../context/GlobalContext';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from "../../Spinner"
 import gif from '../../../commons/multimedia/cramGif.gif';
+import Error from "../../Error";
 
 export default function HomeLayout({ children, sidebar = false }) {
   const [showModal, setShowModal] = useState(false);
@@ -60,6 +61,7 @@ export default function HomeLayout({ children, sidebar = false }) {
         <section>{children}</section>
       </div>
       {/* Modal de loading */}
+      <Error placement="bottom"/>
       {loading && 
       <Modal contentClassName="modal__spinner" size="sm" aria-labelledby="contained-modal-title-vcenter" centered show={loading}>
           <Modal.Body style={{ backgroundColor: 'transparent' }}>
