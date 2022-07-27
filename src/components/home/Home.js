@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Carousel from "../Carousel";
-import Carrousel from "./Carrousel";
 import Intro from "./Intro";
 import { FaChevronDown } from "react-icons/fa";
 //import '../css/estilosGrid.scss'

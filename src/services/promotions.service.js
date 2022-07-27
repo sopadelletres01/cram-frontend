@@ -6,26 +6,27 @@ export default class PromotionsService extends ApiCrudService {
     super();
   }
 
+// NEW METHODS!!!!
   static getPromotionsByUser(id) {
-    return httpC.get(`/users/${id}/Promotions`);
+    return httpC.get(`/users/${id}/promotions`);
     //le pasare el id de commerce que lo tiene la promcion
   }
   static getPromotionsByComercio(id) {
-    return httpC.get(`/commerces/${id}/Promotions`);
+    return httpC.get(`/commerces/${id}/promotions`);
     //le pasare el id de commerce que lo tiene la promcion
   }
   static getPromotionsExpiredByUser(id) {
-    return httpC.get(`/users/${id}/Promotions?expired=true`);
+    return httpC.get(`/users/${id}/promotions?expired=true`);
     //le pasare el id de commerce que lo tiene la promcion
   }
   static getPromo(uid, id) {
     return httpC.get(`/users/${uid}/promotions/${id}`);
   }
-  static getPromosUsadas(id_usuario) {
-    return httpC.get(`user_promo/${id_usuario}/Promotions`);
+  static getPromosUsadas(idUser) {
+    return httpC.get(`/user_promo/${idUser}/promotions`);
   }
-  static existThisPromo(id_usuario, id_Promotion) {
-    console.log(id_usuario, id_Promotion);
-    return httpC.get(`user_promo/${id_usuario}/promotions/${id_Promotion}`);
+  static existThisPromo(idUser, idPromotion) {
+    console.log(idUser, idPromotion);
+    return httpC.get(`/user_promo/${idUser}/promotions/${idPromotion}`);
   }
 }

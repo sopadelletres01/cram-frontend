@@ -25,6 +25,6 @@ export default class EventsService extends ApiCrudService {
     return httpC.get(`/eventos/${id}/comercios`);
   }
   static getPromociones(id) {
-    return httpC.get(`/eventos/${id}/promociones`);
+    return httpC.get(`/events/${id}/promotions`);
   }
 }

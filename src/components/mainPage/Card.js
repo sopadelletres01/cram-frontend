@@ -1,22 +1,32 @@
-import React from 'react';
-import { Card } from 'react-bootstrap';
-import { useNavigate } from 'react-router';
+import React from 'react'
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
-export default function Tarjeta({ src, alt, title, subtitle, path }) {
-  /* haremos un map y mostraremos las fotos de forma random */
-  let navigate = useNavigate();
-
-  const handleNavigate = () => {
-    navigate(path);
-  };
-
+function Card({element }) {
   return (
-    <Card className="card_prueba" onClick={handleNavigate}>
-      <Card.Img className="card__image" variant="top" width="100%" height="225px" src={src} alt={alt} />
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{subtitle}</Card.Text>
-      </Card.Body>
-    </Card>
-  );
+    <Link to={`/events/${element.id}/promotions`} className="card">
+    <div className="card__content">
+      <img src={element.photo} alt={`${element.name}`} />
+      <span className="card__title">{element.name}</span>
+      <div className="card__info">
+        <p>
+          <span className="date">Fecha inicio: </span>
+          {element.start_date}
+        </p>
+        <p>
+          <span className="date">Fecha finalizacion: </span>
+          {element.final_date}
+        </p>
+        <p>{element.description}</p>
+      </div>
+    </div>
+    <div className="card__subcription">
+      <div className="categoria">Grauito</div>
+        <Link to={`/events/${element.id}`} className="button">Inscríbete</Link>
+    </div>
+  </Link>
+    
+  )
 }
+
+export default Card
