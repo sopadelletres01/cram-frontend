@@ -10,7 +10,6 @@ import CarouselWrapper from "./CarouselWrapper"
 //import '../css/estilosGrid.scss'
 // FALT EL LOADING ❌❌
 export default function Home() {
-  
   const mainSectionRef = useRef(null);
   const executeScroll = () => mainSectionRef.current.scrollIntoView();
   return (

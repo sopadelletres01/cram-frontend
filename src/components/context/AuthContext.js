@@ -6,7 +6,7 @@ import { useGlobalState } from './GlobalContext';
 const AuthContext = createContext();
 
 const AuthContextProvider = props => {
-  const { loading, setLoading, error, setError } = useGlobalState();
+  const { error, setError } = useGlobalState();
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
@@ -48,16 +48,15 @@ console.log("USER",user)
         const response = await AuthService.userIsAuth(storedToken);
         setUser(response.data);
         setIsLoggedIn(true);
-        setLoading(false);
       } catch (e) {
         setIsLoggedIn(false);
         setUser(null);
-        setLoading(false);
         setError(e);
       }
+
     } else {
       // If the token is not available
-      setLoading(false);
+      console.log("Token not available")
     }
   };
   return <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>{props.children}</AuthContext.Provider>;

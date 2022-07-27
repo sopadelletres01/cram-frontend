@@ -2,15 +2,18 @@ import React, { useEffect, useState } from 'react';
 import Carousel from '../Carousel/Carousel';
 import EventsService from '../../services/events.service';
 import { Link } from 'react-router-dom';
+import {useGlobalState} from "../context/GlobalContext"
 import CarouselItem from '../Carousel/CarouselItem';
 import PromotionsService from '../../services/promotions.service';
 function CarouselWrapper() {
+  const {setLoading} = useGlobalState()
   const [eventsFree, setEventsFree] = useState();
   const [promosFree, setPromosFree] = useState();
   useEffect(() => {
     if(eventsFree && promosFree) return
     (async () => {
       try {
+        setLoading(true)
         const data = await EventsService.getEventsActiveFree();
         const promos = await PromotionsService.getPromotionsByFreeEvents();
         console.log("Promos",promos.data);
@@ -21,7 +24,11 @@ function CarouselWrapper() {
       } catch (e) {
         console.log('Error', e);
       }
+      finally{
+        setLoading(false)
+      }
     })();
+    return () => setLoading(false)
   }, []);
 
   return (

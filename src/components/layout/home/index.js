@@ -7,12 +7,14 @@ import SidebarDespegable from "../SidebarDespegable";
 import mapboxgl from 'mapbox-gl';
 import Helmet from 'react-helmet';
 import { FaHome } from 'react-icons/fa';
+import { useGlobalState } from '../../context/GlobalContext';
 import { Link } from 'react-router-dom';
-
+import LoadingSpinner from "../../Spinner"
 import gif from '../../../commons/multimedia/cramGif.gif';
 
 export default function HomeLayout({ children, sidebar = false }) {
   const [showModal, setShowModal] = useState(false);
+  const { loading } = useGlobalState();
 
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -57,6 +59,14 @@ export default function HomeLayout({ children, sidebar = false }) {
         <SidebarDespegable setShow={setShow} show={ show} />
         <section>{children}</section>
       </div>
+      {/* Modal de loading */}
+      {loading && 
+      <Modal contentClassName="modal__spinner" size="sm" aria-labelledby="contained-modal-title-vcenter" centered show={loading}>
+          <Modal.Body style={{ backgroundColor: 'transparent' }}>
+            <LoadingSpinner />
+          </Modal.Body>
+        </Modal>
+      }
     </>
   );
 }

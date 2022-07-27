@@ -1,11 +1,11 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState,useEffect } from 'react';
 import { AuthContext, AuthContextProvider } from './AuthContext';
 
 const GlobalContext = createContext();
 
 export function GlobalContextProvider(props) {
   const [theme, setTheme] = useState('light');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const toggleTheme = () => {
     if (theme === 'light') {
@@ -19,5 +19,9 @@ export function GlobalContextProvider(props) {
 
 export const useGlobalState = () => {
   const { theme, toggleTheme, loading, setLoading, error, setError } = useContext(GlobalContext);
+  useEffect(()=>{
+
+  },[loading])
+
   return { theme, toggleTheme, loading, setLoading, error, setError };
 };

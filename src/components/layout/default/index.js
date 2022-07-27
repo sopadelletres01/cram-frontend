@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 
 export default function Layout({ children, sidebar = false }) {
   const [showModal, setShowModal] = useState(false);
-  const { logout, loading, user } = useAuth();
+  const { logout, user } = useAuth();
   const mapContainer = useRef(null);
   const map = useRef(null);
   const [lng, setLng] = useState(1.7266128);
@@ -176,12 +176,7 @@ export default function Layout({ children, sidebar = false }) {
         {/* Contenido donde va aparecer la infromacion de los servicio */}
         <section>{children}</section>
 
-        {/* Modal de loading */}
-        <Modal contentClassName="modal__spinner" size="sm" aria-labelledby="contained-modal-title-vcenter" centered show={loading}>
-          <Modal.Body style={{ backgroundColor: 'transparent' }}>
-            <LoadingSpinner />
-          </Modal.Body>
-        </Modal>
+        
 
         {/* Modal de mapa */}
 

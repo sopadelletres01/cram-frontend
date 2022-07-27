@@ -3,6 +3,7 @@ import { Form, Button, Modal } from 'react-bootstrap';
 import AuthService from '../../services/auth.service';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useGlobalState } from '../context/GlobalContext';
 
 /* hacer la conexion a la API */
 /* hacer useState para guardar los datos del user */
@@ -18,6 +19,7 @@ export function Login() {
 
   let navigate = useNavigate();
   const { login } = useAuth();
+  const { loading, setLoading } = useGlobalState();
 
   const handleResend = async () => {
     setShow(false);
@@ -46,6 +48,7 @@ export function Login() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
+      setLoading(true)
       const res = await AuthService.signin(form, remember);
       console.log(res);
       if (res.status === 200) {
@@ -60,6 +63,9 @@ export function Login() {
         setShow(true);
       }
       console.log(e);
+    }
+    finally{
+      setLoading(false)
     }
   };
 
