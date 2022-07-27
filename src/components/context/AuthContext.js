@@ -10,21 +10,17 @@ const AuthContextProvider = props => {
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation();
 console.log("USER",user)
   useEffect(() => {
     verifyStoredToken();
   }, []);
 
-  const login = token => {
-    const origin = location.state?.from?.pathname || '/user';
+  const login = async token => {
 
     localStorage.setItem('authToken', token);
-    verifyStoredToken();
+    await verifyStoredToken();
 
-    console.log('ORIGIN', origin);
-    console.log('LOCATION', location);
-    navigate(origin);
+    navigate("/user");
   };
 
   const logout = async () => {

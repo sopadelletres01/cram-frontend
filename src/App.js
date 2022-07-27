@@ -32,6 +32,7 @@ import Promotion from './components/mainPage/Promotions';
 import PromotionsC from './components/promotions/CreatePromotion';
 import Noticias from './components/Noticias';
 import PrivateRoute from './components/routes/PrivateRoute';
+import AnonRoute from './components/routes/AnonRoute';
 
 //el token del mapbox
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
@@ -47,12 +48,39 @@ function App() {
 
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgot" element={<ForgotPassword />} />
-          <Route path="/forgot/email-verification" element={<EmailVerification />} />
-          <Route path="/forgot/email-verification/:email" element={<EmailVerification />} />
-          <Route path="/forgot/reset/:id/:token" element={<ResetPassword />} />
+          <Route 
+            path="/register"
+            element={
+              <AnonRoute>
+                <Register />
+              </AnonRoute>
+            }
+          />
+          <Route path="/login" element={
+              <AnonRoute>
+                <Login />
+              </AnonRoute>
+            } />
+          <Route path="/forgot" element={
+              <AnonRoute>
+                <ForgotPassword />
+              </AnonRoute>
+            }/>
+          <Route path="/forgot/email-verification" element={
+              <AnonRoute>
+                <EmailVerification />
+              </AnonRoute>
+            }/>
+          <Route path="/forgot/email-verification/:email" element={
+              <AnonRoute>
+                <EmailVerification />
+              </AnonRoute>
+            }/>
+          <Route path="/forgot/reset/:id/:token" element={
+              <AnonRoute>
+                <ResetPassword />
+              </AnonRoute>
+            } />
 
           {/* users */}
 

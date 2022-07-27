@@ -25,7 +25,7 @@ export default function UserProfile() {
           setRolName(res.data.name);
         }
       } catch (e) {
-        if (e.response.status === 404) {
+        if (e?.response?.status === 404) {
           console.log('El rol no se encontró');
         }
       }
@@ -59,7 +59,7 @@ export default function UserProfile() {
       }
     } catch (e) {
       console.log(e);
-      if (e.response.status === 500) {
+      if (e?.response?.status === 500) {
         console.log('ERROR', e);
       }
     }
@@ -82,7 +82,7 @@ export default function UserProfile() {
         setUser({ ...user, ...form });
       }
     } catch (e) {
-      if (e.response.status === 500) {
+      if (e?.response?.status === 500) {
         alert('Ha habido un problema al actualizar el user');
       }
     }
@@ -98,7 +98,7 @@ export default function UserProfile() {
             <legend>Avatar</legend>
             <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
               <div className="avatar__form">
-                <Image src={user.avatar_src || 'https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png'} roundedCircle></Image>
+                <Image src={user?.avatar_src || 'https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png'} roundedCircle></Image>
               </div>
               <Form.Group controlId="formFile">
                 <Form.Label>Selecciona un nuevo avatar:</Form.Label>
@@ -115,13 +115,13 @@ export default function UserProfile() {
               <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
                 <Form.Label column>Nombre</Form.Label>
                 <Col sm="10">
-                  <Form.Control readOnly defaultValue={user.name} />
+                  <Form.Control readOnly defaultValue={user?.name} />
                 </Col>
               </Form.Group>
               <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
                 <Form.Label column>Apellidos</Form.Label>
                 <Col sm="10">
-                  <Form.Control readOnly={!!user.apellidos} onChange={e => setForm({ ...form, apellidos: e.target.value })} value={user.apellidos} />
+                  <Form.Control readOnly={!!user?.apellidos} onChange={e => setForm({ ...form, apellidos: e.target.value })} value={user?.apellidos} />
                 </Col>
               </Form.Group>
             </Col>
@@ -129,14 +129,14 @@ export default function UserProfile() {
               <Form.Group as={Col} className="mb-3" controlId="formPlaintextEmail">
                 <Form.Label column>Email</Form.Label>
                 <Col sm="10">
-                  <Form.Control readOnly defaultValue={user.email} />
+                  <Form.Control readOnly defaultValue={user?.email} />
                 </Col>
               </Form.Group>
 
               <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
                 <Form.Label column>Telefono</Form.Label>
                 <Col sm="10">
-                  <Form.Control readOnly={user.telefono !== null} onChange={e => setForm({ ...form, telefono: e.target.value })} value={user.telefono} />
+                  <Form.Control readOnly={user?.telefono !== null} onChange={e => setForm({ ...form, telefono: e.target.value })} value={user?.telefono} />
                 </Col>
               </Form.Group>
             </Col>
@@ -144,7 +144,7 @@ export default function UserProfile() {
               <Form.Group as={Col} className="mb-3" controlId="formPlaintextEmail">
                 <Form.Label column>DNI</Form.Label>
                 <Col sm="10">
-                  <Form.Control readOnly defaultValue={user.dni} />
+                  <Form.Control readOnly defaultValue={user?.dni} />
                 </Col>
               </Form.Group>
               <Form.Group as={Col} className="mb-3" controlId="formPlaintextEmail">
@@ -152,9 +152,9 @@ export default function UserProfile() {
                 <Col sm="10">
                   <Form.Control
                     type="date"
-                    readOnly={!!user.fecha_nacimiento}
+                    readOnly={!!user?.fecha_nacimiento}
                     onChange={e => setForm({ ...form, fecha_nacimiento: e.target.value })}
-                    value={user.fecha_nacimiento}
+                    value={user?.fecha_nacimiento}
                   />
                 </Col>
               </Form.Group>

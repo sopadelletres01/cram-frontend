@@ -1,4 +1,4 @@
-@use  "./utils.scss" as u;
+@use './utils.scss' as u;
 .layout {
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
@@ -6,12 +6,12 @@
   min-height: 100vh;
   width: 100%;
   display: grid;
-  grid-template-areas: "header" "contenido";
+  grid-template-areas: 'header' 'contenido';
   grid-template-rows: 10vh 1fr;
   grid-template-columns: 100%;
 }
 
-section{
+section {
   width: 100%;
   height: 100%;
 }
@@ -33,12 +33,36 @@ section{
   width: 300px;
   &.active {
     padding: 20px;
-    height: 400px ;
+    height: 400px;
     border: 3px solid orange;
     display: flex;
+    hr {
+      display: block;
+      width: 100%;
+      border-top: 3px solid $primary-color;
+    }
     a {
       display: flex;
       align-items: center;
+    }
+    .userLogged {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      .userLeft,
+      .userRight {
+        flex: 1;
+      }
+      .userRight{
+        display:flex;
+        flex-direction:column;
+        gap:8px;
+      }
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
     }
   }
   a:hover {
@@ -52,13 +76,19 @@ section{
     text-decoration: none;
     span {
       color: orange;
-      font-size: 2em;
+      font-size: 1.3em;
     }
     svg {
       color: orange;
-      width: 2em;
-      height: 2em;
+      width: 1.3em;
+      height: 1.3em;
     }
+  }
+  .userLogged {
+    display: none;
+  }
+  hr {
+    display: none;
   }
 }
 .sidebar__icon {
@@ -114,7 +144,7 @@ section{
   }
 
   a::before {
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     height: 4px;
@@ -138,13 +168,12 @@ section{
     padding: u.$logo-padding;
     // animation-name: fadeIn;
     // animation-duration: u.$animationDuration;
-    &::before{
+    &::before {
       all: unset;
     }
-    img{
-      width:100%,;
-      height:100%;
+    img {
+      width: 100%;
+      height: 100%;
     }
-  } 
+  }
 }
-
