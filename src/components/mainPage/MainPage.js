@@ -10,7 +10,7 @@ export default function MainPage() {
   // cogemos los eventos gratuitos
   useEffect(() => {
     const getEventsFree = async () => {
-      let freeEvents = await EventsService.getEventActiveFree();
+      let freeEvents = await EventsService.getEventsActiveFree();
       console.log('eventos gratuitos', freeEvents.data);
       setListFreeEvents(freeEvents.data);
     };

@@ -1,35 +1,29 @@
-import * as React from "react";
+import * as React from 'react';
 import anime from 'animejs/lib/anime.es.js';
 
-const Error404 = (props) => {
+const Error404 = props => {
   anime({
-    targets: ".row svg",
+    targets: '.row svg',
     translateY: 10,
     autoplay: true,
     loop: true,
-    easing: "easeInOutSine",
-    direction: "alternate",
+    easing: 'easeInOutSine',
+    direction: 'alternate',
   });
 
   anime({
-    targets: "#zero",
+    targets: '#zero',
     translateX: 10,
     autoplay: true,
     loop: true,
-    easing: "easeInOutSine",
-    direction: "alternate",
+    easing: 'easeInOutSine',
+    direction: 'alternate',
     scale: [{ value: 1 }, { value: 1.4 }, { value: 1, delay: 250 }],
-    rotateY: { value: "+=180", delay: 200 },
+    rotateY: { value: '+=180', delay: 200 },
   });
 
   return (
-    <svg
-      width="100%"
-      height="auto"
-      viewBox="0 0 636 324"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="100%" height="auto" viewBox="0 0 636 324" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="OBJECTS">
         <g id="Group">
           <path
@@ -75,11 +69,7 @@ const Error404 = (props) => {
             d="M154.7 62.1C145.8 66.8 141.6 56.2 133.9 52.7C125 48.7 118.7 61.2 116.1 59C113.5 56.9 112.3 47.6 102.2 42.8C96.5 40.1 85.4 39.5 77 39.5C77.1 39.4 77.3 39.2 77.4 39.1C80.9 38.4 84.7 37.9 88.8 37.7C112.5 36.7 117.5 54.6 117.5 54.6C117.5 54.6 123.7 46.3 134.9 50.3C146.1 54.3 142.2 59.2 151.1 61.9C152.2 62.1 153.5 62.2 154.7 62.1Z"
             fill="white"
           />
-          <path
-            id="Vector_9"
-            d="M394.9 40.3C394.9 40.3 457.4 96.1 482.1 88.5C507 80.9 351.2 7.20001 394.9 40.3Z"
-            fill="url(#paint4_linear)"
-          />
+          <path id="Vector_9" d="M394.9 40.3C394.9 40.3 457.4 96.1 482.1 88.5C507 80.9 351.2 7.20001 394.9 40.3Z" fill="url(#paint4_linear)" />
           <path
             id="Vector_10"
             d="M35 97C35 97 13.7 134.4 50.9 173.8C59.5 182.9 60.5 199.9 43.3 200.8C26.1 201.7 -0.599994 159.8 0.300006 126.1C1.30001 92.4 40.8 77.1 35 97Z"
@@ -265,11 +255,7 @@ const Error404 = (props) => {
               d="M559.7 168.5C559.5 169.2 559.2 169.8 559.1 170.1C558.8 170.7 555.6 173.4 553.3 170.3C551.4 167.7 551.1 164.7 551.1 163.8C552.5 164.6 553.2 166.1 553.6 166.2C553.6 165 554.3 163.8 554.9 163.5C555.5 163.3 556.2 163.5 556.4 164.7C556.6 165.9 555.1 166.1 555.1 166.5C555.1 166.9 556.8 169.1 558.2 169.3C558.6 169.2 559.1 169 559.7 168.5Z"
               fill="url(#paint14_linear)"
             />
-            <path
-              id="Vector_41"
-              d="M561.3 155.6C561.2 155.4 561.2 155.3 561.1 155.2C561.2 155.3 561.2 155.5 561.3 155.6Z"
-              fill="#2F172B"
-            />
+            <path id="Vector_41" d="M561.3 155.6C561.2 155.4 561.2 155.3 561.1 155.2C561.2 155.3 561.2 155.5 561.3 155.6Z" fill="#2F172B" />
             <path
               id="Vector_42"
               d="M572.4 184.6C572.1 185.2 571.7 185.7 571.4 186.2C571.3 186.3 571.2 186.5 571.1 186.6C570.1 187.8 569.2 188.5 569.2 188.5C569.2 188.5 569.2 188.5 569.2 188.6C569.2 188.7 569.2 188.8 569.3 189C569.4 189.4 569.5 190.1 569.6 191C569.6 191.1 569.6 191.3 569.7 191.4C569.8 191.8 569.8 192.2 569.8 192.6C569.8 192.8 569.9 193.1 569.9 193.3C569.9 193.4 569.9 193.6 569.9 193.7C570 194.4 570 195 570 195.7C570 195.8 570 196 570 196.1C570 196.9 569.9 197.6 569.8 198.1C569.8 198.3 569.7 198.4 569.7 198.5C569.6 198.7 569.6 198.8 569.5 198.9C569.4 199 569.2 199.1 569 199.2C567.5 199.9 563.7 199.9 559.8 199.7C556.5 199.5 553.2 199.2 551.5 198.9C551 198.8 550.6 198.7 550.3 198.5C550.1 198.4 549.9 198.2 549.8 198.1C549.7 198 549.6 197.9 549.6 197.8C549.3 197.3 549.2 196.8 549.2 196.1C549.2 196 549.2 195.8 549.2 195.7C549.3 195.1 549.4 194.5 549.5 193.8V193.7C549.5 193.6 549.6 193.4 549.6 193.3C549.8 192.6 550 192 550.1 191.3C550.1 191.2 550.1 191.1 550.2 191V190.9C550.4 190.1 550.5 189.4 550.5 188.9C550.5 188.7 550.5 188.6 550.6 188.5C550.7 187.2 550.6 186.8 550.6 186.8C550.6 186.8 550.3 187.6 549.8 188.5C549.7 188.6 549.6 188.8 549.6 188.9C549.3 189.4 548.9 189.9 548.7 189.9C548.7 189.9 548.6 189.9 548.5 189.9C548.2 189.8 547.8 189.4 547.3 188.9C547.2 188.8 547 188.6 546.9 188.5C546.6 188.2 546.3 187.9 546 187.5C545.7 187.2 545.4 186.8 545.1 186.5C545 186.4 544.9 186.2 544.8 186.1C544.4 185.6 544.1 185.2 543.8 184.8C543.6 184.5 543.5 184.3 543.4 184.1C543.3 184 543.3 183.9 543.3 183.8V183.7C543.4 183.4 543.6 182.6 543.9 181.7C544 181.6 544 181.4 544.1 181.3C544.3 180.7 544.6 180 545 179.3C545.1 179.2 545.1 179 545.2 178.9C545.5 178.3 545.9 177.6 546.2 176.9C546.3 176.8 546.4 176.6 546.4 176.5C546.8 175.8 547.2 175.1 547.6 174.5C547.7 174.4 547.8 174.2 547.9 174.1C548.5 173.3 549 172.6 549.6 172.1C549.8 171.9 549.9 171.8 550.1 171.7C550.2 171.6 550.3 171.6 550.4 171.5C551.2 171 552 170.6 552.8 170.3C555.5 169.3 557.8 169.4 557.8 169.4C559.1 169.4 560.4 169.7 561.7 170.2C562.6 170.6 563.5 171.1 564.4 171.7C564.6 171.8 564.8 172 565 172.1C565.7 172.7 566.4 173.3 567 174.1C567.1 174.2 567.2 174.4 567.4 174.5C567.9 175.1 568.4 175.8 568.8 176.5C568.9 176.6 569 176.8 569.1 176.9C569.5 177.5 569.8 178.2 570.2 178.9C570.3 179 570.3 179.2 570.4 179.3C570.7 179.9 571 180.6 571.3 181.3C571.4 181.4 571.4 181.6 571.5 181.7C571.7 182.3 572 183 572.2 183.7C572.2 183.8 572.3 184 572.3 184.1C572.4 184.3 572.4 184.5 572.4 184.6Z"
@@ -336,12 +322,7 @@ const Error404 = (props) => {
                 d="M569.7 191.4H550.3C550.3 191.3 550.3 191.2 550.4 191.1V191H569.7C569.7 191.1 569.7 191.3 569.7 191.4Z"
                 fill="white"
               />
-              <path
-                id="Vector_53"
-                opacity="0.25"
-                d="M570 193.8H549.7C549.7 193.7 549.8 193.5 549.8 193.4H570C569.9 193.6 570 193.7 570 193.8Z"
-                fill="white"
-              />
+              <path id="Vector_53" opacity="0.25" d="M570 193.8H549.7C549.7 193.7 549.8 193.5 549.8 193.4H570C569.9 193.6 570 193.7 570 193.8Z" fill="white" />
               <path
                 id="Vector_54"
                 opacity="0.25"
@@ -371,10 +352,10 @@ const Error404 = (props) => {
               opacity="0.25"
               d="M551.1 201.4C551.1 201.4 550.9 205 553.8 206.7"
               stroke="white"
-              stroke-width="0.4635"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="0.4635"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <g id="Group_11" opacity="0.25">
               <g id="Group_12" opacity="0.25">
@@ -383,29 +364,21 @@ const Error404 = (props) => {
                   opacity="0.25"
                   d="M551.8 206.2L551.7 206.9"
                   stroke="white"
-                  stroke-width="0.4635"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="0.4635"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 <path
                   id="Vector_60"
                   opacity="0.25"
                   d="M551.7 208.2L550.3 238"
                   stroke="white"
-                  stroke-width="0.4635"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-dasharray="1.39 1.39"
+                  strokeWidth="0.4635"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeDasharray="1.39 1.39"
                 />
-                <path
-                  id="Vector_61"
-                  opacity="0.25"
-                  d="M550.2 238.7V239.4"
-                  stroke="white"
-                  stroke-width="0.4635"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
+                <path id="Vector_61" opacity="0.25" d="M550.2 238.7V239.4" stroke="white" strokeWidth="0.4635" strokeLinecap="round" strokeLinejoin="round" />
               </g>
             </g>
             <path
@@ -413,21 +386,21 @@ const Error404 = (props) => {
               opacity="0.25"
               d="M562 209.6L564.7 237.9"
               stroke="white"
-              stroke-width="0.4635"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-dasharray="1.39 1.39"
+              strokeWidth="0.4635"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeDasharray="1.39 1.39"
             />
             <path
               id="Vector_63"
               opacity="0.25"
               d="M564.3 201.9C564.3 201.9 564 205.4 564.3 206C564.6 206.7 565.9 207.2 566.2 207.4C566.5 207.5 567.7 206.4 567.8 205.7C567.9 205 567.9 202 567.9 202C567.9 202 565.7 201.6 564.3 201.9Z"
               stroke="white"
-              stroke-width="0.4635"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="0.4635"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               id="Vector_64"
@@ -519,12 +492,7 @@ const Error404 = (props) => {
               d="M571.6 251.1H563.7C563.7 251.1 563.6 250.7 563.6 250.2C563.6 249.8 563.7 249.4 563.9 248.9C564.5 247.6 564.2 245.6 564.4 245.2C564.4 245.2 564.5 245.2 564.8 245.2C565.9 245.1 569 244.8 569.9 244.8C570 244.8 570 244.8 570.1 244.8C570.6 245 571.2 248.4 571.5 250.2C571.6 250.6 571.6 250.9 571.6 251.1Z"
               fill="#1F3247"
             />
-            <path
-              id="Vector_80"
-              opacity="0.25"
-              d="M555.8 250.1C555.8 250.7 555.9 251 555.9 251H542.8C542.8 251 542.7 250.6 542.7 250.1H555.8Z"
-              fill="black"
-            />
+            <path id="Vector_80" opacity="0.25" d="M555.8 250.1C555.8 250.7 555.9 251 555.9 251H542.8C542.8 251 542.7 250.6 542.7 250.1H555.8Z" fill="black" />
             <path
               id="Vector_81"
               opacity="0.25"
@@ -542,12 +510,7 @@ const Error404 = (props) => {
               d="M554.9 243.6C554.8 244.2 554.7 244.9 554.5 245.5C553.8 245.6 552.9 245.8 552.2 245.9L551.4 243.2L554.9 243.6Z"
               fill="black"
             />
-            <path
-              id="Vector_84"
-              opacity="0.25"
-              d="M569.9 241.4V244.7C569.3 244.6 567.9 244.7 566.7 244.9L565.8 242.1L569.9 241.4Z"
-              fill="black"
-            />
+            <path id="Vector_84" opacity="0.25" d="M569.9 241.4V244.7C569.3 244.6 567.9 244.7 566.7 244.9L565.8 242.1L569.9 241.4Z" fill="black" />
           </g>
         </g>
         <g id="Group_13">
@@ -721,28 +684,28 @@ const Error404 = (props) => {
               opacity="0.25"
               d="M81.5 204.9C81.5 204.9 81.3 208.6 81.8 209.6C82.3 210.6 83.7 211.3 83.7 211.3C83.7 211.3 85.5 210.5 86 209.4C86.5 207.2 86.4 204.5 86.4 204.5C86.4 204.5 82.8 203.7 81.5 204.9Z"
               stroke="white"
-              stroke-width="0.4635"
-              stroke-miterlimit="10"
+              strokeWidth="0.4635"
+              strokeMiterlimit="10"
             />
             <path
               id="Vector_111"
               opacity="0.25"
               d="M97.2 201.9C97.2 201.9 97.4 205 94.7 206.5"
               stroke="white"
-              stroke-width="0.4635"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="0.4635"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               id="Vector_112"
               opacity="0.25"
               d="M96.5 204.6L98.7 241.6"
               stroke="white"
-              stroke-width="0.4635"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="0.4635"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               id="Vector_113"
@@ -755,10 +718,10 @@ const Error404 = (props) => {
               opacity="0.25"
               d="M87.4 213L84.3 243.2"
               stroke="white"
-              stroke-width="0.4635"
-              stroke-miterlimit="10"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="0.4635"
+              strokeMiterlimit="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
             <path
               id="Vector_115"
@@ -766,12 +729,7 @@ const Error404 = (props) => {
               d="M96.9 199.9C95.1 201.7 89.5 206.1 79.4 205.1C79.5 202.6 79.8 200.8 80 199.8C83.8 203.6 93.1 201.5 96.9 199.9Z"
               fill="black"
             />
-            <path
-              id="Vector_116"
-              opacity="0.25"
-              d="M78.3 249.5H85.3C85.3 250.5 85.2 251 85.2 251H77.9C78 250.5 78.1 250 78.3 249.5Z"
-              fill="black"
-            />
+            <path id="Vector_116" opacity="0.25" d="M78.3 249.5H85.3C85.3 250.5 85.2 251 85.2 251H77.9C78 250.5 78.1 250 78.3 249.5Z" fill="black" />
             <path
               id="Vector_117"
               opacity="0.25"
@@ -825,8 +783,8 @@ const Error404 = (props) => {
             id="Vector_125"
             d="M523.5 247.4C523.5 247.4 521.5 234.8 531.8 226.1C531.7 236.3 528.9 245 523.5 247.4Z"
             stroke="#1F3247"
-            stroke-width="0.9271"
-            stroke-miterlimit="10"
+            strokeWidth="0.9271"
+            strokeMiterlimit="10"
           />
           <g id="Group_26">
             <path
@@ -918,8 +876,8 @@ const Error404 = (props) => {
             id="Vector_139"
             d="M174.2 250.2C174.2 250.2 161.8 247.6 154.1 238.3C167.3 239.7 173 244.4 174.2 250.2Z"
             stroke="#1F3247"
-            stroke-width="0.9271"
-            stroke-miterlimit="10"
+            strokeWidth="0.9271"
+            strokeMiterlimit="10"
           />
           <g id="Group_33">
             <path
@@ -982,214 +940,81 @@ const Error404 = (props) => {
         </g>
       </g>
       <defs>
-        <linearGradient
-          id="paint0_linear"
-          x1="327.54"
-          y1="250.471"
-          x2="330.184"
-          y2="46.9149"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#E8D197" />
-          <stop offset="1" stop-color="#FEF5DA" />
+        <linearGradient id="paint0_linear" x1="327.54" y1="250.471" x2="330.184" y2="46.9149" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#E8D197" />
+          <stop offset="1" stopColor="#FEF5DA" />
         </linearGradient>
-        <linearGradient
-          id="paint1_linear"
-          x1="326.925"
-          y1="147.902"
-          x2="330.395"
-          y2="242.079"
-          gradientUnits="userSpaceOnUse"
-        >
+        <linearGradient id="paint1_linear" x1="326.925" y1="147.902" x2="330.395" y2="242.079" gradientUnits="userSpaceOnUse">
           <stop />
-          <stop offset="1" stop-opacity="0" />
+          <stop offset="1" stopOpacity="0" />
         </linearGradient>
-        <linearGradient
-          id="paint2_linear"
-          x1="344.3"
-          y1="64.1527"
-          x2="344.961"
-          y2="87.284"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="white" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+        <linearGradient id="paint2_linear" x1="344.3" y1="64.1527" x2="344.961" y2="87.284" gradientUnits="userSpaceOnUse">
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
-        <linearGradient
-          id="paint3_linear"
-          x1="130.102"
-          y1="26.1247"
-          x2="132.084"
-          y2="77.0139"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="white" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+        <linearGradient id="paint3_linear" x1="130.102" y1="26.1247" x2="132.084" y2="77.0139" gradientUnits="userSpaceOnUse">
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
-        <linearGradient
-          id="paint4_linear"
-          x1="455.752"
-          y1="229.215"
-          x2="433.942"
-          y2="41.3544"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#E8D197" />
-          <stop offset="1" stop-color="#FEF5DA" />
+        <linearGradient id="paint4_linear" x1="455.752" y1="229.215" x2="433.942" y2="41.3544" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#E8D197" />
+          <stop offset="1" stopColor="#FEF5DA" />
         </linearGradient>
-        <linearGradient
-          id="paint5_linear"
-          x1="60.0761"
-          y1="430.474"
-          x2="23.3198"
-          y2="113.867"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#E8D197" />
-          <stop offset="1" stop-color="#FEF5DA" />
+        <linearGradient id="paint5_linear" x1="60.0761" y1="430.474" x2="23.3198" y2="113.867" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#E8D197" />
+          <stop offset="1" stopColor="#FEF5DA" />
         </linearGradient>
-        <linearGradient
-          id="paint6_linear"
-          x1="197.311"
-          y1="242.736"
-          x2="195.989"
-          y2="148.447"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#2F1829" />
-          <stop offset="1" stop-color="#3B223C" />
+        <linearGradient id="paint6_linear" x1="197.311" y1="242.736" x2="195.989" y2="148.447" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#2F1829" />
+          <stop offset="1" stopColor="#3B223C" />
         </linearGradient>
-        <linearGradient
-          id="paint7_linear"
-          x1="322.636"
-          y1="240.979"
-          x2="321.314"
-          y2="146.691"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#2F1829" />
-          <stop offset="1" stop-color="#3B223C" />
+        <linearGradient id="paint7_linear" x1="322.636" y1="240.979" x2="321.314" y2="146.691" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#2F1829" />
+          <stop offset="1" stopColor="#3B223C" />
         </linearGradient>
-        <linearGradient
-          id="paint8_linear"
-          x1="447.456"
-          y1="239.229"
-          x2="446.134"
-          y2="144.941"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#2F1829" />
-          <stop offset="1" stop-color="#3B223C" />
+        <linearGradient id="paint8_linear" x1="447.456" y1="239.229" x2="446.134" y2="144.941" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#2F1829" />
+          <stop offset="1" stopColor="#3B223C" />
         </linearGradient>
-        <linearGradient
-          id="paint9_linear"
-          x1="281.068"
-          y1="73.4007"
-          x2="292.303"
-          y2="109.089"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#2F1829" />
-          <stop offset="1" stop-color="#3B223C" />
+        <linearGradient id="paint9_linear" x1="281.068" y1="73.4007" x2="292.303" y2="109.089" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#2F1829" />
+          <stop offset="1" stopColor="#3B223C" />
         </linearGradient>
-        <linearGradient
-          id="paint10_linear"
-          x1="567.282"
-          y1="246.761"
-          x2="567.144"
-          y2="239.051"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#FECBA6" />
-          <stop offset="1" stop-color="#D17878" />
+        <linearGradient id="paint10_linear" x1="567.282" y1="246.761" x2="567.144" y2="239.051" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FECBA6" />
+          <stop offset="1" stopColor="#D17878" />
         </linearGradient>
-        <linearGradient
-          id="paint11_linear"
-          x1="575.336"
-          y1="236.543"
-          x2="417.383"
-          y2="126.175"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="white" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+        <linearGradient id="paint11_linear" x1="575.336" y1="236.543" x2="417.383" y2="126.175" gradientUnits="userSpaceOnUse">
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
-        <linearGradient
-          id="paint12_linear"
-          x1="529.726"
-          y1="200.324"
-          x2="554.29"
-          y2="176.972"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#FECBA6" />
-          <stop offset="1" stop-color="#D17878" />
+        <linearGradient id="paint12_linear" x1="529.726" y1="200.324" x2="554.29" y2="176.972" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FECBA6" />
+          <stop offset="1" stopColor="#D17878" />
         </linearGradient>
-        <linearGradient
-          id="paint13_linear"
-          x1="568.688"
-          y1="209.407"
-          x2="569.018"
-          y2="182.751"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#FECBA6" />
-          <stop offset="1" stop-color="#D17878" />
+        <linearGradient id="paint13_linear" x1="568.688" y1="209.407" x2="569.018" y2="182.751" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FECBA6" />
+          <stop offset="1" stopColor="#D17878" />
         </linearGradient>
-        <linearGradient
-          id="paint14_linear"
-          x1="552.343"
-          y1="166.843"
-          x2="558.043"
-          y2="168.082"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#FECBA6" />
-          <stop offset="1" stop-color="#D17878" />
+        <linearGradient id="paint14_linear" x1="552.343" y1="166.843" x2="558.043" y2="168.082" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FECBA6" />
+          <stop offset="1" stopColor="#D17878" />
         </linearGradient>
-        <linearGradient
-          id="paint15_linear"
-          x1="550.457"
-          y1="250.958"
-          x2="552.881"
-          y2="239.337"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#FECBA6" />
-          <stop offset="1" stop-color="#D17878" />
+        <linearGradient id="paint15_linear" x1="550.457" y1="250.958" x2="552.881" y2="239.337" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FECBA6" />
+          <stop offset="1" stopColor="#D17878" />
         </linearGradient>
-        <linearGradient
-          id="paint16_linear"
-          x1="95.6885"
-          y1="163.838"
-          x2="93.7609"
-          y2="174.468"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#FECBA6" />
-          <stop offset="1" stop-color="#D17878" />
+        <linearGradient id="paint16_linear" x1="95.6885" y1="163.838" x2="93.7609" y2="174.468" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FECBA6" />
+          <stop offset="1" stopColor="#D17878" />
         </linearGradient>
-        <linearGradient
-          id="paint17_linear"
-          x1="75.5473"
-          y1="236.543"
-          x2="233.501"
-          y2="126.174"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="white" />
-          <stop offset="1" stop-color="white" stop-opacity="0" />
+        <linearGradient id="paint17_linear" x1="75.5473" y1="236.543" x2="233.501" y2="126.174" gradientUnits="userSpaceOnUse">
+          <stop stopColor="white" />
+          <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
-        <linearGradient
-          id="paint18_linear"
-          x1="124.267"
-          y1="190.961"
-          x2="113.114"
-          y2="194.142"
-          gradientUnits="userSpaceOnUse"
-        >
-          <stop stop-color="#FECBA6" />
-          <stop offset="1" stop-color="#D17878" />
+        <linearGradient id="paint18_linear" x1="124.267" y1="190.961" x2="113.114" y2="194.142" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#FECBA6" />
+          <stop offset="1" stopColor="#D17878" />
         </linearGradient>
       </defs>
     </svg>
