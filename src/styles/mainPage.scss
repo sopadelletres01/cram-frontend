@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500&display=swap');
+.cardsContainer{
+    height:80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainPageTitle{
+    padding-top:20px;
+    text-align:center;
+    font-family: 'Baloo Tamma 2', cursive;
+    h1{
+  
+      color:white;
+      font-size: 80px;
+      letter-spacing: 5px;  
+      
+      text-shadow: -1px -1px 0px $primary-color,
+        3px 3px 0px $primary-color,
+        6px 6px 0px $primary-color;
+    }
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaUser, FaPercent, FaTheaterMasks, FaPowerOff } from 'react-icons/fa';
+import { FaUser, FaPercent, FaTheaterMasks, FaPowerOff, FaColumns } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 
 function SidebarDespegable({ show, setShow }) {
@@ -15,17 +15,21 @@ function SidebarDespegable({ show, setShow }) {
   return (
     <>
       <div className={`sidebar ${show ? 'active' : ''}`} ref={domeNode}>
-        <Link className="sidebar__link" to="/user/profile">
+        <Link to="/user" className="sidebar__link">
+          <FaColumns />
+          <span>User Page</span>
+        </Link>
+        <Link className="sidebar__link" to="/profile">
           <FaUser />
           <span>Profile</span>
         </Link>
         {/* Mostrar los eventos gratis si no estas logeado */}
-        <Link className="sidebar__link" to="/user/events">
+        <Link className="sidebar__link" to="/events">
           <FaTheaterMasks />
           <span>Eventos</span>
         </Link>
 
-        <Link className="sidebar__link" to="/user/promotions">
+        <Link className="sidebar__link" to="/promotions">
           <FaPercent />
           <span>Promociones</span>
         </Link>

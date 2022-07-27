@@ -1,32 +1,26 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import {Card as BSCard} from 'react-bootstrap'
+import { useNavigate } from 'react-router'
 
-function Card({element }) {
+export default function Card({src,alt, title, subtitle, path }) {
+
+    /* haremos un map y mostraremos las fotos de forma random */
+  let navigate = useNavigate()
+
+  const handleNavigate = () => {
+    navigate(path)
+  }
+
   return (
-    <Link to={`/events/${element.id}/promotions`} className="card">
-    <div className="card__content">
-      <img src={element.photo} alt={`${element.name}`} />
-      <span className="card__title">{element.name}</span>
-      <div className="card__info">
-        <p>
-          <span className="date">Fecha inicio: </span>
-          {element.start_date}
-        </p>
-        <p>
-          <span className="date">Fecha finalizacion: </span>
-          {element.final_date}
-        </p>
-        <p>{element.description}</p>
-      </div>
-    </div>
-    <div className="card__subcription">
-      <div className="categoria">Grauito</div>
-        <Link to={`/events/${element.id}`} className="button">Inscríbete</Link>
-    </div>
-  </Link>
-    
+
+    <BSCard className="card_prueba" onClick={handleNavigate}>
+        <BSCard.Img className='card__image' variant="top" width="100%" height="225px" src={src} alt={alt}/>
+        <BSCard.Body>
+            <BSCard.Title>{title}</BSCard.Title>
+            <BSCard.Text>
+            {subtitle}
+            </BSCard.Text>
+        </BSCard.Body> 
+    </BSCard>
   )
 }
-
-export default Card

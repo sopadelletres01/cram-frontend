@@ -84,7 +84,7 @@ function App() {
                 <MainPage />
               </PrivateRoute>
             }  />
-          <Route path="/noticias" element={
+          <Route path="/news" element={
               <PrivateRoute>
                 <Noticias />
               </PrivateRoute>

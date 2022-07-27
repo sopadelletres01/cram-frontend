@@ -1,33 +1,57 @@
-import React, { useState, useEffect,  } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import EventsService from '../../services/events.service';
-import ListCard from './ListCard'
-
+import Card from './Card';
 
 export default function MainPage() {
-  // eventos gratuitos y activos
-  const [listFreeEvents, setListFreeEvents] = useState([]);
-  // cogemos los eventos gratuitos
-  useEffect(() => {
-    const getEventsFree = async () => {
-      let freeEvents = await EventsService.getEventsActiveFree();
-      console.log('eventos gratuitos', freeEvents.data);
-      setListFreeEvents(freeEvents.data);
-    };
-
-    getEventsFree();
-  }, []);
-  // cogemos los eventos del usuario
-  // cogemos las promociones del usuario
-
-  const { user } = useAuth();
-  console.log('informacion del usuario', user);
-  // coger todos los eventos gratuitos y mostrarlos.
   return (
-    
-    <div className="container__list ">
-      <ListCard list={listFreeEvents} />
-      
+    <div className="container h-100  ">
+      <div className="mainPageTitle">
+        <h1>Panel de Usuario</h1>
+        <h4>Gestiona tus eventos y promociones</h4>
+      </div>
+      <div className="cardsContainer mainPage">
+        <div className=" row">
+          <div className="card__wrapper col-lg-4 col-md-6">
+            <div className="card__box">
+              <Card
+                path={'/events'}
+                src={'https://s1.eestatic.com/2022/04/01/alicante/economia/turismo/661694541_223190313_1024x576.jpg'}
+                alt={'eventos'}
+                title={'Eventos'}
+                subtitle={'Consulta tus eventos y los eventos disponibles'}
+              />
+              {/* Al hacer click aqui te irias a una página donde estaria todos los eventos que hay disponibles. */}
+            </div>
+          </div>
+          <div className="card__wrapper col-lg-4 col-md-6">
+            <div className="card__box">
+              <Card
+                path={'/promotions'}
+                src={'https://d2f0ora2gkri0g.cloudfront.net/9d/d5/9dd59804-f004-491c-911e-cc7e1dc3f2a4.png'}
+                alt={'descuento'}
+                title={'Promociones'}
+                subtitle={'Promociones de tus eventos'}
+              />
+              {/* Al hacer click aqui te irias a una página donde estaria todos las PRMOCIONES que hay disponibles. */}
+            </div>
+          </div>
+          <div className="card__wrapper col-lg-4 col-md-12">
+            <div className="card__box">
+              <>
+                <Card
+                  path={'/news'}
+                  src={'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Newspaper_Cover.svg/2048px-Newspaper_Cover.svg.png'}
+                  alt={'newspaper'}
+                  title={'Noticias'}
+                  subtitle={' Noticias de los eventos'}
+                />
+              </>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

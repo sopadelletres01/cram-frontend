@@ -4,7 +4,6 @@ import PromotionsService from '../../services/promotions.service.js';
 import Filters from './Filters';
 import { AuthContext, useAuth } from '../context/AuthContext';
 //import Filters from '../events/Filters';
-import Promotion from './CardPromotion';
 import { useNavigate } from 'react-router';
 import PromotionEdit from './CardPromotionEdit.js';
 import EventosService from '../../services/events.service.js';
