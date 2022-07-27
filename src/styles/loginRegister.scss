@@ -10,7 +10,7 @@
     justify-content: center;
     margin-bottom: 60px;
     margin-top: 40px;
-    color: #0275d8;
+  
 }
 
 /* separacion de los botones */
@@ -61,4 +61,37 @@
 
 .input-group{
     flex-direction: column;
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: $primary-color;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(253, 213, 13, 0.25);
+}
+.form-check-input:checked {
+    background-color: #fdc50d;
+    border-color: $primary-color;
+}
+.form-check-input:focus {
+    border-color: #fee286;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(253, 217, 13, 0.25);
+}
+.btn-check:active+.btn, .btn-check:checked+.btn, .btn.active, .btn.show, .btn:active {
+    color: $primary-color;
+    background-color: $primary-color;
+    border-color: white;
+}
+.btn:focus {
+    color: white;
+    font-weight: bold;
+    background-color:orange;
+    border-color: white;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(253, 217, 13, 0.25);
+    &:active{
+        box-shadow: 0 0 0 0.25rem rgba(253, 217, 13, 0.25)
+    }
 }
