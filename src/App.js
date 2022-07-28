@@ -48,7 +48,7 @@ function App() {
 
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route 
+          <Route
             path="/register"
             element={
               <AnonRoute>
@@ -56,31 +56,46 @@ function App() {
               </AnonRoute>
             }
           />
-          <Route path="/login" element={
+          <Route
+            path="/login"
+            element={
               <AnonRoute>
                 <Login />
               </AnonRoute>
-            } />
-          <Route path="/forgot" element={
+            }
+          />
+          <Route
+            path="/forgot"
+            element={
               <AnonRoute>
                 <ForgotPassword />
               </AnonRoute>
-            }/>
-          <Route path="/forgot/email-verification" element={
+            }
+          />
+          <Route
+            path="/forgot/email-verification"
+            element={
               <AnonRoute>
                 <EmailVerification />
               </AnonRoute>
-            }/>
-          <Route path="/forgot/email-verification/:email" element={
+            }
+          />
+          <Route
+            path="/forgot/email-verification/:email"
+            element={
               <AnonRoute>
                 <EmailVerification />
               </AnonRoute>
-            }/>
-          <Route path="/forgot/reset/:id/:token" element={
+            }
+          />
+          <Route
+            path="/forgot/reset/:id/:token"
+            element={
               <AnonRoute>
                 <ResetPassword />
               </AnonRoute>
-            } />
+            }
+          />
 
           {/* users */}
 
@@ -92,40 +107,65 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/events" element={
+          <Route
+            path="/events"
+            element={
               <PrivateRoute>
                 <Events />
               </PrivateRoute>
-            } />
-          <Route path="/promotions" element={
+            }
+          />
+          <Route
+            path="/promotions"
+            element={
               <PrivateRoute>
                 <Promotions />
               </PrivateRoute>
-            } />
-          <Route path="/promotions/:id" element={
+            }
+          />
+          <Route
+            path="/promotions/:id"
+            element={
               <PrivateRoute>
                 <Promo />
               </PrivateRoute>
-            }  />
-          <Route path="/user" element={
+            }
+          />
+          <Route
+            path="/user"
+            element={
               <PrivateRoute>
                 <MainPage />
               </PrivateRoute>
-            }  />
-          <Route path="/news" element={
+            }
+          />
+          <Route
+            path="/news"
+            element={
               <PrivateRoute>
                 <Noticias />
               </PrivateRoute>
-            } />
-          <Route path="/profile" element={
+            }
+          />
+          <Route
+            path="/profile"
+            element={
               <PrivateRoute>
                 <UserProfile />
               </PrivateRoute>
-            } />
+            }
+          />
 
           {/* adminitrador */}
 
-          <Route path="/inscriptions" element={<Inscriptions />} />
+          <Route
+            path="/admin/users"
+            element={
+              <PrivateRoute roleRestricted>
+                <Inscriptions />
+              </PrivateRoute>
+            }
+          />
           <Route path="/promotions" element={<Promotions />} />
           <Route path="/events" element={<Events />} />
           <Route path="/promotions/:id" element={<Promo />} />
@@ -148,7 +188,6 @@ function App() {
           {/* Not Found */}
 
           <Route path="*" element={<NotFound />}></Route>
-          
         </Routes>
       </HomeLayout>
     </>
