@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import ApiCrudService from '../../services/crud.service'
-import CardEvent from '../events/CardEvent';
+import CardCommerce from './CardCommerce'
 
 
 function Commerces() {
@@ -20,11 +20,11 @@ function Commerces() {
   },[])
 
   return (
-    <div className='conatiner__list'>
-      <div className='listCard'>
+    <div className='container__list_commerce'>
+      <div className='listCard_commerce'>
         {
           listCommerce.map((element) => { 
-            return <CardEvent element={element} />
+            return <CardCommerce element={element} />
           })
         }
 
