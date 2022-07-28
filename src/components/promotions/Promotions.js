@@ -19,6 +19,7 @@ export default function Promotions({ className, ...rest }) {
   const { loading, setLoading } = useGlobalState();
   const [open, setOpen] = useState(false);
   const [promotionsData, setPromotionsData] = useState([]);
+  const [promotionsDataUsadas, setPromotionsDataUsadas] = useState([]);
   const [promotionsDataCaducadas, setPromotionsDataCaducadas] = useState([]);
   const [filteredPromotionsData, setFilteredPromotionsData] = useState([]);
   const [selected, setSelected] = useState(0);
@@ -34,13 +35,32 @@ export default function Promotions({ className, ...rest }) {
 
         let userPromotions = await PromotionsService.getPromotionsByUser(user.id);
         const userPromotionsCaducadas = await PromotionsService.getPromotionsExpiredByUser(user.id);
+        const promotionsUsadas = await PromotionsService.getPromosUsadas(user.id);
         console.log('USERPROMOS', userPromotions.data);
         console.log('CADUCADAS', userPromotionsCaducadas.data);
+        console.log('USADAS', promotionsUsadas.data);
+
         //le pasamos el id del commerce que tiene la Promotion.
         //const commerce= await ComerciosService.show("commerces",Promotions.comercio_id);
-        setPromotionsDataCaducadas(userPromotionsCaducadas.data);
-        setPromotionsData(userPromotions.data);
-        setFilteredPromotionsData(userPromotions.data);
+        let arrayFinalPromos = [];
+        let arrayFinalPromosCaducadas = [];
+        for (const promotionElem of userPromotions.data) {
+          const promoUsada = await PromotionsService.existThisPromo(user.id, promotionElem.id);
+          let promoCaducada = userPromotionsCaducadas.data.find(promo=>promo.id === promotionElem.id)
+          if (promoUsada && promoUsada.data) {
+            arrayFinalPromos.push({ ...promotionElem, used: true });
+            if(promoCaducada) arrayFinalPromosCaducadas.push({ ...promotionElem, used: true });
+          } else {
+            arrayFinalPromos.push({ ...promotionElem, used: false });
+            if(promoCaducada)arrayFinalPromosCaducadas.push({ ...promotionElem, used: false });
+          }
+        }
+        console.log('ARRAYFINAL', arrayFinalPromos);
+
+        setPromotionsDataCaducadas(arrayFinalPromosCaducadas);
+        setPromotionsData(arrayFinalPromos);
+        setPromotionsDataUsadas(promotionsUsadas.data);
+        setFilteredPromotionsData(arrayFinalPromos);
       } catch (err) {
         console.log(err);
       } finally {
@@ -72,6 +92,7 @@ export default function Promotions({ className, ...rest }) {
               onClick={() => handleShowPromo(promo.id)}
               key={promo.id}
               expired={true}
+              used={promo.used}
               name={promo.name}
               commerce={promo.commerce_name}
               event={promo.event_name}
@@ -94,6 +115,7 @@ export default function Promotions({ className, ...rest }) {
                 onClick={() => handleShowPromo(Promotion.id)}
                 key={Promotion.id}
                 expired={false}
+                used={Promotion.used}
                 name={Promotion.name}
                 commerce={Promotion.commerce_name}
                 event={Promotion.event_name}
@@ -105,8 +127,31 @@ export default function Promotions({ className, ...rest }) {
             );
           });
       case 3:
+        return filteredPromotionsData
+          .filter(promo => promo.used === true)
+          .map(Promotion => {
+            let expired = false;
+            var date1 = Date.parse(Promotion.final_date);
+            var date2 = Date.now();
+            if (date1 < date2) expired = true;
+            return (
+              <FinalPromotion
+                onClick={() => handleShowPromo(Promotion.id)}
+                key={Promotion.id}
+                used={true}
+                expired={expired}
+                name={Promotion.name}
+                commerce={Promotion.commerce_name}
+                event={Promotion.event_name}
+                description={Promotion.description}
+                start={Promotion.start_date}
+                photo={Promotion.photo}
+                final={Promotion.final_date}
+              />
+            );
+          });
+      case 4:
       default:
-        //todos
         return filteredPromotionsData.map(Promotion => {
           let expired = false;
           var date1 = Date.parse(Promotion.final_date);
@@ -116,6 +161,7 @@ export default function Promotions({ className, ...rest }) {
             <FinalPromotion
               onClick={() => handleShowPromo(Promotion.id)}
               key={Promotion.id}
+              used={Promotion.used}
               expired={expired}
               name={Promotion.name}
               commerce={Promotion.commerce_name}
@@ -127,6 +173,7 @@ export default function Promotions({ className, ...rest }) {
             />
           );
         });
+      //todos
     }
   };
 
@@ -145,7 +192,9 @@ export default function Promotions({ className, ...rest }) {
         {filteredPromotionsData.length > 0 ? (
           <>
             <h1>Promociones Disponibles</h1>
-            <div style={{maxHeight:"none",marginBottom:"100px"}} className="listCard">{renderPromotions()}</div>
+            <div style={{ maxHeight: 'none', marginBottom: '100px' }} className="listCard">
+              {renderPromotions()}
+            </div>
           </>
         ) : (
           <h1>No hemos encontrado ningun resultado</h1>
