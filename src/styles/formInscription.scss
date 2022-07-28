@@ -8,14 +8,16 @@
 }
 .form__inscription{
 
-   padding-top: 50px;
+   margin-top: 29px;
+   padding-top: 27px;
    border-radius: 25px 25px;
    display: flex;
-   max-width: 980vw;
-   max-height: 89vh;
+   max-width: 900vw;
+   max-height: 82vh;
    flex-direction: column;
-   border:none;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+   border: none;
+   box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
+   justify-content: space-around;
 
    .photo_inscription{
       // border-top-right-radius: 25px;
@@ -37,7 +39,8 @@
       flex-wrap: nowrap;
       align-items: flex-start;
       justify-content: center;
-      padding-left: 50px;
+      padding-left: 30px;
+      padding-right: 20px;
   
 
       .label__inscription{
@@ -107,6 +110,12 @@
       width: 516px;
       justify-self: self-start;
    }
+}
+.button_decoration_inscriptionform{
+   display: flex;
+   width:100%;
+   justify-content: center;
+
 }
 
 }
