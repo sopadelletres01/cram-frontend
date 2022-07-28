@@ -23,7 +23,7 @@ export function CardEvent({ element }) {
     </div>
     <div className="card__subcription">
       <div className="categoria">Grauito</div>
-        <Link to={`/events/${element.id}`} className="button">Inscríbete</Link>
+        {/* <Link to={`/events/${element.id}`} className="button">Inscríbete</Link> */}
     </div>
   </Link>
     
