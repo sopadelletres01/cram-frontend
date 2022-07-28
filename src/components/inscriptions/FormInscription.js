@@ -65,7 +65,7 @@ export default function FormInscription() {
             <div className="form__inscription_user">
             
 
-                <p className='out_margin form__inscription_title'>Información del usuarioquese va incribir:</p>
+                <p className='out_margin form__inscription_title'>Información del usuario que se va incribir:</p>
                 <label>Email del usuario</label>
                 <input name='email' value={user.mail} placeholder={ user.email } readOnly />
         
@@ -73,10 +73,13 @@ export default function FormInscription() {
           </div>
           <img className="photo_inscription" src={event.photo} alt={event.name} />
         </div>
+        <div className='button_decoration_inscriptionform'>
 
         <Button type="submit" className="button form_button">
           Enviar
         </Button>
+
+        </div>
       </form>
     </diV>
   );
