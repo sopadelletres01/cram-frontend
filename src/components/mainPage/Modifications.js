@@ -116,6 +116,7 @@ const [userForm, setUserForm] = useState([]);
       console.log(res.data);
       setUserForm(res.data);
     } catch (error) {
+      setError(error)
       console.log(error);
     }
   };
@@ -141,6 +142,7 @@ const [userForm, setUserForm] = useState([]);
       setEventos(ev.data);
       setFormState('opciones');
     } catch (error) {
+      setError(error)
       console.log(error);
     } finally {
       setLoading(false);
@@ -149,14 +151,30 @@ const [userForm, setUserForm] = useState([]);
   return (
     <>
       <MenusAuxiliar>
-        <Link className="btn btn-warning" to={'/Inscriptions'} title={'Modicar user'}>
+        <Link className="btn btn-warning" to={'/admin/users'} title={'Modicar user'}>
           Dar de alta user
         </Link>
       </MenusAuxiliar>
       <div className="flex-wrap container__dos-modificaciones">
         <Form onSubmit={handleSubmit}>
           <h3>Introduce los datos del user</h3>
+          <h5>Introduce un dni para rellenar los campos automáticamente:</h5>
           <Form.Group className="mb-3" controlId="formBasicEmail">
+            <div style={{margin:"20px 0px"}}>
+              
+          <Form.Label>Busca Un DNI:</Form.Label>
+          <Form.Control
+              value={userForm.dni || ''}
+              onBlur={handleBlur}
+              type="text"
+              maxLength="9"
+              minLength="9"
+              onChange={e => {
+                setUserForm({ ...userForm, dni: e.target.value.toUpperCase() });
+              }}
+              readOnly={formState === 'editar'}
+              />
+              </div>
             <Form.Label>Nombre</Form.Label>
             <Form.Control
               value={userForm.name || ''}
@@ -173,18 +191,7 @@ const [userForm, setUserForm] = useState([]);
               }}
               readOnly={formState !== 'editar'}
             />
-            <Form.Label>Dni</Form.Label>
-            <Form.Control
-              value={userForm.dni || ''}
-              onBlur={handleBlur}
-              type="text"
-              maxLength="9"
-              minLength="9"
-              onChange={e => {
-                setUserForm({ ...userForm, dni: e.target.value.toUpperCase() });
-              }}
-              readOnly={formState === 'editar'}
-            />
+            
             <Form.Label>Telefono</Form.Label>
             <Form.Control
               value={userForm.phone || ''}
