@@ -21,8 +21,8 @@ export default class PromotionsService extends ApiCrudService {
     return httpC.get(`/users/${id}/promotions?expired=true`);
     //le pasare el id de commerce que lo tiene la promcion
   }
-  static getPromo(uid, id) {
-    return httpC.get(`/users/${uid}/promotions/${id}`);
+  static getPromo(id) {
+    return httpC.get(`/user/promotions/${id}`);
   }
   static getPromosUsadas(idUser) {
     return httpC.get(`/user_promo/${idUser}/promotions`);

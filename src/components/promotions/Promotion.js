@@ -26,7 +26,7 @@ const { user } = useAuth();
     (async () => {
       try {
         setLoading(true);
-        const res = await PromotionsService.getPromo(user.id, id);
+        const res = await PromotionsService.getPromo(id);
         console.log('res', res);
         if (res.status === 200) {
           setPromoData(res.data);
@@ -64,7 +64,7 @@ const { user } = useAuth();
           className="card__evento"
         >
           {/* Poner el name del commerce */}
-          <h1>{promoData.title}</h1>
+          <h1>{promoData.name}</h1>
           <img
             className="qr__promo"
             style={{
