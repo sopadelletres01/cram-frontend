@@ -5,15 +5,8 @@ import { useAuth } from '../context/AuthContext';
 
 function SidebarDespegable({ show, setShow }) {
   const domeNode = useRef();
-  const { logout, isLoggedIn, user } = useAuth();
-  const [isAdmin, setIsAdmin] = useState(false);
+  const { logout, isLoggedIn, user, isAdmin } = useAuth();
   console.log('USER', user);
-
-  useEffect(() => {
-    if (user && user.isAdmin) setIsAdmin(true);
-    console.log("USERRRR",user)
-    console.log("Isadmin",user && user.isAdmin)
-  }, [isAdmin]);
 
   const handleLogout = () => {
     setShow(false);
@@ -49,14 +42,14 @@ function SidebarDespegable({ show, setShow }) {
         {isLoggedIn && (
           <>
             {isAdmin ? (
-              <Link onClick={() => setShow(false)} to="/user" className="sidebar__link">
-                <FaHouseUser />
-                <span>User Page</span>
-              </Link>
-            ) : (
               <Link onClick={() => setShow(false)} to="/admin" className="sidebar__link">
                 <FaLock />
                 <span>Admin Panel</span>
+              </Link>
+            ) : (
+              <Link onClick={() => setShow(false)} to="/user" className="sidebar__link">
+                <FaHouseUser />
+                <span>User Page</span>
               </Link>
             )}
           </>
