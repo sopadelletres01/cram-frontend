@@ -14,7 +14,7 @@ import NotFound from './components/NotFound';
 import Layout from './components/layout/default';
 import Home from './components/home/Home';
 import { useAuth } from './components/context/AuthContext';
-import FormInscription from './components/inscriptions/FormInscription'
+import FormInscription from './components/inscriptions/FormInscription';
 import HomeLayout from './components/layout/home';
 import MockComponent from './components/MockComponent';
 import Events from './components/events/Events';
@@ -28,7 +28,7 @@ import Comercios from './components/mainPage/Commerces';
 import ModificacionesCo from './components/mainPage/ModificationsCommerce';
 import ValidarPromo from './components/mainPage/ValidatePromo';
 import Event from './components/events/Event';
-import Promotion from './components/mainPage/Promotions';
+import Promo from './components/promotions/Promotion';
 import PromotionsC from './components/promotions/CreatePromotion';
 import Commerces from './components/commerces/Commerces';
 import PrivateRoute from './components/routes/PrivateRoute';
@@ -126,9 +126,15 @@ function App() {
           />
           <Route
             path="/promotions/:id"
-            element={<Promotions/>
-            } />
-          <Route path="/events/:id" element={
+            element={
+              <PrivateRoute>
+                <Promo />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/events/:id"
+            element={
               <PrivateRoute>
                 <ShowEvent />
               </PrivateRoute>
@@ -159,6 +165,15 @@ function App() {
             }
           />
 
+          <Route
+            path="/inscriptions"
+            element={
+              <PrivateRoute>
+                <FormInscription />
+              </PrivateRoute>
+            }
+          />
+
           {/* adminitrador */}
 
           <Route
@@ -178,23 +193,17 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/admin/users/edit" element={
+          <Route
+            path="/admin/users/edit"
+            element={
               <PrivateRoute roleRestricted>
                 <Modifications tabla={'users'} />
               </PrivateRoute>
-            } 
+            }
           />
-          <Route path="/promotions/:id" element={<Promotions />} />
-          <Route path="/inscriptions" element={
-              <PrivateRoute>
-                <FormInscription />
-              </PrivateRoute>
-            } />
-
+          
 
           {/* <Route path="/inscriptions" element={<Inscriptions />} /> */}
-          <Route path="/promotions" element={<Promotions />} />
-          <Route path="/events" element={<Events />} />
           {/* <Route path="/inscriptions/modificaciones" element={<Modificaciones tabla={'users'} />} /> */}
           <Route path="/events/create" element={<EventosC />} />
           <Route path="/events/modificaciones" element={<ModificacionesE />} />
