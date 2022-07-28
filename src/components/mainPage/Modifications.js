@@ -28,7 +28,7 @@ const [userForm, setUserForm] = useState([]);
   const handleDelete = async () => {
     try {
       if (events.length === 0) {
-        let res = await UsuariosService.delete('users', user.id);
+        let res = await UsuariosService.delete('users', userForm.id);
         console.log(res.data);
         alert('Se ha eliminado el user...');
         if (res.status === 200) {
@@ -39,12 +39,12 @@ const [userForm, setUserForm] = useState([]);
         }
         return;
       }
-      let res = await UsuariosService.deleteInscriptionsByUser(user.id);
+      let res = await UsuariosService.deleteInscriptionsByUser(userForm.id);
       alert('Se han eliminado las Inscriptions del user...');
       console.log(res.data);
       if (res.status === 200) {
         console.log(res.data.message);
-        let delRes = await UsuariosService.delete('users', user.id);
+        let delRes = await UsuariosService.delete('users', userForm.id);
         alert('Se ha eliminado el user...');
         console.log(delRes.data);
         setFormState('search');
@@ -126,7 +126,7 @@ const [userForm, setUserForm] = useState([]);
     try {
       setLoading(true);
       if (formState === 'editar') {
-        let res = await UsuariosService.update('users', user.id, user);
+        let res = await UsuariosService.update('users', userForm.id, userForm);
         console.log(res);
         if (res.status === 200) {
           setFormState('opciones');
@@ -134,9 +134,9 @@ const [userForm, setUserForm] = useState([]);
         console.log('RESSSSSSSSSSSSSSSSSSSSSss', res);
         return;
       }
-      let res = await UsuariosService.searchUser(user.dni);
+      let res = await UsuariosService.searchUser(userForm.dni);
 
-      let ev = await EventosService.getEventosByUser(res.data.id);
+      let ev = await EventosService.getEventsByUser(res.data.id);
       console.log(ev.data);
       setEventos(ev.data);
       setFormState('opciones');
@@ -159,58 +159,58 @@ const [userForm, setUserForm] = useState([]);
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Nombre</Form.Label>
             <Form.Control
-              value={user.name || ''}
+              value={userForm.name || ''}
               onChange={e => {
-                setUserForm({ ...user, name: e.target.value });
+                setUserForm({ ...userForm, name: e.target.value });
               }}
               readOnly={formState !== 'editar'}
             />
             <Form.Label>Apellidos</Form.Label>
             <Form.Control
-              value={user.apellidos || ''}
+              value={userForm.last_name || ''}
               onChange={e => {
-                setUserForm({ ...user, apellidos: e.target.value });
+                setUserForm({ ...userForm, last_name: e.target.value });
               }}
               readOnly={formState !== 'editar'}
             />
             <Form.Label>Dni</Form.Label>
             <Form.Control
-              value={user.dni || ''}
+              value={userForm.dni || ''}
               onBlur={handleBlur}
               type="text"
               maxLength="9"
               minLength="9"
               onChange={e => {
-                setUserForm({ ...user, dni: e.target.value.toUpperCase() });
+                setUserForm({ ...userForm, dni: e.target.value.toUpperCase() });
               }}
               readOnly={formState === 'editar'}
             />
             <Form.Label>Telefono</Form.Label>
             <Form.Control
-              value={user.telefono || ''}
+              value={userForm.phone || ''}
               type="text"
               maxLength="9"
               onChange={e => {
-                setUserForm({ ...user, telefono: e.target.value });
+                setUserForm({ ...userForm, phone: e.target.value });
               }}
               readOnly={formState !== 'editar'}
             />
             <Form.Label>Email</Form.Label>
             <Form.Control
-              value={user.email || ''}
+              value={userForm.email || ''}
               type="email"
               onChange={e => {
-                setUserForm({ ...user, email: e.target.value });
+                setUserForm({ ...userForm, email: e.target.value });
               }}
               readOnly={formState !== 'editar'}
             />
             <Form.Label>Fecha de Nacimiento</Form.Label>
             <Form.Control
-              value={user.fecha_nacimiento || ''}
+              value={userForm.date_of_birth || ''}
               type="date"
               placeholder="AAAA/MM/DD"
               onChange={e => {
-                setUserForm({ ...user, fecha_nacimiento: e.target.value });
+                setUserForm({ ...userForm, date_of_birth: e.target.value });
               }}
               readOnly={formState !== 'editar'}
             />
@@ -236,11 +236,11 @@ const [userForm, setUserForm] = useState([]);
                   return (
                     <tr key={evento.id}>
                       <td>{e + 1}</td>
-                      <td>{evento.id_evento}</td>
+                      <td>{evento.idEvent}</td>
                       <td>{evento.name}</td>
-                      <td>{evento.edicion}</td>
-                      <td>{evento.fecha_inicio}</td>
-                      <td>{evento.lugar}</td>
+                      <td>{evento.edition}</td>
+                      <td>{evento.start_date} - {evento.final_date} </td>
+                      <td>{evento.adress}</td>
                     </tr>
                   );
                 })}

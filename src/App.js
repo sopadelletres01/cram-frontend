@@ -20,7 +20,7 @@ import Events from './components/events/Events';
 import Promotions from './components/promotions/Promotions';
 import UserProfile from './components/user/UserProfile';
 import Inscriptions from './components/mainPage/Inscription';
-import Modificaciones from './components/mainPage/Modifications';
+import Modifications from './components/mainPage/Modifications';
 import EventosC from './components/mainPage/EventsC';
 import ModificacionesE from './components/mainPage/ModificationsEvents';
 import Comercios from './components/mainPage/Commerces';
@@ -166,10 +166,15 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/admin/users/edit" element={
+              <PrivateRoute roleRestricted>
+                <Modifications tabla={'users'} />
+              </PrivateRoute>
+            } 
+          />
           <Route path="/promotions" element={<Promotions />} />
           <Route path="/events" element={<Events />} />
           <Route path="/promotions/:id" element={<Promo />} />
-          <Route path="/inscriptions/modificaciones" element={<Modificaciones tabla={'users'} />} />
           <Route path="/events/create" element={<EventosC />} />
           <Route path="/events/modificaciones" element={<ModificacionesE />} />
           <Route path="/commerce" element={<Comercios />} />

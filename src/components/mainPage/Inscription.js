@@ -37,6 +37,7 @@ const [inscripcion, setInscripcion] = useState([]);
   const handleSubmitAlone = async e => {
     e.preventDefault();
     try {
+      setLoading(true)
       let res = await ApiCrudService.create('users', form);
       console.log("USERCREADO",res.data)
       setDatos(res.data.id);
@@ -46,11 +47,15 @@ const [inscripcion, setInscripcion] = useState([]);
       setError(e);
       console.log(e);
     }
+    finally{
+      setLoading(false)
+    }
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
+      setLoading(true)
       let newIns = await Promise.all(
         inscripcion.map(async ins => {
           return await ApiCrudService.create('users', ins);
@@ -67,6 +72,9 @@ const [inscripcion, setInscripcion] = useState([]);
     } catch (e) {
       setError(e);
       console.log(e);
+    }
+    finally{
+      setLoading(false)
     }
   };
 
@@ -91,7 +99,7 @@ const [inscripcion, setInscripcion] = useState([]);
   return (
     <>
       <MenusAuxiliar>
-        <Link className="btn btn-warning" to={'/Inscriptions/modificaciones'} title={'Modicar user'}>
+        <Link className="btn btn-warning" to={'/admin/users/edit'} title={'Modicar user'}>
           {' '}
           Buscar user
         </Link>
