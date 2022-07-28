@@ -159,6 +159,15 @@ function App() {
           {/* adminitrador */}
 
           <Route
+            path="/admin"
+            element={
+              <PrivateRoute roleRestricted>
+                <MainPage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
             path="/admin/users"
             element={
               <PrivateRoute roleRestricted>
