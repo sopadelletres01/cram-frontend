@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 export function CardCommerce({ element }) {
   
   return (
-    <Link to={`/commerce/${element.id}`} className="card__event_card_commerce">
+    <Link to={`/commerces/${element.id}`} className="card__event_card_commerce">
     <div className="card__content_commerce">
       <img src={element.photo} alt={`${element.name}`} />
       <span className="card__title_commerce">{element.name}</span>
