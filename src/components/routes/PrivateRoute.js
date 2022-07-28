@@ -8,9 +8,9 @@ function PrivateRoute({ roleRestricted, ...props }) {
 
   useEffect(()=>{
     // If the user is already logged in, redirect him to home page
-      if (!isLoggedIn) navigate('/');
+      if (!isLoggedIn) navigate('/login');
     // If the route is role-restricted and the user is not admin
-      if (roleRestricted && !user.isAdmin) navigate('/');
+      if (roleRestricted && !user.isAdmin) navigate('/user');
     },[])
 
 

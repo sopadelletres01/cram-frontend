@@ -43,12 +43,6 @@ function CarouselWrapper() {
             return <CarouselItem key={promo.id} type="promotion" element={promo} />;
           })}
       </Carousel>
-      <Carousel title="Próximos eventos" show={4} infiniteLoop withIndicator>
-        {eventsFree &&
-          eventsFree.map(ev => {
-            return <CarouselItem key={ev.id} element={ev} />;
-          })}
-      </Carousel>
     </div>
   );
 }
