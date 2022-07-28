@@ -72,7 +72,7 @@ export function Login() {
 
   return (
     <div style={{ maxWidth: '700px' }} className="container  w-75 mt-5">
-      <div className="row bg-light rounded p-4 justify-content-center">
+      <div id='container__login' className="row bg-light rounded p-4 justify-content-center">
         <Form onSubmit={handleSubmit}>
           <h3 className="componente__titulo">Login</h3>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -96,7 +96,7 @@ export function Login() {
             Registrate
           </Button>
           <Link to="/forgot" className="style__forgot">
-            <span>¿Has olvidado la contraseña?</span>
+            <span className='link__login'>¿Has olvidado la contraseña?</span>
           </Link>
         </Form>
         <Modal show={show} onHide={toggleShow}>

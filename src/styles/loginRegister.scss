@@ -1,6 +1,21 @@
 .input-group>.form-control, .input-group>.form-select {
     width: unset;
 }
+#container__login{
+    border:none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    .rounded{
+        border-radius:25px 25px;
+        
+    }
+    .link__login{
+        color:$letter-color1;
+       
+    }
+    .style__forgot{
+        text-decoration-color:$letter-color1;
+    }
+}
 
 /* ESTILOS DEL TITULO */
 .bienvenido{
@@ -44,6 +59,10 @@
     justify-content: center;
     color:orange;
 
+    &.peque{
+        color:$letter-color1;
+        font-size:15px;
+    }
 }
 .importante{
     color:orange;
