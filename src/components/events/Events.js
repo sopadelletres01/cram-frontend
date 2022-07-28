@@ -6,7 +6,7 @@ import { AuthContext, useAuth } from '../context/AuthContext';
 import { useGlobalState } from '../context/GlobalContext';
 import Filters from './Filters';
 import CardEvent from './CardEvent';
-import EventsService from '../../services/events.service'
+import EventsService from '../../services/events.service';
 
 //En esta pagina se mostraran todos los events de la aplicacion, por orden alfabetico o proximidad,
 //por defecto, la lista mostrará primero los events a los que estas inscrito y los diferenciará de los otros
@@ -19,18 +19,16 @@ export default function Events() {
   // cogemos los eventos gratuitos
   useEffect(() => {
     const getEventsFree = async () => {
-      try{
-        setLoading(true)
+      try {
+        setLoading(true);
         let freeEvents = await EventsService.getEventsActiveFree();
         console.log('eventos gratuitos', freeEvents.data);
         setListFreeEvents(freeEvents.data);
-      }
-      catch(e){
-        console.log(e)
-        setError(e)
-      }
-      finally{
-        setLoading(false)
+      } catch (e) {
+        console.log(e);
+        setError(e);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -42,11 +40,12 @@ export default function Events() {
   const { user } = useAuth();
   console.log('informacion del usuario', user);
   return (
-    <div className="listCard">
-      <br />
-      {listFreeEvents.map(element => {
-        return <CardEvent element={element} />;
-      })}
+    <div className="container__list">
+      <div className="listCard">
+        {listFreeEvents.map(element => {
+          return <CardEvent element={element} />;
+        })}
+      </div>
     </div>
   );
 }

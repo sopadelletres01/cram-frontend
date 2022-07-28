@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
-import Card from './Card';
+import React, {useEffect, useState} from 'react';
 import EventsService from '../services/events.service'
+import CardEvent from '../events/CardEvent';
+import { useAuth } from '../context/AuthContext';
 function ListCard({ list }) {
   const [listFreeEvents, setListFreeEvents] = useState([]);
   // cogemos los eventos gratuitos
@@ -21,8 +22,8 @@ function ListCard({ list }) {
   return (
     <div className="listCard">
       <br />
-      {list.map(element => {
-        return <Card element={element} />;
+      {list && list.map(element => {
+        return <CardEvent element={element} />;
       })}
     </div>
   );

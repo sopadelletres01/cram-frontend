@@ -1,0 +1,114 @@
+.container__form{
+   display: flex;
+   width: 100%;
+   height: 100%;
+   flex-direction: row;
+   justify-content: center;
+   
+}
+.form__inscription{
+
+   padding-top: 50px;
+   border-radius: 25px 25px;
+   display: flex;
+   max-width: 980vw;
+   max-height: 89vh;
+   flex-direction: column;
+   border:none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+   .photo_inscription{
+      // border-top-right-radius: 25px;
+      width: 200px;
+      height: 150px;
+
+   
+   } 
+   .form__inscription_title{
+    display:flex;
+      font-size: 1.5em;
+      color:$letter-color1;
+      font-weight: bold;
+
+   }
+   .form__inscription_information{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      justify-content: center;
+      padding-left: 50px;
+  
+
+      .label__inscription{
+      font-size:1.05em;
+      font-weight: bold;
+      width:300px; 
+   }
+   
+   .date_form{
+     font-weight: normal;
+   }
+   .event__info_form{
+      display: flex;
+      flex-direction: column;
+      width: 516px;
+      justify-self: self-start;
+   }
+   .out_margin{
+      margin:0%;
+   }
+
+
+   }
+   .button{
+      display:flex;
+      text-decoration: none;
+      width: 140px;
+      height: 45px;
+      font-weight:bold;
+      font-size: 0.75em;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: $primary-color;
+      background-color: #fff;
+      border: none;
+      border-radius: 45px;
+      box-shadow: 0px 8px 15px rgba(235, 126, 10, 0.508);
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+      outline: none;
+      align-items: center;
+      justify-content: center;
+      
+      
+      &:hover{
+          background-color: $primary-color;
+          box-shadow: 0px 15px 20px rgb(247, 202, 119);
+          color: #fff;
+          transform: translateY(-7px);
+      }
+  }
+  .form_button{
+
+   align-self: center;
+   margin-top: 12px;
+}
+  .form__inscription_user{
+   display: flex;
+   flex-direction: column;
+   flex-wrap: nowrap;
+   align-items: flex-start;
+   justify-content: center;
+
+   .container__user_form{
+      display: flex;
+      flex-direction: column;
+      width: 516px;
+      justify-self: self-start;
+   }
+}
+
+}
+  
+  

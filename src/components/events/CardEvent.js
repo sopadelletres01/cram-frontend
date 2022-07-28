@@ -2,9 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 
-function CardEvent ({element }) {
+export function CardEvent({ element }) {
+  
   return (
-    <Link to={`/events/${element.id}/promotions`} className="card">
+    <Link to={`/events/${element.id}`} className="card">
     <div className="card__content">
       <img src={element.photo} alt={`${element.name}`} />
       <span className="card__title">{element.name}</span>

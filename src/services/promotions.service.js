@@ -31,4 +31,7 @@ export default class PromotionsService extends ApiCrudService {
     console.log(idUser, idPromotion);
     return httpC.get(`/user_promo/${idUser}/promotions/${idPromotion}`);
   }
+  static getPromoShow(id) {
+    return httpC.get(`events/${id}/promotions`)
+  }
 }
