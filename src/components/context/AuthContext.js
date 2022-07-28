@@ -9,6 +9,7 @@ const AuthContextProvider = props => {
   const { error, setError } = useGlobalState();
   const [user, setUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
   console.log('USER', user);
   useEffect(() => {
@@ -20,7 +21,7 @@ const AuthContextProvider = props => {
     const userData = await verifyStoredToken();
     //Check if user is admin
     console.log("USERDATTA",userData)
-    if(userData && userData.isAdmin) return navigate("/admin")
+    if(userData.isAdmin) return navigate('/admin');
     return navigate('/user');
   };
 
@@ -31,6 +32,7 @@ const AuthContextProvider = props => {
     // Update the state variables
     setIsLoggedIn(false);
     setUser(null);
+    setIsAdmin(false);
     navigate('/login');
   };
 
@@ -44,6 +46,8 @@ const AuthContextProvider = props => {
       try {
         const response = await AuthService.userIsAuth(storedToken);
         setUser(response.data);
+        console.log("ISADMINAUTH",response.data)
+        setIsAdmin(response.data.isAdmin)
         setIsLoggedIn(true);
         return response.data;
       } catch (e) {
@@ -57,12 +61,12 @@ const AuthContextProvider = props => {
       console.log('Token not available');
     }
   };
-  return <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>{props.children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ isLoggedIn, user, login, logout, isAdmin }}>{props.children}</AuthContext.Provider>;
 };
 
 function useAuth() {
-  const { isLoggedIn, user, login, logout } = useContext(AuthContext);
-  return { isLoggedIn, user, login, logout };
+  const { isLoggedIn, user, login, logout, isAdmin } = useContext(AuthContext);
+  return { isLoggedIn, user, login, logout, isAdmin };
 }
 
 export { AuthContext, AuthContextProvider, useAuth };
