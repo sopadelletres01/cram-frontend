@@ -41,7 +41,7 @@ export default function ForgotPassword() {
     <div className="container w-50 mt-5 bg-light rounded p-3">
       <Form className="justify-content-center " onSubmit={handleSubmit}>
         <h3 className="componente__titulo">Recuperacion contraseña</h3>
-        <h4 className="componente__titulo">Introduce tu email para enviarte un email de verificacion</h4>
+        <h4 className="componente__titulo peque">Introduce tu email para enviarte un email de verificacion</h4>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Dirección de email</Form.Label>
           <Form.Control name="email" size="sm" type="email" placeholder="introduce tu email" onChange={e => setForm({ ...form, email: e.target.value })} />
