@@ -13,7 +13,7 @@ export default function Card({src,alt, title, subtitle, path }) {
 
   return (
 
-    <BSCard className="card_prueba" onClick={handleNavigate}>
+    <BSCard className="card_prueba " onClick={handleNavigate}>
         <BSCard.Img className='card__image' variant="top" width="100%" height="225px" src={src} alt={alt}/>
         <BSCard.Body>
             <BSCard.Title>{title}</BSCard.Title>
