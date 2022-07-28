@@ -3,7 +3,7 @@ import { AuthContext, useAuth } from '../context/AuthContext';
 import Papa from 'papaparse';
 import { Form, Button } from 'react-bootstrap';
 import ApiCrudService from '../../services/crud.service';
-import EventosService from '../../services/events.service';
+import EventsService from '../../services/events.service';
 import { useGlobalState } from '../context/GlobalContext';
 import MenusAuxiliar from './MenuAux';
 import { Link } from 'react-router-dom';
@@ -22,7 +22,7 @@ const [inscripcion, setInscripcion] = useState([]);
     async function getEventos() {
       try {
         setLoading(true);
-        const events = await EventosService.getEventosCurrent('events');
+        const events = await EventsService.getEventsActive();
         setEventos(events.data);
       } catch (e) {
         setError(e);
@@ -38,8 +38,10 @@ const [inscripcion, setInscripcion] = useState([]);
     e.preventDefault();
     try {
       let res = await ApiCrudService.create('users', form);
+      console.log("USERCREADO",res.data)
       setDatos(res.data.id);
-      await ApiCrudService.create('Inscriptions', { id_usuario: res.data.id, id_evento: idEvento });
+      let inscription = await ApiCrudService.create('inscriptions', { idUser: Number(res.data.id), idEvent: Number(idEvento) });
+      console.log("INSCRIPTION",inscription.data)
     } catch (e) {
       setError(e);
       console.log(e);
@@ -131,7 +133,7 @@ const [inscripcion, setInscripcion] = useState([]);
             <Form.Label>Escoge un evento para inscribir a los participantes</Form.Label>
             <Form.Select aria-label="Escoge un evento" onChange={e => handleSelect(e)}>
               {events.map(evento => {
-                return <option value={evento.id}> {evento.name + ' ' + evento.edicion}</option>;
+                return <option value={evento.id}> {evento.name + ' ' + evento.edition}</option>;
               })}
             </Form.Select>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -144,7 +146,7 @@ const [inscripcion, setInscripcion] = useState([]);
               <Form.Label>Apellidos</Form.Label>
               <Form.Control
                 onChange={e => {
-                  setForm({ ...form, apellidos: e.target.value });
+                  setForm({ ...form, last_name: e.target.value });
                 }}
               />
               <Form.Label>Dni</Form.Label>
@@ -161,7 +163,7 @@ const [inscripcion, setInscripcion] = useState([]);
                 type="text"
                 maxLength="9"
                 onChange={e => {
-                  setForm({ ...form, telefono: e.target.value });
+                  setForm({ ...form, phone: e.target.value });
                 }}
               />
               <Form.Label>Email</Form.Label>
@@ -176,7 +178,7 @@ const [inscripcion, setInscripcion] = useState([]);
                 type="date"
                 placeholder="AAAA/MM/DD"
                 onChange={e => {
-                  setForm({ ...form, fecha_nacimiento: e.target.value });
+                  setForm({ ...form, date_of_birth: e.target.value });
                 }}
               />
             </Form.Group>
