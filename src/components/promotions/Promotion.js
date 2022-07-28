@@ -12,12 +12,14 @@ const Promo = () => {
 const {setError, setLoading} = useGlobalState()
 const { user } = useAuth();
   const { id } = useParams();
+  console.log("USER",user)
+  console.log("id",id)
   const [promoData, setPromoData] = useState([]);
   const [modal, setModal] = useState(false);
   let navigate = useNavigate();
 
   const redirectEvento = () => {
-    navigate(`/user/events/${promoData.id_evento}`);
+    navigate(`/events/${promoData.idEvent}`);
   };
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const { user } = useAuth();
         const userPromotionsCaducadas = await PromotionsService.getPromotionsExpiredByUser(user.id);
         console.log('caducadas', userPromotionsCaducadas);
         if (userPromotionsCaducadas.data.find(promo => promo.id === res.data.id)) {
-          setPromoData({ ...res.data, caducado: true });
+          setPromoData({ ...res.data, expired: true });
         }
       } catch (e) {
         setError(e);
@@ -75,7 +77,7 @@ const { user } = useAuth();
             src="https://res.cloudinary.com/dhdbik42m/image/upload/v1653246688/websiteQRCode_noFrame_vcjzxh.png"
           ></img>
           <Card.Text className="laptop__column" style={{ display: 'flex', gap: '16px' }}>
-            <Card.Img style={{ flex: '1', maxHeight: '600px' }} variant="top" src={promoData.src} />
+            <Card.Img style={{ flex: '1', maxHeight: '600px' }} variant="top" src={promoData.photo} />
             <div
               style={{
                 display: 'flex',
@@ -85,27 +87,27 @@ const { user } = useAuth();
               }}
             >
               <span>
-                <strong>Descripcion:</strong> {promoData.descripcion}
+                <strong>Descripcion:</strong> {promoData.description}
               </span>
               <span>
                 {' '}
-                <strong>Comercio:</strong> <span>{promoData.comercio_nombre}</span>
+                <strong>Comercio:</strong> <span>{promoData.commerce_name}</span>
               </span>
               <span>
-                <strong>Evento asignado:</strong> <span>{promoData.evento_nombre}</span> <br />
+                <strong>Evento asignado:</strong> <span>{promoData.event_name}</span> <br />
                 <a className="link-primary" onClick={redirectEvento}>
                   Ver evento
                 </a>
               </span>
               <span>
-                <strong>La promoción estará disponible desde :</strong> <span>{promoData.fecha_inicio}</span>
+                <strong>La promoción estará disponible desde :</strong> <span>{promoData.start_date}</span>
               </span>
               <span>
                 <strong>La promoción expirará: </strong>
-                <span>{promoData.fecha_expiracion}</span>
+                <span>{promoData.final_date}</span>
               </span>
               <strong>Estado: </strong>
-              {promoData.caducado ? (
+              {promoData.expired ? (
                 <Badge style={{ width: '100px' }} bg="danger">
                   Expirada
                 </Badge>
