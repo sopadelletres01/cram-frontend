@@ -34,6 +34,7 @@ import Commerces from './components/commerces/Commerces';
 import PrivateRoute from './components/routes/PrivateRoute';
 import AnonRoute from './components/routes/AnonRoute';
 import ShowEvent from './components/events/ShowEvent';
+import CommercesShow from './components/commerces/CommercesShow';
 
 //el token del mapbox
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
@@ -153,6 +154,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Commerces />
+              </PrivateRoute>
+            }
+          />
+           <Route
+            path="/commerces/:id"
+            element={
+              <PrivateRoute>
+                <CommercesShow />
               </PrivateRoute>
             }
           />
