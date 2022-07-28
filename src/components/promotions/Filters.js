@@ -140,6 +140,15 @@ export default function Filters({ open, setOpen, promotions, filteredPromotions,
                   className={`${selected === 3 ? 'selected' : ''} button__option`}
                   value={3}
                 >
+                  Usadas
+                </Button>
+                <Button
+                  onClick={e => {
+                    setSelected(4);
+                  }}
+                  className={`${selected === 3 ? 'selected' : ''} button__option`}
+                  value={4}
+                >
                   Todos
                 </Button>
               </ButtonGroup>

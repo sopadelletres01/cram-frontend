@@ -35,7 +35,7 @@ export default function FinalPromotion({ onClick, expired, used, name, commerce,
             <div className="m-0 categoria">Estado:</div>
           </div>
           <div className="card__subcription">
-            {expired ? <Badge bg="danger">Usada</Badge> : <Badge bg="success">Canjeable</Badge>}
+            {used ? <Badge bg="danger">Usada</Badge> : <Badge bg="success">Canjeable</Badge>}
             {expired ? <Badge bg="danger">Expirada</Badge> : <Badge bg="success">Vigente</Badge>}
             {/* <div to={`/events/${id}`} className="button">Inscríbete</div> */}
           </div>
