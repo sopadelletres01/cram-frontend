@@ -101,7 +101,7 @@ export default function UserProfile() {
     <div className="d-flex justify-content-center align-items-center">
       <div className={'bg-light rounded p-4 w-100'}>
         {userData && (
-          <Form>
+          <Form className='profile__form'>
             <h1>Perfil de Usuario</h1>
             {rolName && <h5 style={{ textTransform: 'capitalize' }}>Rol: {rolName}</h5>}
             <fieldset className="customLegend">
@@ -114,7 +114,7 @@ export default function UserProfile() {
                   <Form.Label>Selecciona un nuevo avatar:</Form.Label>
                   <Form.Control onChange={handleFileChange} type="file" />
                 </Form.Group>
-                <button onClick={handleFileUpload} className="btn mt-2 btn-primary">
+                <button onClick={handleFileUpload} className="button__profile">
                   Cambiar avatar
                 </button>
               </Form.Group>
@@ -172,16 +172,16 @@ export default function UserProfile() {
                   </Col>
                 </Form.Group>
               </Col>
-              <button onClick={handleUpdateProfile} className="btn mb-3 btn-primary">
+              <button onClick={handleUpdateProfile} className="button__profile">
                 Actualizar perfil
               </button>
             </fieldset>
           </Form>
         )}
 
-        <h5 className="bg-info profile__forgot rounded">
-          <span className="text-secondary">Olvidaste la contraseña?</span>
-          <Link onClick={handleRedirect} to="/forgot">
+        <h5 className=" profile__forgot rounded">
+          <span className="text-secondary ">¿Olvidaste la contraseña?   </span>
+          <Link className='color' onClick={handleRedirect} to="/forgot">
             Recuperar
           </Link>
         </h5>
