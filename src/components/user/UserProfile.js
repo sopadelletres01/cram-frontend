@@ -9,6 +9,7 @@ import { useGlobalState } from '../context/GlobalContext';
 export default function UserProfile() {
   const { setError } = useGlobalState();
   const { user, logout } = useAuth();
+  const { loading, setLoading } = useGlobalState();
   const [selectedFile, setSelectedFile] = useState();
   const [rolName, setRolName] = useState('');
   const [form, setForm] = useState({});
@@ -21,6 +22,7 @@ export default function UserProfile() {
   useEffect(() => {
     (async () => {
       try {
+        setLoading(true);
         let res = await UsuariosService.getRolByUser(user.idRole);
         if (res.status === 200) {
           console.log('ress', res);
@@ -35,6 +37,8 @@ export default function UserProfile() {
         if (e?.response?.status === 404) {
           console.log('El rol no se encontró');
         }
+      } finally {
+        setLoading(false);
       }
     })();
   }, []);
@@ -125,17 +129,13 @@ export default function UserProfile() {
                 <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
                   <Form.Label column>Nombre</Form.Label>
                   <Col sm="10">
-                    <Form.Control value={form.name}  placeholder={userData.name} />
+                    <Form.Control value={form.name} placeholder={userData.name} />
                   </Col>
                 </Form.Group>
                 <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
-                  <Form.Label >Apellidos</Form.Label>
+                  <Form.Label>Apellidos</Form.Label>
                   <Col sm="10">
-                    <Form.Control
-                    placeholder={userData.last_name}
-                      onChange={e => setForm({ ...form, last_name: e.target.value })}
-                      value={form.last_name}
-                    />
+                    <Form.Control placeholder={userData.last_name} onChange={e => setForm({ ...form, last_name: e.target.value })} value={form.last_name} />
                   </Col>
                 </Form.Group>
               </Col>
@@ -150,7 +150,7 @@ export default function UserProfile() {
                 <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
                   <Form.Label column>Telefono</Form.Label>
                   <Col sm="10">
-                    <Form.Control  onChange={e => setForm({ ...form, phone: e.target.value })} placeholder={userData.phone} value={form.phone} />
+                    <Form.Control onChange={e => setForm({ ...form, phone: e.target.value })} placeholder={userData.phone} value={form.phone} />
                   </Col>
                 </Form.Group>
               </Col>
@@ -164,11 +164,7 @@ export default function UserProfile() {
                 <Form.Group as={Col} className="mb-3" controlId="formPlaintextEmail">
                   <Form.Label column>Fecha nacimiento</Form.Label>
                   <Col sm="10">
-                    <Form.Control
-                      type="date"
-                      onChange={e => setForm({ ...form, date_of_birth: e.target.value })}
-                      value={userData.date_of_birth}
-                    />
+                    <Form.Control type="date" onChange={e => setForm({ ...form, date_of_birth: e.target.value })} value={userData.date_of_birth} />
                   </Col>
                 </Form.Group>
               </Col>
