@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import { Button, ButtonGroup, ButtonToolbar, Collapse, Dropdown, DropdownButton, Form, InputGroup } from 'react-bootstrap';
 import { FaSearch } from 'react-icons/fa';
 
-export default function Filters({ open, setOpen, Promotions, filteredPromotions, setPromotions, setSelected, selected }) {
-  console.log('Promotions filtro', filteredPromotions);
-  console.log('Promotions de l filtro', Promotions);
+export default function Filters({ open, setOpen, promotions, filteredPromotions, setPromotions, setSelected, selected }) {
+  console.log('promotions filtro', filteredPromotions);
+  console.log('promotions de l filtro', promotions);
   const handleSortChange = e => {
     let sortedPromotions = [...filteredPromotions];
     switch (e.target.value) {
       case '1':
         console.log('A/A');
         sortedPromotions = filteredPromotions.sort((a, b) => {
-          let A = a.title.toLowerCase();
-          let B = b.title.toLowerCase();
+          let A = a.name.toLowerCase();
+          let B = b.name.toLowerCase();
           if (A > B) {
             return 1;
           } else if (A < B) {
@@ -28,8 +28,8 @@ export default function Filters({ open, setOpen, Promotions, filteredPromotions,
       case '2':
         console.log('A/D');
         sortedPromotions = filteredPromotions.sort((a, b) => {
-          let A = a.title.toLowerCase();
-          let B = b.title.toLowerCase();
+          let A = a.name.toLowerCase();
+          let B = b.name.toLowerCase();
           if (A < B) {
             return 1;
           } else if (A > B) {
@@ -44,9 +44,9 @@ export default function Filters({ open, setOpen, Promotions, filteredPromotions,
       case '3':
         console.log('F/A');
         sortedPromotions = filteredPromotions.sort((a, b) => {
-          if (a.fecha_expiracion > b.fecha_expiracion) {
+          if (a.final_date > b.final_date) {
             return 1;
-          } else if (a.fecha_expiracion < b.fecha_expiracion) {
+          } else if (a.final_date < b.final_date) {
             return -1;
           }
           // a must be equal to b
@@ -56,9 +56,9 @@ export default function Filters({ open, setOpen, Promotions, filteredPromotions,
       case '4':
         console.log('F/D');
         sortedPromotions = filteredPromotions.sort((a, b) => {
-          if (a.fecha_expiracion < b.fecha_expiracion) {
+          if (a.final_date < b.final_date) {
             return 1;
-          } else if (a.fecha_expiracion > b.fecha_expiracion) {
+          } else if (a.final_date > b.final_date) {
             return -1;
           }
           // a must be equal to b
@@ -68,10 +68,10 @@ export default function Filters({ open, setOpen, Promotions, filteredPromotions,
 
       default:
         sortedPromotions = filteredPromotions.sort((a, b) => {
-          if (a.evento_nombre > b.evento_nombre) {
+          if (a.event_name > b.event_name) {
             return 1;
           }
-          if (a.evento_nombre < b.evento_nombre) {
+          if (a.event_name < b.event_name) {
             return -1;
           }
           // a must be equal to b
@@ -87,10 +87,10 @@ export default function Filters({ open, setOpen, Promotions, filteredPromotions,
     let value = e.target.value;
     let newPromotions;
     if (value === '') {
-      setPromotions([...Promotions]);
+      setPromotions([...promotions]);
       return;
     }
-    newPromotions = Promotions.filter(promo => promo.title.toLowerCase().includes(value.toLowerCase()));
+    newPromotions = promotions.filter(promo => promo.name.toLowerCase().includes(value.toLowerCase()));
     console.log('filtered', newPromotions);
     setPromotions([...newPromotions]);
   };
