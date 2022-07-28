@@ -21,7 +21,6 @@ function CarouselWrapper() {
         setEventsFree(data.data);
         setPromosFree(promos.data);
       } catch (e) {
-        setError(e);
         console.log('Error', e);
       } finally {
         setLoading(false);
