@@ -14,6 +14,7 @@ import EventsService from '../../services/events.service';
 //Además, se podrá filtrar por inscritos o no inscritos, para que la busqueda sea mas sencilla
 
 export default function Events() {
+  const { user } = useAuth();
   const { loading, setLoading, setError } = useGlobalState();
   const [listFreeEvents, setListFreeEvents] = useState([]);
   // cogemos los eventos gratuitos
@@ -37,7 +38,6 @@ export default function Events() {
   // cogemos los eventos del usuario
   // cogemos las promociones del usuario
 
-  const { user } = useAuth();
   console.log('informacion del usuario', user);
   return (
     <div className="container__list">
