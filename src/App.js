@@ -14,6 +14,7 @@ import NotFound from './components/NotFound';
 import Layout from './components/layout/default';
 import Home from './components/home/Home';
 import { useAuth } from './components/context/AuthContext';
+import FormInscription from './components/inscriptions/FormInscription'
 import HomeLayout from './components/layout/home';
 import MockComponent from './components/MockComponent';
 import Events from './components/events/Events';
@@ -24,7 +25,6 @@ import Modifications from './components/mainPage/Modifications';
 import EventosC from './components/mainPage/EventsC';
 import ModificacionesE from './components/mainPage/ModificationsEvents';
 import Comercios from './components/mainPage/Commerces';
-import Promo from './components/promotions/Promotion';
 import ModificacionesCo from './components/mainPage/ModificationsCommerce';
 import ValidarPromo from './components/mainPage/ValidatePromo';
 import Event from './components/events/Event';
@@ -33,6 +33,7 @@ import PromotionsC from './components/promotions/CreatePromotion';
 import Noticias from './components/Noticias';
 import PrivateRoute from './components/routes/PrivateRoute';
 import AnonRoute from './components/routes/AnonRoute';
+import ShowEvent from './components/events/ShowEvent';
 
 //el token del mapbox
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
@@ -125,9 +126,11 @@ function App() {
           />
           <Route
             path="/promotions/:id"
-            element={
+            element={<Promotions/>
+            } />
+          <Route path="/events/:id" element={
               <PrivateRoute>
-                <Promo />
+                <ShowEvent />
               </PrivateRoute>
             }
           />
@@ -181,9 +184,18 @@ function App() {
               </PrivateRoute>
             } 
           />
+          <Route path="/promotions/:id" element={<Promotions />} />
+          <Route path="/inscriptions" element={
+              <PrivateRoute>
+                <FormInscription />
+              </PrivateRoute>
+            } />
+
+
+          {/* <Route path="/inscriptions" element={<Inscriptions />} /> */}
           <Route path="/promotions" element={<Promotions />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/promotions/:id" element={<Promo />} />
+          {/* <Route path="/inscriptions/modificaciones" element={<Modificaciones tabla={'users'} />} /> */}
           <Route path="/events/create" element={<EventosC />} />
           <Route path="/events/modificaciones" element={<ModificacionesE />} />
           <Route path="/commerce" element={<Comercios />} />
