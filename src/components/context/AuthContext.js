@@ -17,9 +17,11 @@ const AuthContextProvider = props => {
 
   const login = async token => {
     localStorage.setItem('authToken', token);
-    await verifyStoredToken();
-
-    navigate('/user');
+    const userData = await verifyStoredToken();
+    //Check if user is admin
+    console.log("USERDATTA",userData)
+    if(userData && userData.isAdmin) return navigate("/admin")
+    return navigate('/user');
   };
 
   const logout = async () => {
@@ -43,6 +45,7 @@ const AuthContextProvider = props => {
         const response = await AuthService.userIsAuth(storedToken);
         setUser(response.data);
         setIsLoggedIn(true);
+        return response.data;
       } catch (e) {
         setError(e);
         setIsLoggedIn(false);
