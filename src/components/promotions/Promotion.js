@@ -7,6 +7,7 @@ import PromotionsService from '../../services/promotions.service.js';
 import {  useAuth } from '../context/AuthContext';
 import { useGlobalState } from '../context/GlobalContext';
 import { BsDownload } from 'react-icons/bs';
+import UtilsService from '../../services/utils.service.js';
 
 const Promo = () => {
 const {setError, setLoading} = useGlobalState()
@@ -15,6 +16,7 @@ const { user } = useAuth();
   console.log("USER",user)
   console.log("id",id)
   const [promoData, setPromoData] = useState([]);
+  const [QR, setQR] = useState([]);
   const [modal, setModal] = useState(false);
   let navigate = useNavigate();
 
@@ -36,6 +38,8 @@ const { user } = useAuth();
         if (userPromotionsCaducadas.data.find(promo => promo.id === res.data.id)) {
           setPromoData({ ...res.data, expired: true });
         }
+        const qr = await UtilsService.getQRCode(user.id,id)
+        setQR(qr.data)
       } catch (e) {
         setError(e);
         console.log('Error ', e);
@@ -74,7 +78,7 @@ const { user } = useAuth();
               right: '0px',
               bottom: '0px',
             }}
-            src="https://res.cloudinary.com/dhdbik42m/image/upload/v1653246688/websiteQRCode_noFrame_vcjzxh.png"
+            src={QR}
           ></img>
           <Card.Text className="laptop__column" style={{ display: 'flex', gap: '16px' }}>
             <Card.Img style={{ flex: '1', maxHeight: '600px' }} variant="top" src={promoData.photo} />
