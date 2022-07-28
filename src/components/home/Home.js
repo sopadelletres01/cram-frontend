@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Intro from './Intro';
 import { FaChevronDown, FaFacebook, FaLinkedin, FaTwitter, FaGithub } from 'react-icons/fa';
 import CarouselWrapper from './CarouselWrapper';
+import SpinnerSVG from '../svgs/SpinnerSVG';
 //import '../css/estilosGrid.scss'
 
 //import '../css/estilosGrid.scss'

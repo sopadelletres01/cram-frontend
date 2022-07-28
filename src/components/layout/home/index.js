@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import LoadingSpinner from "../../Spinner"
 import gif from '../../../commons/multimedia/cramGif.gif';
 import Error from "../../Error";
+import SpinnerSVG from "../../svgs/SpinnerSVG";
 
 export default function HomeLayout({ children, sidebar = false }) {
   const [showModal, setShowModal] = useState(false);
@@ -65,7 +66,7 @@ export default function HomeLayout({ children, sidebar = false }) {
       {loading && 
       <Modal contentClassName="modal__spinner" size="sm" aria-labelledby="contained-modal-title-vcenter" centered show={loading}>
           <Modal.Body style={{ backgroundColor: 'transparent' }}>
-            <LoadingSpinner />
+            <SpinnerSVG />
           </Modal.Body>
         </Modal>
       }
