@@ -5,7 +5,7 @@ function ListCard({ list }) {
   return (
     <div className="listCard">
       <br />
-      {list.map(element => {
+      {list && list.map(element => {
         return <Card element={element} />;
       })}
     </div>

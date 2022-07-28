@@ -14,17 +14,18 @@ import NotFound from './components/NotFound';
 import Layout from './components/layout/default';
 import Home from './components/home/Home';
 import { useAuth } from './components/context/AuthContext';
+import FormInscription from './components/inscriptions/FormInscription'
 import HomeLayout from './components/layout/home';
 import MockComponent from './components/MockComponent';
 import Events from './components/events/Events';
 import Promotions from './components/promotions/Promotions';
 import UserProfile from './components/user/UserProfile';
-import Inscriptions from './components/mainPage/Inscription';
+// import Inscriptions from './components/mainPage/Inscription';
 import Modificaciones from './components/mainPage/Modifications';
 import EventosC from './components/mainPage/EventsC';
 import ModificacionesE from './components/mainPage/ModificationsEvents';
 import Comercios from './components/mainPage/Commerces';
-import Promo from './components/promotions/Promotion';
+import EventShow from './components/promotionsComponents/EventShow';
 import ModificacionesCo from './components/mainPage/ModificationsCommerce';
 import ValidarPromo from './components/mainPage/ValidatePromo';
 import Event from './components/events/Event';
@@ -74,9 +75,9 @@ function App() {
                 <Promotions />
               </PrivateRoute>
             } />
-          <Route path="/promotions/:id" element={
+          <Route path="/events/:id" element={
               <PrivateRoute>
-                <Promo />
+                <EventShow />
               </PrivateRoute>
             }  />
           <Route path="/user" element={
@@ -94,13 +95,18 @@ function App() {
                 <UserProfile />
               </PrivateRoute>
             } />
+          <Route path="/inscriptions" element={
+              <PrivateRoute>
+                <FormInscription />
+              </PrivateRoute>
+            } />
 
           {/* adminitrador */}
 
-          <Route path="/inscriptions" element={<Inscriptions />} />
+          {/* <Route path="/inscriptions" element={<Inscriptions />} /> */}
           <Route path="/promotions" element={<Promotions />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/promotions/:id" element={<Promo />} />
+          {/* <Route path="/promotions/:id" element={<Promo />} /> */}
           <Route path="/inscriptions/modificaciones" element={<Modificaciones tabla={'users'} />} />
           <Route path="/events/create" element={<EventosC />} />
           <Route path="/events/modificaciones" element={<ModificacionesE />} />

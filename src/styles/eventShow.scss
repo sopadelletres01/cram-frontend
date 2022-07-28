@@ -1,0 +1,95 @@
+.list_promotion{
+    display:flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.container__shown_event{
+    margin-top:20px;
+    display:flex;
+    border-radius:25px;
+    text-decoration: none;
+    gap: 16px;
+    border-radius: 25px;
+    color: black;
+    border: none;
+    box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px, rgb(0 0 0 / 23%) 0px 3px 6px;
+    width:400px;    
+    justify-content: space-between;
+    flex-direction: column;
+    height: 560px;
+  
+    img{
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        width:100%;
+        heigth:300px;   
+    }
+    .event__title{
+        margin:0%;
+
+        color:$letter-color1;
+        font-weight:bold;
+    }
+    .button{
+        display:flex;
+        text-decoration: none;
+        width: 140px;
+        height: 45px;
+        font-weight:bold;
+        font-size: 0.75em;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        color: $primary-color;
+        background-color: #fff;
+        border: none;
+        border-radius: 45px;
+        box-shadow: 0px 8px 15px rgba(235, 126, 10, 0.508);
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        outline: none;
+        align-items: center;
+        justify-content: center;
+       
+        &:hover{
+            background-color: $primary-color;
+            box-shadow: 0px 15px 20px rgb(247, 202, 119);
+            color: #fff;
+            transform: translateY(-7px);
+        }
+    }
+    
+    .event__info_more{
+        padding-left: 15px  ;
+
+    }
+
+}
+.show__event{
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+
+   
+    .title__show_event{
+        padding-top:40px;
+        padding-bottom:20px;
+        color:$letter-color1;
+        font-weight: bold;
+
+    }
+    .title__detail_event{
+        margin-top:5px;
+        color:$letter-color1;
+    }
+}
+.event_information{
+    margin:0%;
+}
+.form__show_event{
+ 
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
