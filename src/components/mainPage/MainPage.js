@@ -41,7 +41,7 @@ export default function MainPage() {
             <div className="card__box">
               <>
                 <Card
-                  path={'/news'}
+                  path={'/commerces'}
                   src={'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Newspaper_Cover.svg/2048px-Newspaper_Cover.svg.png'}
                   alt={'newspaper'}
                   title={'Noticias'}

@@ -30,7 +30,7 @@ import ValidarPromo from './components/mainPage/ValidatePromo';
 import Event from './components/events/Event';
 import Promotion from './components/mainPage/Promotions';
 import PromotionsC from './components/promotions/CreatePromotion';
-import Noticias from './components/Noticias';
+import Commerces from './components/commerces/Commerces';
 import PrivateRoute from './components/routes/PrivateRoute';
 import AnonRoute from './components/routes/AnonRoute';
 import ShowEvent from './components/events/ShowEvent';
@@ -143,10 +143,10 @@ function App() {
             }
           />
           <Route
-            path="/news"
+            path="/commerces"
             element={
               <PrivateRoute>
-                <Noticias />
+                <Commerces />
               </PrivateRoute>
             }
           />
