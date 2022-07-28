@@ -3,15 +3,16 @@ import { Col, Form, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router';
 import UsuariosService from '../../services/users.service';
-import {  useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 import { useGlobalState } from '../context/GlobalContext';
 
 export default function UserProfile() {
-const {setError} = useGlobalState()
-const { user, setUser, logout } = useAuth();
+  const { setError } = useGlobalState();
+  const { user, logout } = useAuth();
   const [selectedFile, setSelectedFile] = useState();
   const [rolName, setRolName] = useState('');
   const [form, setForm] = useState({});
+  const [userData, setUserData] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
     console.log('Rol', rolName);
@@ -20,12 +21,15 @@ const { user, setUser, logout } = useAuth();
   useEffect(() => {
     (async () => {
       try {
-        let res = await UsuariosService.getRolByUser(user.rol);
+        let res = await UsuariosService.getRolByUser(user.idRole);
         if (res.status === 200) {
           console.log('ress', res);
           console.log('name', res.data.name);
           setRolName(res.data.name);
         }
+        let userRes = await UsuariosService.show('users', user.id);
+        console.log('USERES', userRes);
+        setUserData(userRes.data);
       } catch (e) {
         setError(e);
         if (e?.response?.status === 404) {
@@ -58,7 +62,7 @@ const { user, setUser, logout } = useAuth();
       let res = await UsuariosService.updateAvatar(formData, user.id);
       console.log('res', res);
       if (res.status === 200) {
-        setUser({ ...user, avatar_src: res.data.avatar_src });
+        setUserData({ ...userData, photo: res.data.photo });
       }
     } catch (e) {
       setError(e);
@@ -83,7 +87,7 @@ const { user, setUser, logout } = useAuth();
     try {
       let res = await UsuariosService.update('users', user.id, form);
       if (res.status === 200) {
-        setUser({ ...user, ...form });
+        setUserData({ ...userData, ...form });
       }
     } catch (e) {
       setError(e);
@@ -96,79 +100,85 @@ const { user, setUser, logout } = useAuth();
   return (
     <div className="d-flex justify-content-center align-items-center">
       <div className={'bg-light rounded p-4 w-100'}>
-        <Form>
-          <h1>Perfil de Usuario</h1>
-          {rolName && <h5 style={{ textTransform: 'capitalize' }}>Rol: {rolName}</h5>}
-          <fieldset className="customLegend">
-            <legend>Avatar</legend>
-            <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
-              <div className="avatar__form">
-                <Image src={user?.avatar_src || 'https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png'} roundedCircle></Image>
-              </div>
-              <Form.Group controlId="formFile">
-                <Form.Label>Selecciona un nuevo avatar:</Form.Label>
-                <Form.Control onChange={handleFileChange} type="file" />
-              </Form.Group>
-              <button onClick={handleFileUpload} className="btn mt-2 btn-primary">
-                Cambiar avatar
-              </button>
-            </Form.Group>
-          </fieldset>
-          <fieldset className="flex-wrap customLegend mobile__column">
-            <legend>Datos</legend>
-            <Col>
+        {userData && (
+          <Form>
+            <h1>Perfil de Usuario</h1>
+            {rolName && <h5 style={{ textTransform: 'capitalize' }}>Rol: {rolName}</h5>}
+            <fieldset className="customLegend">
+              <legend>Avatar</legend>
               <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
-                <Form.Label column>Nombre</Form.Label>
-                <Col sm="10">
-                  <Form.Control readOnly defaultValue={user?.name} />
-                </Col>
+                <div className="avatar__form">
+                  <Image src={userData?.photo || 'https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/avat-01-512.png'} roundedCircle></Image>
+                </div>
+                <Form.Group controlId="formFile">
+                  <Form.Label>Selecciona un nuevo avatar:</Form.Label>
+                  <Form.Control onChange={handleFileChange} type="file" />
+                </Form.Group>
+                <button onClick={handleFileUpload} className="btn mt-2 btn-primary">
+                  Cambiar avatar
+                </button>
               </Form.Group>
-              <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
-                <Form.Label column>Apellidos</Form.Label>
-                <Col sm="10">
-                  <Form.Control readOnly={!!user?.apellidos} onChange={e => setForm({ ...form, apellidos: e.target.value })} value={user?.apellidos} />
-                </Col>
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group as={Col} className="mb-3" controlId="formPlaintextEmail">
-                <Form.Label column>Email</Form.Label>
-                <Col sm="10">
-                  <Form.Control readOnly defaultValue={user?.email} />
-                </Col>
-              </Form.Group>
+            </fieldset>
+            <fieldset className="flex-wrap customLegend mobile__column">
+              <legend>Datos</legend>
+              <Col>
+                <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
+                  <Form.Label column>Nombre</Form.Label>
+                  <Col sm="10">
+                    <Form.Control value={form.name}  placeholder={userData.name} />
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
+                  <Form.Label >Apellidos</Form.Label>
+                  <Col sm="10">
+                    <Form.Control
+                    placeholder={userData.last_name}
+                      onChange={e => setForm({ ...form, last_name: e.target.value })}
+                      value={form.last_name}
+                    />
+                  </Col>
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group as={Col} className="mb-3" controlId="formPlaintextEmail">
+                  <Form.Label column>Email</Form.Label>
+                  <Col sm="10">
+                    <Form.Control readOnly defaultValue={userData.email} />
+                  </Col>
+                </Form.Group>
 
-              <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
-                <Form.Label column>Telefono</Form.Label>
-                <Col sm="10">
-                  <Form.Control readOnly={user?.telefono !== null} onChange={e => setForm({ ...form, telefono: e.target.value })} value={user?.telefono} />
-                </Col>
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group as={Col} className="mb-3" controlId="formPlaintextEmail">
-                <Form.Label column>DNI</Form.Label>
-                <Col sm="10">
-                  <Form.Control readOnly defaultValue={user?.dni} />
-                </Col>
-              </Form.Group>
-              <Form.Group as={Col} className="mb-3" controlId="formPlaintextEmail">
-                <Form.Label column>Fecha nacimiento</Form.Label>
-                <Col sm="10">
-                  <Form.Control
-                    type="date"
-                    readOnly={!!user?.fecha_nacimiento}
-                    onChange={e => setForm({ ...form, fecha_nacimiento: e.target.value })}
-                    value={user?.fecha_nacimiento}
-                  />
-                </Col>
-              </Form.Group>
-            </Col>
-            <button onClick={handleUpdateProfile} className="btn mb-3 btn-primary">
-              Actualizar perfil
-            </button>
-          </fieldset>
-        </Form>
+                <Form.Group as={Col} className="mb-3" controlId="formPlaintextPassword">
+                  <Form.Label column>Telefono</Form.Label>
+                  <Col sm="10">
+                    <Form.Control  onChange={e => setForm({ ...form, phone: e.target.value })} placeholder={userData.phone} value={form.phone} />
+                  </Col>
+                </Form.Group>
+              </Col>
+              <Col>
+                <Form.Group as={Col} className="mb-3" controlId="formPlaintextEmail">
+                  <Form.Label column>DNI</Form.Label>
+                  <Col sm="10">
+                    <Form.Control readOnly defaultValue={userData.dni} />
+                  </Col>
+                </Form.Group>
+                <Form.Group as={Col} className="mb-3" controlId="formPlaintextEmail">
+                  <Form.Label column>Fecha nacimiento</Form.Label>
+                  <Col sm="10">
+                    <Form.Control
+                      type="date"
+                      onChange={e => setForm({ ...form, date_of_birth: e.target.value })}
+                      value={userData.date_of_birth}
+                    />
+                  </Col>
+                </Form.Group>
+              </Col>
+              <button onClick={handleUpdateProfile} className="btn mb-3 btn-primary">
+                Actualizar perfil
+              </button>
+            </fieldset>
+          </Form>
+        )}
+
         <h5 className="bg-info profile__forgot rounded">
           <span className="text-secondary">Olvidaste la contraseña?</span>
           <Link onClick={handleRedirect} to="/forgot">
