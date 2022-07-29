@@ -42,10 +42,10 @@ export default function MainPage() {
               <>
                 <Card
                   path={'/commerces'}
-                  src={'https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Newspaper_Cover.svg/2048px-Newspaper_Cover.svg.png'}
+                  src={'https://img.freepik.com/vector-premium/icono-tienda_24911-1362.jpg'}
                   alt={'newspaper'}
-                  title={'Noticias'}
-                  subtitle={' Noticias de los eventos'}
+                  title={'Comercios'}
+                  subtitle={' Comercio Participantes'}
                 />
               </>
             </div>
