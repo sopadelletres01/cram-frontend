@@ -10,19 +10,20 @@ export default function FormInscription() {
   const location = useLocation();
   const { id } = useParams();
   const { user } = useAuth();
-  const [date, setDate]=useState('');
-
+  
   const event = location.state.event;
-
+  
+  const [date, setDate]=useState(event.final_date);
   
   const handlSubmit = async (e) => { 
+    
 
     e.preventDefault();
-    const inscription = { user, event,date } 
+    console.log("TUSA")
 
     if (verifyDate()) { 
-      let inscriptionUser = await ApiCrudService.create('inscriptions', inscription) 
-      console.log(inscriptionUser)
+      let inscriptionUser = await ApiCrudService.create('inscriptions', {idUser:user.id, idEvent:event.id, date:date}) 
+      console.log(inscriptionUser.data)
 
     }
     // console.log(date)
@@ -33,13 +34,14 @@ export default function FormInscription() {
   }
 
   const verifyDate = () => { 
+    console.log(date)
     if (date >= event.start_date && date <= event.final_date) return true
     return false
   }
 
   return (
-    <diV className="container__form">
-      <form onSubmit={handlSubmit} className="form__inscription" action={'/inscriptions'} method={'POST'}>
+    <div className="container__form">
+      <form className="form__inscription" action={'/inscriptions'} method={'POST'}>
         <div className="form__inscription_information">
           <div className="event__info_form">
             <span className="form__inscription_title">Inscripción al Evento</span>
@@ -75,12 +77,12 @@ export default function FormInscription() {
         </div>
         <div className='button_decoration_inscriptionform'>
 
-        <Button type="submit" className="button form_button">
+        <button onClick={handlSubmit} type="submit" className="button form_button">
           Enviar
-        </Button>
+        </button>
 
         </div>
       </form>
-    </diV>
+    </div>
   );
 }

@@ -87,7 +87,7 @@ export default function Filters({ open, setOpen, events, filteredEventos, setEve
 
   return (
     <div className="filters__wrapper">
-      <Button onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
+      <Button className='button_search' onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
         Filtros
       </Button>
       <Collapse in={open}>
