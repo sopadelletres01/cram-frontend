@@ -244,3 +244,14 @@ a,button{
   border: none;
   background-color: transparent;
 }
+.container__cruds{
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.container__dos-modificaciones {
+  /* width: 600px; */
+  display: flex;
+  justify-content: space-around;
+}

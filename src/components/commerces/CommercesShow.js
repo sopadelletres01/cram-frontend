@@ -6,6 +6,7 @@ import PromotionsService from '../../services/promotions.service'
 import CardCommercePromo from './CardCommercePromo';
 import CardPromotion from '../promotionsComponents/CardPromotion';
 import ApiCrudService from '../../services/crud.service';
+import { useGlobalState } from '../context/GlobalContext';
 
 
 function CommercesShow() {
@@ -13,16 +14,25 @@ function CommercesShow() {
     const { id } = useParams();
     console.log('este id es del comercio',Number(id))
     const { user } = useAuth()
+    const { setLoading , setError } = useGlobalState()
     const [promos, setPromos] = useState([])
     const [commerce, setCommerce]=useState([])
     
     useEffect(() => { 
 
         const getPromosByCommerce = async() => {
+            try {
+                setLoading(true)
+                const promos= await PromotionsService.getPromotionsByComercio(Number(id))
+                console.log(promos.data)
+                setPromos(promos.data)
             
-            const promos= await PromotionsService.getPromotionsByComercio(Number(id))
-            console.log(promos.data)
-            setPromos(promos.data)
+            } catch (error) {
+                setError(error)    
+            }
+            finally{
+                setLoading(false)
+            }
         }
 
         getPromosByCommerce();

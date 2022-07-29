@@ -151,11 +151,11 @@ const [userForm, setUserForm] = useState([]);
   return (
     <>
       <MenusAuxiliar>
-        <Link className="btn btn-warning" to={'/admin/users'} title={'Modicar user'}>
+        <Link  className="btn botones__login" to={'/admin/users'} title={'Modicar user'}>
           Dar de alta user
         </Link>
       </MenusAuxiliar>
-      <div className="flex-wrap container__dos-modificaciones">
+      <div className="flex-wrap container__dos-modificaciones mt-5">
         <Form onSubmit={handleSubmit}>
           <h3>Introduce los datos del user</h3>
           <h5>Introduce un dni para rellenar los campos automáticamente:</h5>
