@@ -26,12 +26,10 @@ export default function Layout({ children, sidebar = false }) {
   };
 
   const logoutSession = () => {
-    console.log('tusa');
     logout();
   };
 
   useEffect(() => {
-    console.log('hola');
     if (!showModal) return;
     if (map.current) return; // initialize map only once
     map.current = new mapboxgl.Map({

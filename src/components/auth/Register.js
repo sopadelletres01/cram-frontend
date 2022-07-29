@@ -42,7 +42,6 @@ export function Register() {
               terms: false,
             }}
             onSubmit={async values => {
-              console.log(values);
               const { password, rep_password, dni } = values;
               let formData = {
                 password,
@@ -52,17 +51,14 @@ export function Register() {
               let registro = null;
               try {
                 registro = await AuthService.signup(formData);
-                console.log('registro', registro);
                 if (registro.status === 201) {
                   navigate('/login');
                 }
               } catch (e) {
                 setError(e);
-                console.log('ERROR', e);
                 if (e.response.status === 400) {
                   alert('El usuario con este dni ya ha sido añadido a nuestra app');
                 }
-                console.log(e);
               }
             }}
           >

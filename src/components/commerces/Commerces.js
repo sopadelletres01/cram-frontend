@@ -16,7 +16,6 @@ function Commerces() {
       try{
         setLoading(true)
         const commerces = await ApiCrudService.index('commerces')
-        console.log(commerces)
        setListCommerce(commerces.data)
       }catch(e){
         setError(e)

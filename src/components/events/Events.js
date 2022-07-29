@@ -23,10 +23,8 @@ export default function Events() {
       try {
         setLoading(true);
         let freeEvents = await EventsService.getEventsActiveFree();
-        console.log('eventos gratuitos', freeEvents.data);
         setListFreeEvents(freeEvents.data);
       } catch (e) {
-        console.log(e);
         setError(e);
       } finally {
         setLoading(false);
@@ -38,7 +36,6 @@ export default function Events() {
   // cogemos los eventos del usuario
   // cogemos las promociones del usuario
 
-  console.log('informacion del usuario', user);
   return (
     <div className="container__list my-5">
       <h1>Eventos gratuitos</h1>

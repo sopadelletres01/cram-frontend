@@ -9,7 +9,6 @@ function AnonRoute(props) {
   const navigate = useNavigate();
   useEffect(()=>{
   // If the user is already logged in, redirect him to home page
-  console.log("ISLogged",isLoggedIn)
     if (isLoggedIn) {
       if (isAdmin) return navigate('/admin');
       return navigate('/user');

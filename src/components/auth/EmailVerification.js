@@ -7,8 +7,6 @@ import AuthService from '../../services/auth.service';
 export default function EmailVerification() {
   let form = useParams();
   let location = useLocation();
-  console.log('form', form);
-  console.log('location', location);
   const navigate = useNavigate();
   const handleResend = async e => {
     e.preventDefault();
@@ -19,7 +17,6 @@ export default function EmailVerification() {
     if (location?.state?.email) {
       data = location.state;
     }
-    console.log('DATA', data);
     let res = await AuthService.forgotPassword(data);
   };
   const handleRedirect = async e => {

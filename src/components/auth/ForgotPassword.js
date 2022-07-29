@@ -15,12 +15,9 @@ export default function ForgotPassword() {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      console.log('cositas');
       let res = await AuthService.forgotPassword(form);
-      console.log(res);
       if (res.status === 200) {
         //Todo correcto pasamos al siguiente paso (esperar a la validacion del correo)
-        console.log('ok', res.status);
         navigate('/forgot/email-verification', {
           state: { email: form.email },
         });
@@ -30,10 +27,8 @@ export default function ForgotPassword() {
     } catch (e) {
       setError(e);
       if (e.response.status === 400) {
-        console.log('CAGASTE');
         alert('CAGASTE, el email no existe');
       }
-      console.log(e);
     }
   };
 

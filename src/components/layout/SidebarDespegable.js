@@ -6,7 +6,6 @@ import { useAuth } from '../context/AuthContext';
 function SidebarDespegable({ show, setShow }) {
   const domeNode = useRef();
   const { logout, isLoggedIn, user, isAdmin } = useAuth();
-  console.log('USER', user);
 
   const handleLogout = () => {
     setShow(false);

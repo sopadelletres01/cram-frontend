@@ -20,7 +20,6 @@ function Event() {
       setLoading(true)
       try{
         const listPromos = await EventsService.getPromotions(id)
-        console.log(listPromos.data)
       }catch(e){
         setError(e)
       }
@@ -33,16 +32,13 @@ function Event() {
 
   useEffect(() => {
     const getEvent = async () => {
-      console.log('entra aquiiiiii')
       const event = await EventsService.show('events', id)
-      console.log('evento',event.data)
       setEvent(event.data)
       
     }
     getEvent();
   },[])
   
-console.log(event)
 
   return (
     <div className='show__event'>

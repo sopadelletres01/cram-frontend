@@ -27,7 +27,6 @@ export default function Eventos() {
 
   ///////------------BUSCAMOS EL EVENTO --------- //////////////////
   const handleSubmit = async e => {
-    console.log('cuando entra', buscar);
     e.preventDefault();
     let id = evento.id;
     setLoading(true);
@@ -38,18 +37,15 @@ export default function Eventos() {
 
         if (res.status === 200) {
           setEvento(res.data);
-          console.log('EVENTOOOOOOOOOOOO', evento);
           setFormState('opciones');
         }
         return;
       }
       setFormState('opciones');
     } catch (error) {
-      console.log(error);
     } finally {
       setLoading(false);
       setBuscar(false);
-      console.log('cuando acaba', buscar);
     }
   };
 
@@ -89,7 +85,6 @@ export default function Eventos() {
         );
       case 'eliminar':
         let respuesta = window.confirm('Esta seguro de que quieres eliminar a este evento? ');
-        console.log(respuesta);
         if (!respuesta) {
           setFormState('opciones');
           return;
@@ -102,15 +97,12 @@ export default function Eventos() {
     }
   };
   const handleBlur = async e => {
-    console.log(e);
     e.preventDefault();
     /* setLoading(true); */
     try {
       let res = await ApiCrudService.show('events', e.target.value);
-      console.log(res.data);
       setEvento(res.data);
     } catch (error) {
-      console.log(error);
     }
   };
 

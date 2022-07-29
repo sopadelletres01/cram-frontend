@@ -24,21 +24,16 @@ export default function ModificacionesCo() {
       setListCategorias(categos.data);
     }
     getData();
-    console.log('Lista de los eventitos', listEventos);
-    console.log('Lista de los eventitos', listCategorias);
   }, []);
 
   const handleBlur = async e => {
-    console.log(e);
     e.preventDefault();
     /* setLoading(true); */
 
     try {
       let res = await ComerciosService.serachComercio(e.target.value);
-      console.log(res.data);
       setComercio(res.data);
     } catch (error) {
-      console.log(error);
     }
   };
   const renderButtons = () => {
@@ -76,7 +71,6 @@ export default function ModificacionesCo() {
         );
       case 'eliminar':
         let respuesta = window.confirm('Esta seguro de que quieres eliminar a este user? ');
-        console.log(respuesta);
         if (!respuesta) {
           setFormComer('opciones');
           return;

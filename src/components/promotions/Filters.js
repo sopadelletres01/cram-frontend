@@ -3,21 +3,16 @@ import { Button, ButtonGroup, ButtonToolbar, Collapse, Dropdown, DropdownButton,
 import { FaSearch } from 'react-icons/fa';
 
 export default function Filters({ open, setOpen, promotions, filteredPromotions, setPromotions, setSelected, selected }) {
-  console.log('promotions filtro', filteredPromotions);
-  console.log('promotions de l filtro', promotions);
   const handleSortChange = e => {
     let sortedPromotions = [...filteredPromotions];
     switch (e.target.value) {
       case '1':
-        console.log('A/A');
         sortedPromotions = filteredPromotions.sort((a, b) => {
           let A = a.name.toLowerCase();
           let B = b.name.toLowerCase();
           if (A > B) {
             return 1;
           } else if (A < B) {
-            console.log('nomBre de A', A);
-            console.log('nomBre de B', A);
 
             return -1;
           }
@@ -26,15 +21,12 @@ export default function Filters({ open, setOpen, promotions, filteredPromotions,
         });
         break;
       case '2':
-        console.log('A/D');
         sortedPromotions = filteredPromotions.sort((a, b) => {
           let A = a.name.toLowerCase();
           let B = b.name.toLowerCase();
           if (A < B) {
             return 1;
           } else if (A > B) {
-            console.log('name de A', A);
-            console.log('name de B', A);
             return -1;
           }
           // a must be equal to b
@@ -42,7 +34,6 @@ export default function Filters({ open, setOpen, promotions, filteredPromotions,
         });
         break;
       case '3':
-        console.log('F/A');
         sortedPromotions = filteredPromotions.sort((a, b) => {
           if (a.final_date > b.final_date) {
             return 1;
@@ -54,7 +45,6 @@ export default function Filters({ open, setOpen, promotions, filteredPromotions,
         });
         break;
       case '4':
-        console.log('F/D');
         sortedPromotions = filteredPromotions.sort((a, b) => {
           if (a.final_date < b.final_date) {
             return 1;
@@ -79,7 +69,6 @@ export default function Filters({ open, setOpen, promotions, filteredPromotions,
         });
         break;
     }
-    console.log('SORTED ', sortedPromotions);
     setPromotions([...sortedPromotions]);
   };
 
@@ -91,7 +80,6 @@ export default function Filters({ open, setOpen, promotions, filteredPromotions,
       return;
     }
     newPromotions = promotions.filter(promo => promo.name.toLowerCase().includes(value.toLowerCase()));
-    console.log('filtered', newPromotions);
     setPromotions([...newPromotions]);
   };
 

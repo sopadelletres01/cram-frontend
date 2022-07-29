@@ -8,7 +8,6 @@ function ListCard({ list }) {
   useEffect(() => {
     const getEventsFree = async () => {
       let freeEvents = await EventsService.getEventsActiveFree();
-      console.log('eventos gratuitos', freeEvents.data);
       setListFreeEvents(freeEvents.data);
     };
 
@@ -18,7 +17,6 @@ function ListCard({ list }) {
   // cogemos las promociones del usuario
 
   const { user } = useAuth();
-  console.log('informacion del usuario', user);
   return (
     <div className="listCard">
       <br />

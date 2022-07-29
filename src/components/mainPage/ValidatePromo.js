@@ -19,9 +19,7 @@ const [users, setUsers] = useState([]);
   const [encontrado, setEncontrado] = useState(false);
 
   useEffect(() => {
-    console.log('ENCONTRADO', encontrado);
     //AQUI SALE
-    console.log(promoUser);
   }, [promoUser, users, encontrado]);
 
   const handleSubmit = async e => {
@@ -29,13 +27,10 @@ const [users, setUsers] = useState([]);
     setLoading(true);
     try {
       let promotions = await ComerciosService.searchPromoAndUser(users.dni, user.comercio_id);
-      console.log('PROMOS', promotions);
       setPromoUser(promotions.data);
       setUsers({ ...users, id: promoUser[0].id });
-      console.log('INFORMACION DEL USUARIO', users);
     } catch (e) {
       setError(e);
-      console.log(e);
     } finally {
       setLoading(false);
       setEncontrado(true);
@@ -43,13 +38,10 @@ const [users, setUsers] = useState([]);
   };
   const handleValid = async (e, promo) => {
     e.preventDefault();
-    console.log(e.target.value);
-    console.log('informacion de la promo', promo.id, promo.id_Promotion);
     //enviar el id_usuario y el
     // id_promo a la APi para hacer insercción a la tabla user-Promotion
     try {
       let res = await PromotionsService.existThisPromo(promo.id, promo.id_Promotion);
-      console.log('RESPUSTA DE LA CONSULTA', res);
       if (res.data === '') {
         let preg = window.confirm('¿¿estas  seguro que quires validar esta Promotion??');
         if (preg === true) {
@@ -61,15 +53,12 @@ const [users, setUsers] = useState([]);
             setEncontrado(false);
           }
         }
-        console.log('no esxiste');
       } else {
-        console.log('existe');
         window.alert('Esta Promotion ya la han usado anteniormente.');
         setEncontrado(false);
       }
     } catch (e) {
       setError(e);
-      console.log(e);
     }
   };
 

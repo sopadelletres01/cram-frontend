@@ -19,11 +19,9 @@ export default function FormInscription() {
     
 
     e.preventDefault();
-    console.log("TUSA")
 
     if (verifyDate()) { 
       let inscriptionUser = await ApiCrudService.create('inscriptions', {idUser:user.id, idEvent:event.id, date:date}) 
-      console.log(inscriptionUser.data)
 
     }
     // console.log(date)
@@ -34,7 +32,6 @@ export default function FormInscription() {
   }
 
   const verifyDate = () => { 
-    console.log(date)
     if (date >= event.start_date && date <= event.final_date) return true
     return false
   }

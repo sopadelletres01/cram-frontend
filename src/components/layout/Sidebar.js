@@ -8,15 +8,12 @@ import { useGlobalState } from '../context/GlobalContext';
 export default function Sidebar({ accio }) {
 const {setError} = useGlobalState()
   const { user, logout } = useAuth();
-  console.log('USER', user);
   const logoutSession = async () => {
     try {
       let res = await AuthService.signout();
-      console.log('SIGNOUT', res);
       logout();
     } catch (e) {
       setError(e);
-      console.log(e);
     }
   };
   return (

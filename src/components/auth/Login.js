@@ -25,16 +25,13 @@ export function Login() {
     setShow(false);
     try {
       let resend = await AuthService.resend(form);
-      console.log(resend);
       if (resend.status === 200) {
-        console.log('ok', resend.status);
         /* pasarle al Context el user  */
       }
     } catch (e) {
       setError(e);
       if (e.response.status === 401) {
       }
-      console.log(e);
     }
   };
 
@@ -51,9 +48,7 @@ export function Login() {
     try {
       setLoading(true);
       const res = await AuthService.signin(form, remember);
-      console.log(res);
       if (res.status === 200) {
-        console.log('RES DATA', res.data);
         const { authToken } = res.data;
         login(authToken);
         //Context login
@@ -64,7 +59,6 @@ export function Login() {
       if (e.response?.status === 401) {
         setShow(true);
       }
-      console.log(e);
     } finally {
       setLoading(false);
     }

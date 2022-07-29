@@ -41,7 +41,6 @@ mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
 
 function App() {
   const { isLoggedIn, user } = useAuth();
-  console.log('ISAUTH', isLoggedIn);
   return (
     <>
       <HomeLayout>

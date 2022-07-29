@@ -26,7 +26,6 @@ const [inscripcion, setInscripcion] = useState([]);
         setEventos(events.data);
       } catch (e) {
         setError(e);
-        console.log(e);
       } finally {
         setLoading(false);
       }
@@ -39,13 +38,10 @@ const [inscripcion, setInscripcion] = useState([]);
     try {
       setLoading(true)
       let res = await ApiCrudService.create('users', form);
-      console.log("USERCREADO",res.data)
       setDatos(res.data.id);
       let inscription = await ApiCrudService.create('inscriptions', { idUser: Number(res.data.id), idEvent: Number(idEvento) });
-      console.log("INSCRIPTION",inscription.data)
     } catch (e) {
       setError(e);
-      console.log(e);
     }
     finally{
       setLoading(false)
@@ -71,7 +67,6 @@ const [inscripcion, setInscripcion] = useState([]);
       alert('Se han inscrito los users correctamente en la carrera .');
     } catch (e) {
       setError(e);
-      console.log(e);
     }
     finally{
       setLoading(false)

@@ -26,7 +26,6 @@ const { user  } = useAuth();
     try {
       if (todayDate < evento.fecha_inicio && evento.fecha_inicio <= evento.fecha_finalizacion) {
         const elem = document.getElementById('form');
-        console.log('elem', elem);
 
         const formData = new FormData(elem);
         let res = await ApiCrudService.create('events', formData);
@@ -50,7 +49,6 @@ const { user  } = useAuth();
     } catch (e) {
       setError(e);
       if (e?.response?.status === 500) {
-        console.log('EL error esta en el servidor ', e);
       } else {
         console.log(e);
       }
@@ -82,7 +80,6 @@ const { user  } = useAuth();
         </fieldset>
         <Form id="form" onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            {console.log(Date.now())}
             {/*                     <Image src={evento.src || "https://res.cloudinary.com/dhdbik42m/image/upload/v1652897103/no-hay-icono-de-foto-estilo-contorno-delgado-la-colecci_C3_B3n-iconos-se_C3_B1as-del-centro-comercial-ning_C3_BAn-fotos-para-dise_C3_B1o-147583922_xe4gzv.jpg" }/>
              */}{' '}
             <Form.Label>Nombre del Evento</Form.Label>

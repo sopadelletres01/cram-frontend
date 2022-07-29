@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 
 export function CardCommercePromo({ element }) {
-    console.log(element)
 
     const { id}=useParams()
   

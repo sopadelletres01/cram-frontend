@@ -26,13 +26,10 @@ export default function ResetPassword() {
   const HandleSubmit = async values => {
     const { password } = values;
     let form = { id, token, password: bcrypt.hashSync(password, 8) };
-    console.log('form', form);
     try {
       let res = await AuthService.resetPassword(form);
-      console.log(res);
       if (res.status === 200) {
         //Todo correcto, volvemos al login
-        console.log('ok', res.status);
         navigate('/login', { replace: true });
 
         /* pasarle al Context el user  */
@@ -40,10 +37,8 @@ export default function ResetPassword() {
     } catch (e) {
       setError(e);
       if (e.response.status === 400) {
-        console.log('CAGASTE');
         alert('CAGASTE,no se ha podido actualizar la contraseña');
       }
-      console.log(e);
     }
   };
 

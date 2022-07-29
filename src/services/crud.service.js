@@ -11,7 +11,6 @@ export default class ApiCrudService {
     return httpC.post(`/${resource}`, data);
   }
   static update(resource, id, data) {
-    console.log(`/${resource}/${id}`);
     return httpC.put(`/${resource}/${id}`, data);
   }
   static delete(resource, id) {

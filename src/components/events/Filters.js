@@ -7,7 +7,6 @@ export default function Filters({ open, setOpen, events, filteredEventos, setEve
     let sortedEventos = [...filteredEventos];
     switch (e.target.value) {
       case '1':
-        console.log('easfas');
         sortedEventos = filteredEventos.sort((a, b) => {
           if (a.name > b.name) {
             return 1;
@@ -69,7 +68,6 @@ export default function Filters({ open, setOpen, events, filteredEventos, setEve
         });
         break;
     }
-    console.log('SORTED', sortedEventos);
     setEventos([...sortedEventos]);
   };
 
@@ -81,7 +79,6 @@ export default function Filters({ open, setOpen, events, filteredEventos, setEve
       return;
     }
     newEventos = events.filter(ev => ev.name.toLowerCase().includes(value.toLowerCase()));
-    console.log('filtered', newEventos);
     setEventos([...newEventos]);
   };
 

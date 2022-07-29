@@ -20,19 +20,15 @@ export default function PromotionEdit({ events, id, caducado, title, commerce, e
   }, []);
 
   const handleEdit = async e => {
-    console.log('FORM', form);
     e.preventDefault();
     try {
       let res = await PromotionsService.update('Promotions', id, form);
       if (res.status === 200) {
         let promo = await PromotionsService.show('Promotions', id);
-        console.log('PROMOOO', promo);
         setForm(promo.data);
       }
-      console.log('resssss', res);
     } catch (e) {
       setError(e);
-      console.log(e);
     }
   };
 
@@ -40,10 +36,8 @@ export default function PromotionEdit({ events, id, caducado, title, commerce, e
     e.preventDefault();
     try {
       let res = await PromotionsService.delete('Promotions', id);
-      console.log('resssss', res);
     } catch (e) {
       setError(e);
-      console.log(e);
     }
   };
 

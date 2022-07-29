@@ -12,7 +12,6 @@ import { useGlobalState } from '../context/GlobalContext';
 function CommercesShow() {
 
     const { id } = useParams();
-    console.log('este id es del comercio',Number(id))
     const { user } = useAuth()
     const { setLoading , setError } = useGlobalState()
     const [promos, setPromos] = useState([])
@@ -24,7 +23,6 @@ function CommercesShow() {
             try {
                 setLoading(true)
                 const promos= await PromotionsService.getPromotionsByComercio(Number(id))
-                console.log(promos.data)
                 setPromos(promos.data)
             
             } catch (error) {
@@ -43,7 +41,6 @@ function CommercesShow() {
 
         const getCommerce = async () => { 
             const commerce = await ApiCrudService.show('commerces',Number(id))
-        console.log(commerce)
         setCommerce(commerce.data)
 
         }

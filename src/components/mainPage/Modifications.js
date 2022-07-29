@@ -29,10 +29,8 @@ const [userForm, setUserForm] = useState([]);
     try {
       if (events.length === 0) {
         let res = await UsuariosService.delete('users', userForm.id);
-        console.log(res.data);
         alert('Se ha eliminado el user...');
         if (res.status === 200) {
-          console.log(res.data.message);
           setFormState('search');
           setSearch(false);
           setUserForm({});
@@ -41,19 +39,15 @@ const [userForm, setUserForm] = useState([]);
       }
       let res = await UsuariosService.deleteInscriptionsByUser(userForm.id);
       alert('Se han eliminado las Inscriptions del user...');
-      console.log(res.data);
       if (res.status === 200) {
-        console.log(res.data.message);
         let delRes = await UsuariosService.delete('users', userForm.id);
         alert('Se ha eliminado el user...');
-        console.log(delRes.data);
         setFormState('search');
         setSearch(false);
         setUserForm({});
       }
     } catch (e) {
       setError(e);
-      console.log(e);
     }
     /* let res = await  */
   };
@@ -93,7 +87,6 @@ const [userForm, setUserForm] = useState([]);
         );
       case 'eliminar':
         let respuesta = window.confirm('Esta seguro de que quieres eliminar a este user? ');
-        console.log(respuesta);
         if (!respuesta) {
           setFormState('opciones');
           return;
@@ -107,17 +100,14 @@ const [userForm, setUserForm] = useState([]);
   };
 
   const handleBlur = async e => {
-    console.log(e);
     e.preventDefault();
     /* setLoading(true); */
 
     try {
       let res = await UsuariosService.searchUser(e.target.value);
-      console.log(res.data);
       setUserForm(res.data);
     } catch (error) {
       setError(error)
-      console.log(error);
     }
   };
   const handleSubmit = async e => {
@@ -128,22 +118,18 @@ const [userForm, setUserForm] = useState([]);
       setLoading(true);
       if (formState === 'editar') {
         let res = await UsuariosService.update('users', userForm.id, userForm);
-        console.log(res);
         if (res.status === 200) {
           setFormState('opciones');
         }
-        console.log('RESSSSSSSSSSSSSSSSSSSSSss', res);
         return;
       }
       let res = await UsuariosService.searchUser(userForm.dni);
 
       let ev = await EventosService.getEventsByUser(res.data.id);
-      console.log(ev.data);
       setEventos(ev.data);
       setFormState('opciones');
     } catch (error) {
       setError(error)
-      console.log(error);
     } finally {
       setLoading(false);
     }

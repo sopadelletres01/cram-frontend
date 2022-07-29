@@ -13,8 +13,6 @@ const Promo = () => {
   const { setError, setLoading } = useGlobalState();
   const { user } = useAuth();
   const { id } = useParams();
-  console.log('USER', user);
-  console.log('id', id);
   const [promoData, setPromoData] = useState([]);
   const [QR, setQR] = useState([]);
   const [modal, setModal] = useState(false);
@@ -29,12 +27,10 @@ const Promo = () => {
       try {
         setLoading(true);
         const res = await PromotionsService.getPromo(id);
-        console.log('res', res);
         if (res.status === 200) {
           setPromoData(res.data);
         }
         const userPromotionsCaducadas = await PromotionsService.getPromotionsExpiredByUser(user.id);
-        console.log('caducadas', userPromotionsCaducadas);
         if (userPromotionsCaducadas.data.find(promo => promo.id === res.data.id)) {
           setPromoData({ ...res.data, expired: true });
         }
@@ -42,7 +38,6 @@ const Promo = () => {
         setQR(qr.data);
       } catch (e) {
         setError(e);
-        console.log('Error ', e);
       } finally {
         setLoading(false);
       }

@@ -16,7 +16,6 @@ export default function UserProfile() {
   const [userData, setUserData] = useState({});
   const navigate = useNavigate();
   useEffect(() => {
-    console.log('Rol', rolName);
   }, [rolName]);
 
   useEffect(() => {
@@ -25,17 +24,13 @@ export default function UserProfile() {
         setLoading(true);
         let res = await UsuariosService.getRolByUser(user.idRole);
         if (res.status === 200) {
-          console.log('ress', res);
-          console.log('name', res.data.name);
           setRolName(res.data.name);
         }
         let userRes = await UsuariosService.show('users', user.id);
-        console.log('USERES', userRes);
         setUserData(userRes.data);
       } catch (e) {
         setError(e);
         if (e?.response?.status === 404) {
-          console.log('El rol no se encontró');
         }
       } finally {
         setLoading(false);
@@ -45,7 +40,6 @@ export default function UserProfile() {
 
   const handleFileChange = e => {
     setSelectedFile(e.target.files[0]);
-    console.log(e.target.files);
   };
   const handleFileUpload = async e => {
     e.preventDefault();
@@ -58,21 +52,17 @@ export default function UserProfile() {
 
     formData.append('image', selectedFile, selectedFile.name);
     // Details of the uploaded file
-    console.log(selectedFile);
 
     // Request made to the backend api
     // Send formData object
     try {
       let res = await UsuariosService.updateAvatar(formData, user.id);
-      console.log('res', res);
       if (res.status === 200) {
         setUserData({ ...userData, photo: res.data.photo });
       }
     } catch (e) {
       setError(e);
-      console.log(e);
       if (e?.response?.status === 500) {
-        console.log('ERROR', e);
       }
     }
   };
@@ -87,7 +77,6 @@ export default function UserProfile() {
     //Hacer fecha nacimiento tipo date
     //Comprobar que los valores no esten vacios
     e.preventDefault();
-    console.log('FORM', form);
     try {
       let res = await UsuariosService.update('users', user.id, form);
       if (res.status === 200) {

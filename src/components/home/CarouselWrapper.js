@@ -16,12 +16,9 @@ function CarouselWrapper() {
         setLoading(true);
         const data = await EventsService.getEventsActiveFree();
         const promos = await PromotionsService.getPromotionsByFreeEvents();
-        console.log('Promos', promos.data);
-        console.log(data.data);
         setEventsFree(data.data);
         setPromosFree(promos.data);
       } catch (e) {
-        console.log('Error', e);
       } finally {
         setLoading(false);
       }

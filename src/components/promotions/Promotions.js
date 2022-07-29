@@ -36,9 +36,6 @@ export default function Promotions({ className, ...rest }) {
         let userPromotions = await PromotionsService.getPromotionsByUser(user.id);
         const userPromotionsCaducadas = await PromotionsService.getPromotionsExpiredByUser(user.id);
         const promotionsUsadas = await PromotionsService.getPromosUsadas(user.id);
-        console.log('USERPROMOS', userPromotions.data);
-        console.log('CADUCADAS', userPromotionsCaducadas.data);
-        console.log('USADAS', promotionsUsadas.data);
 
         //le pasamos el id del commerce que tiene la Promotion.
         //const commerce= await ComerciosService.show("commerces",Promotions.comercio_id);
@@ -55,14 +52,12 @@ export default function Promotions({ className, ...rest }) {
             if(promoCaducada)arrayFinalPromosCaducadas.push({ ...promotionElem, used: false });
           }
         }
-        console.log('ARRAYFINAL', arrayFinalPromos);
 
         setPromotionsDataCaducadas(arrayFinalPromosCaducadas);
         setPromotionsData(arrayFinalPromos);
         setPromotionsDataUsadas(promotionsUsadas.data);
         setFilteredPromotionsData(arrayFinalPromos);
       } catch (err) {
-        console.log(err);
       } finally {
         //Pase lo que pase loading del modal a false
         setLoading(false);
@@ -80,8 +75,6 @@ export default function Promotions({ className, ...rest }) {
     //Renderizamos los events dependiendo del filtro de tipo: "inscrito" | "no inscrito" | "todos"
     //Este filtro se encuentra en el componente Filters y le pasamos el resultado a este componente
 
-    console.log('filteredPromotions', filteredPromotionsData);
-    console.log('PROMOS', Promotions);
 
     switch (selected) {
       case 1:

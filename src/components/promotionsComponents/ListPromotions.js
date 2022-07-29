@@ -9,14 +9,12 @@ function ListPromotions({ id }) {
   const [listPromotions, setListPromotions] = useState([]);
   const { user } = useAuth();
 
-  console.log(user);
 
   // cogeremos las promociones del evento y las mostraremos debajo del evento.
   useEffect(() => {
     const getPromotionsByEvent = async () => {
       let promotions = await EventsService.getPromotions(id);
       setListPromotions(promotions.data);
-      console.log(promotions.data);
     };
     getPromotionsByEvent();
   }, []);

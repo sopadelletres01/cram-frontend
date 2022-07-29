@@ -26,7 +26,6 @@ export default function HomeLayout({ children, sidebar = false }) {
   const [show, setShow] = useState(false)
     
   const toggleShow = () => { 
-      console.log("ToggleShow")
       setShow(!show)
     }
 

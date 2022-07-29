@@ -33,7 +33,6 @@ const [loading, setLoading] = useState(false);
         setListComercio(comerNif.data);
       } catch (e) {
         setError(e);
-        console.log(e);
       } finally {
         setLoading(false);
       }
@@ -53,21 +52,18 @@ const [loading, setLoading] = useState(false);
       //tengo que pasarle el id del commerce y el id del user
       setLoading(false);
       let userComer = await ApiCrudService.create('usuario_comercios', { comercio_id: commerce.id, idUser: res.data.id });
-      console.log(userComer);
       window.alert('Ya se ha creado el el commerce y se ha vinculado al user.');
       setComercio({});
     } catch (e) {
       setError(e);
       alert('Ha habido un error al crear el user');
 
-      console.log(e);
     }
   };
 
   const handleLocation = () => {
     if (navigator.geolocation) {
       var succes = function (position) {
-        console.log(position);
         setLat(position.coords.latitude * 1);
         setLong(position.coords.longitude * 1);
       };
@@ -83,28 +79,21 @@ const [loading, setLoading] = useState(false);
     try {
       let elem = document.getElementById('form');
       let formData = new FormData(elem);
-      console.log(formData.get('nif'));
       let repetido = listComercio.find(commerce => commerce.nif === formData.get('nif'));
-      console.log(repetido);
       if (repetido) {
         window.alert('Este NIF ya esta registrado en nuestra Base de datos.');
       } else {
         let res = await ApiCrudService.create('commerces', formData);
-        console.log('ID del putsdfsdfsdfsdfsdfsdfsdfo commerce', res);
-        console.log('dataaaaaaaaa', res.data);
         if (res.status === 200) {
           setComercio(res.data);
           setDatos({ ...datos, comercio_id: res.data.id });
 
-          console.log('ID del puto commerce', res.data.id);
         }
       }
     } catch (err) {
-      console.log(err);
     } finally {
       setComplet(true);
       setLoading(false);
-      console.log('DATOS', datos);
     }
   };
   return (

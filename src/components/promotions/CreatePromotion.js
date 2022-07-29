@@ -23,11 +23,9 @@ const [commerce, setComercio] = useState([]);
     (async () => {
       try {
         let events = await EventosService.index('events');
-        console.log('EVENTOS', events);
         setListEventos(events.data);
       } catch (e) {
         setError(e);
-        console.log('ERROR', e);
       }
     })();
   }, []);
