@@ -97,9 +97,9 @@ const [inscripcion, setInscripcion] = useState([]);
   };
 
   return (
-    <>
+    <div className='userManagement container mt-5'>
       <MenusAuxiliar>
-        <Link className="btn btn-warning" to={'/admin/users/edit'} title={'Modicar user'}>
+        <Link className="btn botones__login" to={'/admin/users/edit'} title={'Modicar user'}>
           {' '}
           Buscar user
         </Link>
@@ -127,7 +127,7 @@ const [inscripcion, setInscripcion] = useState([]);
               <Form.Label>Escoge un archivo</Form.Label>
               <Form.Control onChange={e => handleFile(e)} type="file" accept=".csv,.xlsx,.xls" />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button className="botones__login" variant="primary" type="submit">
               Enviar
             </Button>
           </Form>
@@ -190,12 +190,12 @@ const [inscripcion, setInscripcion] = useState([]);
                 }}
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button className="botones__login" variant="primary" type="submit">
               Enviar
             </Button>
           </Form>
         </div>
       </div>
-    </>
+    </div>
   );
 }
