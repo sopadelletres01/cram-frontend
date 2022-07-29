@@ -40,7 +40,8 @@ export default function Events() {
 
   console.log('informacion del usuario', user);
   return (
-    <div className="container__list">
+    <div className="container__list my-5">
+      <h1>Eventos gratuitos</h1>
       <div className="listCard">
         {listFreeEvents.map(element => {
           return <CardEvent element={element} />;
